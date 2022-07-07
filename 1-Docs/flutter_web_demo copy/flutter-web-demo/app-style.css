@@ -1,0 +1,341 @@
+:root {
+    --primary-color: #555555;
+  }
+  
+    html {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box
+    }
+  
+    body {
+      margin: 0;
+    }
+  
+    *,
+    :after,
+    :before {
+      -webkit-box-sizing: inherit;
+      box-sizing: inherit
+    }
+  
+    .left {
+      float: left !important
+    }
+  
+    .right {
+      float: right !important
+    }
+  
+    .circle {
+      border-radius: 50%
+    }
+  
+  
+    .preloader-wrapper {
+      display: inline-block;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -25px 0 0 -25px;
+    }
+  
+    .preloader-wrapper.active {
+      -webkit-animation: container-rotate 1568ms linear infinite;
+      animation: container-rotate 1568ms linear infinite
+    }
+  
+    @-webkit-keyframes container-rotate {
+      to {
+        -webkit-transform: rotate(360deg)
+      }
+    }
+  
+    @keyframes container-rotate {
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+      }
+    }
+  
+  
+    .spinner-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      border-color: var(--primaryColor,"");
+    }
+  
+    .active .spinner-layer {
+      opacity: 1;
+      -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(.4, 0, .2, 1) infinite both;
+      animation: fill-unfill-rotate 5332ms cubic-bezier(.4, 0, .2, 1) infinite both
+    }
+  
+    @-webkit-keyframes fill-unfill-rotate {
+      12.5% {
+        -webkit-transform: rotate(135deg)
+      }
+  
+      25% {
+        -webkit-transform: rotate(270deg)
+      }
+  
+      37.5% {
+        -webkit-transform: rotate(405deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(540deg)
+      }
+  
+      62.5% {
+        -webkit-transform: rotate(675deg)
+      }
+  
+      75% {
+        -webkit-transform: rotate(810deg)
+      }
+  
+      87.5% {
+        -webkit-transform: rotate(945deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(1080deg)
+      }
+    }
+  
+    @keyframes fill-unfill-rotate {
+      12.5% {
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg)
+      }
+  
+      25% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg)
+      }
+  
+      37.5% {
+        -webkit-transform: rotate(405deg);
+        transform: rotate(405deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(540deg);
+        transform: rotate(540deg)
+      }
+  
+      62.5% {
+        -webkit-transform: rotate(675deg);
+        transform: rotate(675deg)
+      }
+  
+      75% {
+        -webkit-transform: rotate(810deg);
+        transform: rotate(810deg)
+      }
+  
+      87.5% {
+        -webkit-transform: rotate(945deg);
+        transform: rotate(945deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(1080deg);
+        transform: rotate(1080deg)
+      }
+    }
+  
+    .gap-patch {
+      position: absolute;
+      top: 0;
+      left: 45%;
+      width: 10%;
+      height: 100%;
+      overflow: hidden;
+      border-color: inherit
+    }
+  
+    .gap-patch .circle {
+      width: 1000%;
+      left: -450%
+    }
+  
+    .circle-clipper {
+      display: inline-block;
+      position: relative;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      border-color: inherit
+    }
+  
+    .circle-clipper .circle {
+      width: 200%;
+      height: 100%;
+      border-width: 3px;
+      border-style: solid;
+      border-color: inherit;
+      border-bottom-color: transparent !important;
+      border-radius: 50%;
+      -webkit-animation: none;
+      animation: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0
+    }
+  
+    .circle-clipper.left .circle {
+      left: 0;
+      border-right-color: transparent !important;
+      -webkit-transform: rotate(129deg);
+      transform: rotate(129deg)
+    }
+  
+    .circle-clipper.right .circle {
+      left: -100%;
+      border-left-color: transparent !important;
+      -webkit-transform: rotate(-129deg);
+      transform: rotate(-129deg)
+    }
+  
+    .active .circle-clipper.left .circle {
+      -webkit-animation: left-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both;
+      animation: left-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both
+    }
+  
+    .active .circle-clipper.right .circle {
+      -webkit-animation: right-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both;
+      animation: right-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both
+    }
+  
+    @-webkit-keyframes left-spin {
+      from {
+        -webkit-transform: rotate(130deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(-5deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(130deg)
+      }
+    }
+  
+    @keyframes left-spin {
+      from {
+        -webkit-transform: rotate(130deg);
+        transform: rotate(130deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(-5deg);
+        transform: rotate(-5deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(130deg);
+        transform: rotate(130deg)
+      }
+    }
+  
+    @-webkit-keyframes right-spin {
+      from {
+        -webkit-transform: rotate(-130deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(5deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(-130deg)
+      }
+    }
+  
+    @keyframes right-spin {
+      from {
+        -webkit-transform: rotate(-130deg);
+        transform: rotate(-130deg)
+      }
+  
+      50% {
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg)
+      }
+  
+      to {
+        -webkit-transform: rotate(-130deg);
+        transform: rotate(-130deg)
+      }
+    }
+  
+  
+  /*Install PWA button*/
+    
+    #btnInstallPWA {
+      z-index: 3;
+      position: fixed;
+      top: 125px;
+      right: 0px;
+      background-color: rgba(220, 220, 220, .8);
+      border: none;
+      padding: 2px 10px 2px 15px;
+      border-radius: 50px 0 0 50px;
+      height: 30px;
+      /* width: 90px; */
+      color: #555555;
+      box-shadow: 2px 2px 2px rgba(33, 33, 33, .1);
+      cursor: pointer;
+      line-height: 30px;
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-right: 0px;
+    }
+  
+    #btnInstallPWA {
+      -moz-animation: cssAnimation 0s ease-in 50s forwards;
+      /* Firefox */
+      -webkit-animation: cssAnimation 0s ease-in 50s forwards;
+      /* Safari and Chrome */
+      -o-animation: cssAnimation 0s ease-in 50s forwards;
+      /* Opera */
+      animation: cssAnimation 0s ease-in 50s forwards;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      animation-duration: 700ms;
+      -webkit-animation-duration: 700ms;
+    }
+  
+    @keyframes cssAnimation {
+      0%{
+        margin-right: 0px;
+      }
+      100%{
+        margin-right: -200px;
+      }
+      to {
+        visibility: hidden;
+        display: none;
+      }
+    }
+  
+    @-webkit-keyframes cssAnimation {
+      0%{
+        margin-right: 0px;
+      }
+      100%{
+        margin-right: -200px;
+      }
+      to {
+        visibility: hidden;
+        display: none;
+      }
+    }
