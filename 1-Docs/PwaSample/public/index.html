@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="”/”">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <title>DocOnline - Online Doctor Appointment Flutter App</title>
+  <link rel="manifest" href="/manifest.json">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/app-style.css">
+
+</head>
+<body>
+  <h1 class="vertical-container">DocOnline</h1>  
+</body>
+</html>
+
+<script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function() {
+            console.log('Service Worker Registered');
+      });
+  }
+</script>
