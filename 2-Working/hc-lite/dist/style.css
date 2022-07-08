@@ -3687,14 +3687,14 @@ form .btn.btn-sm {
 
 .card-img,
 .card-img-top {
-  border-top-left-radius: calc(.5rem - 1px);
-  border-top-right-radius: calc(.5rem - 1px);
+  border-top-left-radius: calc(0.5rem - 1px);
+  border-top-right-radius: calc(0.5rem - 1px);
 }
 
 .card-img,
 .card-img-bottom {
-  border-bottom-right-radius: calc(.5rem - 1px);
-  border-bottom-left-radius: calc(.5rem - 1px);
+  border-bottom-right-radius: calc(0.5rem - 1px);
+  border-bottom-left-radius: calc(0.5rem - 1px);
 }
 
 .card-bg-img.bg-overlay::after {
@@ -5258,9 +5258,9 @@ input[type=color].form-control.is-valid, input[type=color].form-control:valid {
   right: -5rem;
   z-index: -10;
   border-radius: 50%;
-  background: white;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(white));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), white);
+  background: rgb(255, 255, 255);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(rgb(255, 255, 255)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgb(255, 255, 255));
   opacity: 0.2;
 }
 
