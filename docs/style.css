@@ -5214,7 +5214,7 @@ input[type=color].form-control.is-valid, input[type=color].form-control:valid {
 
 .hero-block-content {
   position: relative;
-  padding: 3rem 0;
+  padding: 2rem 0;
   width: 100%;
   z-index: 10;
 }
@@ -6951,7 +6951,7 @@ input[type=color].form-control.is-valid, input[type=color].form-control:valid {
   margin-bottom: 0.25rem;
 }
 .single-product-card .sale-price {
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #0d5afd;
   font-weight: 500;
 }
