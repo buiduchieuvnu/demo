@@ -6,29 +6,6 @@ const staticCacheName = 'cache-v1';
 const dynamicCacheName = 'runtimeCache-v1';
 
 // Pre Caching Assets
-// const precacheAssets = [
-//     '/',
-//     'css/bootstrap.min.css',
-//     'img/core-img/dot-blue.png',
-//     'img/core-img/dot.png',
-//     'img/core-img/logo.png',
-//     'img/core-img/logo-dark.png',
-//     'img/core-img/favicon.ico',
-//     'js/active.js',
-//     'js/dark-rtl.js',
-//     'js/bootstrap.bundle.min.js',
-//     'js/pwa.js',
-//     'element-hero-blocks.html',
-//     'page-login.html',
-//     'manifest.json',
-//     'page-home.html',
-//     'pages.html',
-//     'elements.html',
-//     'settings.html',
-//     'page-fallback.html',
-//     'style.css'
-// ];
-
 const precacheAssets = [
     '/',
     'css/bootstrap.min.css',
@@ -41,14 +18,15 @@ const precacheAssets = [
     'js/dark-rtl.js',
     'js/bootstrap.bundle.min.js',
     'js/pwa.js',
-    'element-hero-blocks.html',
-    'page-login.html',
+    'index.html',
+    'hc-login.html',
     'manifest.json',
-    'page-home.html',
-    'pages.html',
-    'elements.html',
-    'settings.html',
-    'page-fallback.html',
+    'hc-page-home.html',
+    'hc-page-khambenh.html',
+    'hc-page-medicine.html',
+    'hc-page-otp-confirm.html',
+    'hc-page-patient-search.html',
+    'hc-page-register.html',
     'style.css'
 ];
 
