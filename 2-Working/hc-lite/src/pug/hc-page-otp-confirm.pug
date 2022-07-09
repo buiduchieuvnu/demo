@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        include inc/internet-status.pug
+
+        // Back Button 
+        .login-back-button
+            a(href="hc-page-otp.html")
+                svg.bi.bi-arrow-left-short(width="32" height="32" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                    path(fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z")
+
+        // Login Wrapper Area 
+        .login-wrapper.d-flex.align-items-center.justify-content-center
+            .custom-container
+                .text-center
+                    img.mx-auto.mb-4.d-block(src="img/bg-img/38.png", alt="")
+                    h3 Xác nhận 
+                    p.mb-4 Vui lòng nhập mã OTP gửi tới số điện thoại
+                        strong.ms-1 0944 395 689
+
+                // OTP Verify Form 
+                .otp-verify-form.mt-4
+                    form(action="hc-page-home.html")
+                        .input-group.mb-3.otp-input-group
+                            input.form-control(type="text", value="", placeholder="-", maxlength="1")
+                            input.form-control(type="text", value="", placeholder="-", maxlength="1")
+                            input.form-control(type="text", value="", placeholder="-", maxlength="1")
+                            input.form-control(type="text", value="", placeholder="-", maxlength="1")
+                        button.btn.btn-primary.w-100 Xác nhận
+
+                // Term & Privacy Info 
+                .login-meta-data.text-center
+                    p.mt-3.mb-0 Bạn chưa nhận được OTP?
+                        span#resendOTP.otp-sec.ms-1
+
+        include inc/footer-otp.pug

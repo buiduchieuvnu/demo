@@ -1,0 +1,181 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        include inc/internet-status.pug
+
+        include inc/header.pug
+
+        include inc/sidenav.pug
+
+        .page-content-wrapper
+
+            // Welcome Toast 
+            .toast.toast-autohide.custom-toast-1.toast-success.home-page-toast(role="alert", aria-live="assertive", aria-atomic="true", data-bs-delay="7000", data-bs-autohide="true")
+                .toast-body
+                    svg.bi.bi-bookmark-check.text-white(width="30", height="30", viewBox="0 0 16 16", fill="currentColor", xmlns="http://www.w3.org/2000/svg")
+                        path(fill-rule="evenodd", d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z")
+                        path(fill-rule="evenodd", d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z")
+                    .toast-text.ms-3.me-2
+                        p.mb-1.text-white Xin chào Admin!
+                        small.d-block HC Lite vui lòng phục vụ.
+                button.btn.btn-close.btn-close-white.position-absolute.p-1(type="button", data-bs-dismiss="toast", aria-label="Close")
+
+            include inc/hc-tiny-slider-one.pug
+
+            .pt-3
+
+            .container.direction-rtl
+                .card.mb-3
+                    .card-body
+                        .row.g-3
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/pwa.png", alt="")
+                                    p.mb-0 Hẹn khám
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/bootstrap.png", alt="")
+                                    p.mb-0 Khám bệnh
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/js.png", alt="")
+                                    p.mb-0 Kho thuốc
+
+            .container.direction-rtl
+                .card.mb-3
+                    .card-body
+                        .row.g-3
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/sass.png", alt="")
+                                    p.mb-0 Bệnh nhân
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/pug.png", alt="")
+                                    p.mb-0 Thống kê - Báo cáo
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/npm.png", alt="")
+                                    p.mb-0 Thiết lập
+
+            .container.direction-rtl
+                .card.mb-3
+                    .card-body
+                        .row.g-3
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        img(src="img/demo-img/gulp.png", alt="")
+                                    p.mb-0 Thanh toán
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        i.bi.bi-moon.text-dark
+                                    p.mb-0 Trợ lý ảo
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        i.bi.bi-box-arrow-left.text-info
+                                    p.mb-0 Chăm sóc khách hàng
+
+            .container
+                .card.mb-3
+                    .card-body
+                        h3 Đánh giá của khách hàng
+                        .testimonial-slide-three-wrapper
+                            .testimonial-slide3.testimonial-style3
+                                // Single Testimonial Slide 
+                                .single-testimonial-slide
+                                    .text-content
+                                        span.d-inline-block.badge.bg-warning.mb-2
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill
+                                        h6.mb-2 HC là 1 phần mềm quản lý tuyệt vời, giúp chúng tôi đơn giản hóa công việc.
+                                        span.d-block Anh Trung, CEO chuỗi phòng khám đa khoa DADoctor
+
+                                // Single Testimonial Slide 
+                                .single-testimonial-slide
+                                    .text-content
+                                        span.d-inline-block.badge.bg-warning.mb-2
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill
+                                        h6.mb-2 HC là 1 phần mềm quản lý tuyệt vời, giúp chúng tôi đơn giản hóa công việc.
+                                        span.d-block Chị Lan Anh, Chủ phòng khám chuyên khoa Nhi, Hà Đông
+
+                                // Single Testimonial Slide 
+                                .single-testimonial-slide
+                                    .text-content
+                                        span.d-inline-block.badge.bg-warning.mb-2
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill
+                                        h6.mb-2 HC là 1 phần mềm quản lý tuyệt vời, giúp chúng tôi đơn giản hóa công việc.
+                                        span.d-block Anh Trần Bắc, GĐ phòng khám chuyên khoa Tai mũi họng Hưng Yên
+
+                                // Single Testimonial Slide 
+                                .single-testimonial-slide
+                                    .text-content
+                                        span.d-inline-block.badge.bg-warning.mb-2
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill.me-1
+                                            i.bi.bi-star-fill
+                                        h6.mb-2 HC là 1 phần mềm quản lý tuyệt vời, giúp chúng tôi đơn giản hóa công việc.
+                                        span.d-block Chị Vân Anh, bác sĩ CK2 phòng khám đa khoa Bắc Ninh
+
+            .container.direction-rtl
+                .card
+                    .card-body
+                        .row.g-3
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        i.bi.bi-star.text-warning
+                                    p.mb-0 Đánh giá của bạn về HC
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        svg.bi.bi-award.text-success(xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16")
+                                            path(d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z")
+                                            path(d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z")
+                                    p.mb-0 Góp ý để HC tốt hơn
+
+                            .col-4
+                                .feature-card.mx-auto.text-center
+                                    .card.mx-auto.bg-gray
+                                        svg.bi.bi-lightning-charge.text-primary(xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16")
+                                            path(d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z")
+                                    p.mb-0 Liên hệ hỗ trợ
+
+            .pb-3
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug
