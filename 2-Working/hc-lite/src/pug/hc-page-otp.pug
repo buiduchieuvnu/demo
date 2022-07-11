@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        include inc/internet-status.pug
+
+        // Back Button 
+        .login-back-button
+            a(href="hc-page-register.html")
+                svg.bi.bi-arrow-left-short(width="32" height="32" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                    path(fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z")
+
+        // Login Wrapper Area 
+        .login-wrapper.d-flex.align-items-center.justify-content-center
+            .custom-container
+                .text-center
+                    img.mx-auto.mb-4.d-block(src="img/bg-img/36.png", alt="")
+                    h3 Xác nhận qua điện thoại 
+                    p Chúng tôi sẽ gửi tới số điện thoại của quý khách mã OTP để xác nhận tới hòm thư của quý khách để xác nhận việc đăng ký khởi tạo phòng khám.
+
+                // OTP Send Form 
+                .otp-form.mt-4
+                    form(action="hc-page-otp-confirm.html")
+                        .input-group.mb-3
+                            input.form-control(type="text", placeholder="Nhập số điện thoại nhận mã kích hoạt")
+                        button.btn.btn-primary.w-100(type="submit") Gửi
+
+                // Term & Privacy Info 
+                .login-meta-data.px-4.text-center
+                    p.mt-3.mb-0 Bằng cách cung cấp số điện thoại ở đây, tôi hoàn toàn đồng ý với 
+                        a.mx-1.stretched-link(href="page-privacy-policy.html") Các điều khoản dịch vụ
+                        | và 
+                        a.mx-1.stretched-link(href="page-privacy-policy.html") Chính sách bảo mật của công ty.
+
+        include inc/footer.pug
