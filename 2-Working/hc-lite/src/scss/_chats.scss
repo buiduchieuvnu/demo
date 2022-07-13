@@ -75,6 +75,41 @@
 	}
 }
 
+.status-list{
+	p{
+		padding-right: 20px;
+		padding-left: 5px;
+		padding-top: 0px;
+	}
+		.active-status{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			right: 0;
+			border: 2px solid $white;
+			background-color: $success;
+		}
+		.wait-status{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			bottom: 1px;
+			right: 0;
+			border: 2px solid $white;
+			background-color: $warning;
+		}
+		.done-status{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			bottom: 1px;
+			right: 0;
+			border: 2px solid $white;
+			background-color: $primary;
+		}
+	
+}
+
 .chat-user-info {
 	width: calc(100% - 60px);
 }
@@ -163,6 +198,20 @@
 		border-bottom: 0;
 	}
 
+	.user-id{
+		height: 36px;
+  		line-height: 36px;
+  		text-align: center;
+
+		span {
+			color: $text;
+			font-size: 14px;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+			padding-right: 15px;
+		}
+	}
 	.chat-user-thumbnail {
 		position: relative;
 		z-index: 1;
@@ -182,6 +231,26 @@
 			border: 2px solid $white;
 			background-color: $success;
 		}
+		.wait-status {
+			position: absolute;
+			width: .75rem;
+			height: .75rem;
+			border-radius: 50%;
+			bottom: 1px;
+			right: 0;
+			border: 2px solid $white;
+			background-color: $warning;
+		}
+		.done-status {
+			position: absolute;
+			width: .75rem;
+			height: .75rem;
+			border-radius: 50%;
+			bottom: 1px;
+			right: 0;
+			border: 2px solid $white;
+			background-color: $primary;
+		}
 	}
 
 	.chat-user-info {
@@ -194,6 +263,14 @@
 			p {
 				font-size: 12px;
 			}
+		}
+	}
+
+	.user-note {
+		h6 {
+			font-size: 14px;
+			color: $text;
+			padding: 15px;
 		}
 	}
 
