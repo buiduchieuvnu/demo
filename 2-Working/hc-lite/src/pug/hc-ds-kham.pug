@@ -1,0 +1,305 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body.pe-0
+        include inc/loader.pug
+
+        include inc/internet-status.pug
+
+        // Header Area 
+        .header-area#headerArea
+            .container
+                // Header Content 
+                .header-content.header-style-five.position-relative.d-flex.align-items-center.justify-content-between
+                    // Back Button 
+                    .back-button
+                        a(href="hc-page-home.html")
+                            include inc/back-btn.pug
+
+                    // Page Title 
+                    .page-heading
+                        h6.mb-0 Danh sách khám
+
+                    // Navbar Toggler 
+                    .navbar--toggler#affanNavbarToggler(data-bs-toggle="offcanvas", data-bs-target="#affanOffcanvas", aria-controls="affanOffcanvas")
+                        span.d-block
+                        span.d-block
+                        span.d-block
+
+        include inc/sidenav.pug
+
+        // Add new contact modal 
+        .add-new-contact-modal.modal.fade.px-0#addnewcontact(data-bs-backdrop="static", data-bs-keyboard="false", tabindex="-1", aria-labelledby="addnewcontactlabel", aria-hidden="true")
+            .modal-dialog.modal-dialog-centered
+                .modal-content
+                    .modal-body.p-4
+                        .d-flex.align-items-center.justify-content-between.mb-4
+                            h6.modal-title#addnewcontactlabel Bệnh nhân mới
+                            button.btn.btn-close.p-1.ms-auto.me-0(type="button", data-bs-dismiss="modal", aria-label="Close")
+
+                        form(action="#")
+                            .input-group.mb-3
+                                span.input-group-text#patient-name Họ tên
+                                input.form-control(type="text" placeholder="" aria-label="Họ tên bệnh nhân" aria-describedby="patient-name")
+                            .input-group.mb-3
+                                span.input-group-text#patient-phone SĐT
+                                input.form-control(type="text" placeholder="" aria-label="Điện thoại" aria-describedby="patient-phone")
+                            .input-group.mb-3
+                                span.input-group-text#patient-address Địa chỉ
+                                input.form-control(type="text" placeholder="" aria-label="Địa chỉ" aria-describedby="patient-address")
+                            .form-group
+                                label.form-label(for="patient-note") Ghi chú
+                                textarea.form-control#patient-note(name="textarea", cols="3", rows="5", placeholder="")
+                            button.btn.btn-primary.w-100(type="submit") Lưu
+
+        .page-content-wrapper.py-3            
+            // Add New Contact 
+            .add-new-contact-wrap
+                a.shadow(href="#", data-bs-toggle="modal" data-bs-target="#addnewcontact")
+                    i.bi.bi-plus-lg
+            
+            .shop-pagination.pb-3
+                .container
+                    .card
+                        .card-body.p-2
+                            .d-flex.align-items-center.justify-content-between
+                                small.ms-1 Chọn phòng khám
+
+                                form(action="#")
+                                    select.pe-4.form-select.form-select-sm#defaultSelectSm(name="defaultSelectSm", aria-label="Default select example")
+                                        option(value="1", selected) Mặc định
+
+            .container
+                .card.mb-2
+                    .card-body.p-2
+                        .chat-search-box
+                            form(action="#")
+                                .input-group
+                                    span.input-group-text#searchbox
+                                        i.bi.bi-search
+                                    input.form-control(type="search" placeholder="Tìm kiếm theo tên hoặc SĐT" aria-describedby="searchbox")
+
+                // Element Heading 
+                .element-heading
+                    h6.ps-1 Danh sách khám bệnh
+
+                // Chat User List 
+                ul.ps-0.chat-user-list
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user1.png", alt="")
+                                span.active-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Bùi Đức Hiếu
+                                .last-chat
+                                    p.mb-0.text-truncate 0944 591 392
+                                        span.badge.rounded-pill.bg-primary.ms-2 15
+                            // Note
+                            .user-note 
+                                h6.text-truncate.mb-0 VIP
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa
+
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user2.png", alt="")
+                                span.wait-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Hồ Hoài An
+                                .last-chat
+                                    p.text-truncate.mb-0 0987 654 321
+                                        span.badge.rounded-pill.bg-primary.ms-2 16
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user2.png", alt="")
+                                span.wait-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Hồng Đăng
+                                .last-chat
+                                    p.text-truncate.mb-0 0987 654 321
+                                        span.badge.rounded-pill.bg-primary.ms-2 17
+                            //Note
+                            .user-note 
+                                h6.text-truncate.mb-0 Hẹn
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa    
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user2.png", alt="")
+                                span.wait-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Lý Tử Thất
+                                .last-chat
+                                    p.text-truncate.mb-0 0987 654 321
+                                        span.badge.rounded-pill.bg-primary.ms-2 18
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user4.png", alt="")
+                                span.done-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Giang Mi
+                                .last-chat
+                                    p.text-truncate.mb-0 0987 654 321
+                                        span.badge.rounded-pill.bg-primary.ms-2 13
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa
+                    // Single Chat User 
+                    li.p-3
+                        a.d-flex(href="page-chat.html")
+                            // Id
+                            .user-id 
+                                span.mb-0 46346
+                            // Thumbnail 
+                            .chat-user-thumbnail.me-3.shadow
+                                img.img-circle(src="img/bg-img/user3.png", alt="")
+                                span.done-status
+                            // Info 
+                            .chat-user-info
+                                h6.text-truncate.mb-0 Giáng Mai
+                                .last-chat
+                                    p.text-truncate.mb-0 0987 654 329
+                                        span.badge.rounded-pill.bg-primary.ms-2 14
+
+                        // Options 
+                        .dropstart.chat-options-btn
+                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+                                i.bi.bi-three-dots-vertical
+                            ul.dropdown-menu
+                                li
+                                    a(href="#")
+                                        i.bi.bi-mic-mute
+                                        | Sửa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-slash-circle
+                                        | Khóa
+                                li
+                                    a(href="#")
+                                        i.bi.bi-trash
+                                        | Xóa
+                    
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug
