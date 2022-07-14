@@ -3744,6 +3744,38 @@ form .btn.btn-sm {
 }
 
 /* Chat CSS */
+.status-list p {
+  padding-right: 20px;
+  padding-left: 5px;
+  padding-top: 0px;
+}
+.status-list .active-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #2ecc4a;
+}
+.status-list .wait-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #f1b10f;
+}
+.status-list .done-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #0d5afd;
+}
+
 .chat-user-status-slides {
   position: relative;
   z-index: 1;
@@ -3802,6 +3834,38 @@ form .btn.btn-sm {
 
 .add-new-contact-modal .modal-body textarea.form-control {
   min-height: 90px;
+}
+
+.status-list p {
+  padding-right: 20px;
+  padding-left: 5px;
+  padding-top: 0px;
+}
+.status-list .active-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #2ecc4a;
+}
+.status-list .wait-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #f1b10f;
+}
+.status-list .done-status {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #0d5afd;
 }
 
 .chat-user-info {
@@ -3888,6 +3952,19 @@ form .btn.btn-sm {
   border-bottom-right-radius: 0.5rem;
   border-bottom: 0;
 }
+.chat-user-list li .user-id {
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+}
+.chat-user-list li .user-id span {
+  color: #8480ae;
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  padding-right: 15px;
+}
 .chat-user-list li .chat-user-thumbnail {
   position: relative;
   z-index: 1;
@@ -3909,12 +3986,37 @@ form .btn.btn-sm {
   border: 2px solid #ffffff;
   background-color: #2ecc4a;
 }
+.chat-user-list li .chat-user-thumbnail .wait-status {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #f1b10f;
+}
+.chat-user-list li .chat-user-thumbnail .done-status {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  bottom: 1px;
+  right: 0;
+  border: 2px solid #ffffff;
+  background-color: #0d5afd;
+}
 .chat-user-list li .chat-user-info h6 {
   font-size: 14px;
   color: #8480ae;
 }
 .chat-user-list li .chat-user-info .last-chat p {
   font-size: 12px;
+}
+.chat-user-list li .user-note h6 {
+  font-size: 14px;
+  color: #8480ae;
+  padding: 15px;
 }
 .chat-user-list li.chat-unread .chat-user-info .last-chat p {
   color: #1f0757;
