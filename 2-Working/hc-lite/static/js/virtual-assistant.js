@@ -73,7 +73,9 @@
   });
 
   const handleVoice = (text) => {
+      const handledText = text.toLowerCase();
       console.log('text', text);
+      
       if (handledText.includes('mấy giờ')) {
           const textToSpeech = `${moment().hours()} hours ${moment().minutes()} minutes`;
           speak(textToSpeech);
