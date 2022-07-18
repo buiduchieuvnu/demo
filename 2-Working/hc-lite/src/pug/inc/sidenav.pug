@@ -62,6 +62,14 @@
                         .form-check.form-switch
                             input.form-check-input.form-check-success#darkSwitch(type="checkbox")
                 li
+                    .night-mode-nav
+                        i.bi.bi-mic
+                        | Trợ lý ảo
+                        .form-check.form-switch
+                            //- input.form-check-input.form-check-success#darkSwitch(type="checkbox")
+                            input.form-check-input(type="checkbox", id="darkSwitch")
+                            label.form-check-label(for="darkSwitch") Off
+                li
                     a(href="hc-login.html")
                         i.bi.bi-box-arrow-right
                         | Đăng xuất
