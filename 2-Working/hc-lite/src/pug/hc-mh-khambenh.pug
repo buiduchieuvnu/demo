@@ -1,0 +1,246 @@
+doctype html
+html(lang="en")
+    head
+        include inc/head.pug
+
+    body
+        include inc/loader.pug
+
+        include inc/internet-status.pug
+
+        include inc/dark-rtl-loader.pug
+
+        include inc/setting-popup.pug
+
+        // Header Area 
+        .header-area#headerArea
+            .container
+                // Header Content 
+                .header-content.position-relative.d-flex.align-items-center.justify-content-between
+                    // Back Button 
+                    .back-button
+                        a(href="hc-ds-kham.html")
+                            include inc/back-btn.pug
+
+                    // Page Title 
+                    .page-heading
+                        h6.mb-0 Khám bệnh
+
+                    // Settings 
+                    .setting-wrapper
+                        include inc/setting-btn.pug
+
+        .page-content-wrapper.py-3
+          
+            .container
+                .card.d-flex.align-items-center
+                    .card-body
+                        .btn-group(role='group', aria-label='Button group with nested dropdown')
+                            button.btn.btn-primary(type='button') Lịch sử
+                            button#btnGroupDrop1.btn.btn-warning.dropdown-toggle(type='button', data-bs-toggle='dropdown', aria-expanded='false') Chuyển
+                            ul.dropdown-menu(aria-labelledby='btnGroupDrop1')
+                                li
+                                    a.dropdown-item(href='#') Chuyển TT xét nghiệm
+                                    a.dropdown-item(href='#') Chuyển TT khám  
+                                li
+                            button.btn.btn-success(type='button') Kết thúc
+                            button#btnGroupDrop1.btn.btn-info.dropdown-toggle(type='button', data-bs-toggle='dropdown', aria-expanded='false') In
+                            ul.dropdown-menu(aria-labelledby='btnGroupDrop1')
+                                li
+                                    a.dropdown-item(href='#') abc
+                                li
+                            button#btnGroupDrop1.btn.btn-info.dropdown-toggle(type='button', data-bs-toggle='dropdown', aria-expanded='false') Thêm
+                            ul.dropdown-menu(aria-labelledby='btnGroupDrop1')
+                                li
+                                    a.dropdown-item(href='#') Hẹn khám
+                                    a.dropdown-item(href='#') Thể lực/sinh tồn
+                                li
+            
+                .element-heading
+                    h6 Thông tin bệnh nhân
+                    .card.user-info-card.mb-3
+                        .card-body.d-flex.align-items-center
+                            .user-profile.me-3
+                                img(src="img/bg-img/2.jpg", alt="")
+                                i.bi.bi-pencil
+                                form(action="#")
+                                    input.form-control(type="file")
+                            .user-info
+                                .d-flex.align-items-center
+                                    h6.mb-1 Nguyễn Vũ Quang, 1988
+                                p.mb-0 1,75m , 80kg, Hàng Bài
+                            
+            
+                //Element Heading 
+                .element-heading
+                    h6 Thông tin khám bệnh
+                    
+                        .standard-tab
+                            ul.nav.rounded-lg.mb-2.p-2.shadow-sm#affanTabs1(role="tablist")
+                                li.nav-item(role="presentation")
+                                    button.btn.active#bootstrap-tab(data-bs-toggle="tab", data-bs-target="#bootstrap", type="button", role="tab", aria-controls="bootstrap", aria-selected="true") Thông tin khám
+
+                                li.nav-item(role="presentation")
+                                    button.btn#pwa-tab(data-bs-toggle="tab" data-bs-target="#pwa" type="button" role="tab" aria-controls="chi" aria-selected="false") Chỉ định thủ thuật
+
+                                li.nav-item(role="presentation")
+                                    button.btn#dark-tab(data-bs-toggle="tab" data-bs-target="#dark" type="button" role="tab" aria-controls="don" aria-selected="false") Đơn thuốc
+                                
+                                      
+                              
+
+                            .tab-content.rounded-lg.p-3.shadow-sm#affanTabs1Content
+                                .tab-pane.fade.show.active#bootstrap(role="tabpanel" aria-labelledby="bootstrap-tab")
+                                    h6 Thông tin khám
+                                    .status-list
+                                        a.d-flex
+                                            span.active-status
+                                            p Từ danh mục
+
+                                            span.status 
+                                            p Bệnh lý khác
+                                    .container
+                                        .card
+                                            .card-body
+                                                table.table.mb-0
+                                                    thead
+                                                        tr
+                                                            th(scope="col") #
+                                                            th(scope="col") ICD
+                                                            th(scope="col") Tên bệnh
+                                                            th(scope="col") Mô tả
+                                                            th(scope="col") Tác vụ
+                                                    tbody
+                                                        tr
+                                                            th(scope="row") ICD
+                                                            td Mark
+                                                            td Otto
+                                                            td @mdo
+                                                        tr
+                                                            th(scope="row") 
+                                                            td Jacob
+                                                            td Thornton
+                                                            td @fat
+                                                        tr
+                                                            th(scope="row") 
+                                                            td(colspan="2") Larry the Bird
+                                                            td @twitter
+                                                        tr
+                                                            th(scope="row") 
+                                                            td(colspan="2") Larry the Bird
+                                                            td @twitter
+                                    .container
+                                        .card
+                                            .card-body
+                                                .d-flex.align-items-center.justify-content-between
+                                                    nav(aria-label="Page navigation example")
+                                                        ul.pagination.direction-rtl.pagination-three
+                                                            li.page-item
+                                                                a.page-link(href="#",  aria-label="Previous")
+                                                                    svg.bi.bi-chevron-left(width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z")
+                                                            li.page-item
+                                                                a.page-link(href="#") 3
+                                                            li.page-item
+                                                                a.page-link(href="#",  aria-label="Next")
+                                                                    svg.bi.bi-chevron-right(width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z")
+
+                            
+
+                                .tab-pane.fade#pwa(role="tabpanel" aria-labelledby="chi-tab")
+                                    h6  Chỉ định thủ thuật
+                                    .container
+                                        .card
+                                            .card-body
+                                                table.table.mb-0
+                                                    thead
+                                                        tr
+                                                            th(scope="col") #
+                                                            th(scope="col") Mã
+                                                            th(scope="col") Dịch vụ khám-thủ thuật
+                                                            th(scope="col") Giá
+                                                            th(scope="col") SL
+                                                            th(scope="col") Khuyến mãi
+                                                            th(scope="col") Ghi chú
+                                                            th(scope="col") Tác vụ
+                                                    tbody
+                                                        tr
+                                                            th(scope="row") 1
+                                                            td Mark
+                                                            td Otto
+                                                            td @mdo
+                                                        tr
+                                                            th(scope="row") 2
+                                                            td 
+                                                            td 
+                                                            td 
+                                                        tr
+                                                            th(scope="row")
+                                                            td(colspan="2") 
+                                                            td 
+
+                                .tab-pane.fade#dark(role="tabpanel" aria-labelledby="don-tab")
+                                    h6 đơn thuốc
+                                    .status-list
+                                        a.d-flex
+                                            span.active-status
+                                            p Từ danh mục
+
+                                            span.status 
+                                            p Thuốc khác
+                                    .container
+                                        .card
+                                            .card-body
+                                                table.table.mb-0
+                                                    thead
+                                                        tr
+                                                            th(scope="col") #
+                                                            th(scope="col") Tên thuốc
+                                                            th(scope="col") SL
+                                                            th(scope="col") ĐVT
+                                                            th(scope="col") Cách dùng
+                                                            th(scope="col") Ghi chú
+                                                            th(scope="col") Tác vụ
+                                                        
+                                                    tbody
+                                                        tr
+                                                            th(scope="row") ICD
+                                                            td Mark
+                                                            td Otto
+                                                            td @mdo
+                                                        tr
+                                                            th(scope="row") 
+                                                            td Jacob
+                                                            td Thornton
+                                                            td @fat
+                                                        tr
+                                                            th(scope="row") 
+                                                            td(colspan="2") Larry the Bird
+                                                            td @twitter
+                                                        tr
+                                                            th(scope="row") 
+                                                            td(colspan="2") Larry the Bird
+                                                            td @twitter
+                                    .container
+                                        .card
+                                            .card-body
+                                                .d-flex.align-items-center.justify-content-between
+                                                    nav(aria-label="Page navigation example")
+                                                        ul.pagination.direction-rtl.pagination-three
+                                                            li.page-item
+                                                                a.page-link(href="#",  aria-label="Previous")
+                                                                    svg.bi.bi-chevron-left(width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z")
+                                                            li.page-item
+                                                                a.page-link(href="#") 3
+                                                            li.page-item
+                                                                a.page-link(href="#",  aria-label="Next")
+                                                                    svg.bi.bi-chevron-right(width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                                                                        path(fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z")
+
+          
+
+        include inc/footer-nav.pug
+
+        include inc/footer.pug

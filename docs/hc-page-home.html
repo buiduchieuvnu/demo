@@ -50,7 +50,8 @@
         <!-- Header Content -->
         <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
           <!-- Logo Wrapper -->
-          <div class="logo-wrapper"><a href="page-home.html"><img src="img/core-img/logo.png" alt=""></a></div>
+          <div class="logo-wrapper"><a href="hc-page-home.html"><img src="img/core-img/logo.png" alt=""></a></div>
+          <div class="va-wrapper" id="btnVa">   <span class="va-microfone"><i class="bi bi-mic"></i><span class="recording-icon"></span></span></div>
           <!-- Navbar Toggler -->
           <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas" data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas"><span class="d-block"></span><span class="d-block"></span><span class="d-block"></span></div>
         </div>
@@ -76,27 +77,34 @@
           </div>
           <!-- Sidenav Nav -->
           <ul class="sidenav-nav ps-0">
-            <li><a href="page-home.html"><i class="bi bi-house-door"></i>Home</a></li>
-            <li><a href="elements.html"><i class="bi bi-folder2-open"></i>Elements<span class="badge bg-danger rounded-pill ms-2">220+</span></a></li>
-            <li><a href="pages.html"><i class="bi bi-collection"></i>Pages<span class="badge bg-success rounded-pill ms-2">100+</span></a></li>
-            <li><a href="#"><i class="bi bi-cart-check"></i>Shop</a>
+            <li><a href="hc-page-home.html"><i class="bi bi-house-door"></i>Trang chủ</a></li>
+            <li><a href="elements.html"><i class="bi bi-folder2-open"></i>Cơ sở<span class="badge bg-danger rounded-pill ms-2">220+</span></a></li>
+            <li><a href="pages.html"><i class="bi bi-collection"></i>Trang<span class="badge bg-success rounded-pill ms-2">100+</span></a></li>
+            <li><a href="#"><i class="bi bi-cart-check"></i>Cửa hàng</a>
               <ul>
-                <li><a href="page-shop-grid.html">Shop Grid</a></li>
-                <li><a href="page-shop-list.html">Shop List</a></li>
-                <li><a href="page-shop-details.html">Shop Details</a></li>
-                <li><a href="page-cart.html">Cart</a></li>
-                <li><a href="page-checkout.html">Checkout</a></li>
+                <li><a href="page-shop-grid.html">Mạng lưới cửa hàng</a></li>
+                <li><a href="page-shop-list.html">Danh sách cửa hàng</a></li>
+                <li><a href="page-shop-details.html">Chi tiết cửa hàng</a></li>
+                <li><a href="page-cart.html">Giỏ hàng</a></li>
+                <li><a href="page-checkout.html">Thủ tục thanh toán</a></li>
               </ul>
             </li>
-            <li><a href="settings.html"><i class="bi bi-gear"></i>Settings</a></li>
+            <li><a href="settings.html"><i class="bi bi-gear"></i>Cài đặt</a></li>
             <li>
-              <div class="night-mode-nav"><i class="bi bi-moon"></i>Night Mode
+              <div class="virtual-assistant-nav"> <i class="bi bi-robot"></i>Trợ lý ảo
+                <div class="form-check form-switch">
+                  <input class="form-check-input form-check-success" id="vaSwitch" type="checkbox">
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="night-mode-nav"><i class="bi bi-moon"></i>Chế độ tối
                 <div class="form-check form-switch">
                   <input class="form-check-input form-check-success" id="darkSwitch" type="checkbox">
                 </div>
               </div>
             </li>
-            <li><a href="page-login.html"><i class="bi bi-box-arrow-right"></i>Logout</a></li>
+            <li><a href="hc-login.html"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a></li>
           </ul>
           <!-- Social Info -->
           <div class="social-info-wrap"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-twitter"></i></a><a href="#"><i class="bi bi-linkedin"></i></a></div>
@@ -126,7 +134,7 @@
         <div class="tiny-slider-one">
           <!-- Single Hero Slide -->
           <div>
-            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/31.jpg')">
+            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/slide_1.png')">
               <div class="h-100 d-flex align-items-center text-center">
                 <div class="container">
                   <h3 class="text-white mb-1">Thanh toán không tiền mặt</h3>
@@ -137,7 +145,7 @@
           </div>
           <!-- Single Hero Slide -->
           <div>
-            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/33.jpg')">
+            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/slide_2.png')">
               <div class="h-100 d-flex align-items-center text-center">
                 <div class="container">
                   <h3 class="text-white mb-1">Trợ lý ảo HC</h3>
@@ -148,7 +156,7 @@
           </div>
           <!-- Single Hero Slide -->
           <div> 
-            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/32.jpg')">
+            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/slide_3.png')">
               <div class="h-100 d-flex align-items-center text-center">
                 <div class="container">
                   <h3 class="text-white mb-1">SMS - Email Marketing</h3>
@@ -159,7 +167,7 @@
           </div>
           <!-- Single Hero Slide -->
           <div> 
-            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/33.jpg')">
+            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/slide_4.png')">
               <div class="h-100 d-flex align-items-center text-center">
                 <div class="container">
                   <h3 class="text-white mb-1">Quản trị "Chuỗi phòng khám"</h3>
@@ -170,7 +178,7 @@
           </div>
           <!-- Single Hero Slide -->
           <div>
-            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/1.jpg')">
+            <div class="single-hero-slide bg-overlay" style="background-image: url('img/bg-img/slide_5.png')">
               <div class="h-100 d-flex align-items-center text-center">
                 <div class="container">
                   <h3 class="text-white mb-1">Tư vấn sức khỏe từ xa</h3>
@@ -188,19 +196,19 @@
             <div class="row g-3">
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/pwa.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><img src="img/demo-img/henkham.png" alt=""></div>
                   <p class="mb-0">Hẹn khám</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/bootstrap.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="hc-ds-kham.html"><img src="img/demo-img/khambenh.png" alt=""></a></div>
                   <p class="mb-0">Khám bệnh</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/js.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="hc-page-medicine.html"> <img src="img/demo-img/khothuoc.png" alt=""></a></div>
                   <p class="mb-0">Kho thuốc</p>
                 </div>
               </div>
@@ -214,19 +222,19 @@
             <div class="row g-3">
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/sass.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="hc-page-patient-search.html"> <img src="img/demo-img/benhnhan.png" alt=""></a></div>
                   <p class="mb-0">Bệnh nhân</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/pug.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><img src="img/demo-img/thongke.png" alt=""></div>
                   <p class="mb-0">Thống kê - Báo cáo</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/npm.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="settings.html"> <img src="img/demo-img/thietlap.png" alt=""></a></div>
                   <p class="mb-0">Thiết lập</p>
                 </div>
               </div>
@@ -240,19 +248,19 @@
             <div class="row g-3">
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/gulp.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><img src="img/demo-img/thanhtoan.png" alt=""></div>
                   <p class="mb-0">Thanh toán</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><i class="bi bi-moon text-dark"></i></div>
+                  <div class="card mx-auto bg-gray"><img src="img/demo-img/trolyao.png" alt=""></div>
                   <p class="mb-0">Trợ lý ảo</p>
                 </div>
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><i class="bi bi-box-arrow-left text-info"></i></div>
+                  <div class="card mx-auto bg-gray"><img src="img/demo-img/chamsockh.png" alt=""></div>
                   <p class="mb-0">Chăm sóc khách hàng</p>
                 </div>
               </div>
@@ -345,7 +353,7 @@
                 <svg class="bi bi-house" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"></path>
                   <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"></path>
-                </svg><span>Home</span></a></li>
+                </svg><span>Trang chủ</span></a></li>
             <li><a href="hc-page-patient-search.html">
                 <svg class="bi bi-collection" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"></path>
@@ -381,6 +389,9 @@
     <script src="js/magic-grid.min.js"></script>
     <script src="js/dark-rtl.js"></script>
     <script src="js/active.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/GoogleCloudService.js"></script>
+    <script src="js/virtual-assistant.js"></script>
     <!-- PWA -->
     <script src="js/pwa.js"></script>
   </body>
