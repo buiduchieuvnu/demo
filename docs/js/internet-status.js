@@ -1,8 +1,8 @@
 "use strict";
 
 var intId = document.getElementById("internetStatus");
-var sucText = "Your internet connection is back.";
-var failText = "Oops! No internet connection.";
+var sucText = "Đã có kết nối Internet. Dữ liệu đã được đồng bộ lên đám mây.";
+var failText = "Oops! Không có kết nối internet. Dữ liệu sẽ được lưu tại bộ nhớ cục bộ";
 var sucCol = "#00b894";
 var failCol = "#ea4c62";
 

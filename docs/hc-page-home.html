@@ -51,6 +51,7 @@
         <div class="header-content header-style-five position-relative d-flex align-items-center justify-content-between">
           <!-- Logo Wrapper -->
           <div class="logo-wrapper"><a href="hc-page-home.html"><img src="img/core-img/logo.png" alt=""></a></div>
+          <div class="va-wrapper" id="btnVa">   <span class="va-microfone"><i class="bi bi-mic"></i><span class="recording-icon"></span></span></div>
           <!-- Navbar Toggler -->
           <div class="navbar--toggler" id="affanNavbarToggler" data-bs-toggle="offcanvas" data-bs-target="#affanOffcanvas" aria-controls="affanOffcanvas"><span class="d-block"></span><span class="d-block"></span><span class="d-block"></span></div>
         </div>
@@ -89,6 +90,13 @@
               </ul>
             </li>
             <li><a href="settings.html"><i class="bi bi-gear"></i>Cài đặt</a></li>
+            <li>
+              <div class="virtual-assistant-nav"> <i class="bi bi-robot"></i>Trợ lý ảo
+                <div class="form-check form-switch">
+                  <input class="form-check-input form-check-success" id="vaSwitch" type="checkbox">
+                </div>
+              </div>
+            </li>
             <li>
               <div class="night-mode-nav"><i class="bi bi-moon"></i>Chế độ tối
                 <div class="form-check form-switch">
@@ -200,7 +208,7 @@
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/khothuoc.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="hc-page-medicine.html"> <img src="img/demo-img/khothuoc.png" alt=""></a></div>
                   <p class="mb-0">Kho thuốc</p>
                 </div>
               </div>
@@ -214,7 +222,7 @@
             <div class="row g-3">
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/benhnhan.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="hc-page-patient-search.html"> <img src="img/demo-img/benhnhan.png" alt=""></a></div>
                   <p class="mb-0">Bệnh nhân</p>
                 </div>
               </div>
@@ -226,7 +234,7 @@
               </div>
               <div class="col-4">
                 <div class="feature-card mx-auto text-center">
-                  <div class="card mx-auto bg-gray"><img src="img/demo-img/thietlap.png" alt=""></div>
+                  <div class="card mx-auto bg-gray"><a href="settings.html"> <img src="img/demo-img/thietlap.png" alt=""></a></div>
                   <p class="mb-0">Thiết lập</p>
                 </div>
               </div>
@@ -381,6 +389,9 @@
     <script src="js/magic-grid.min.js"></script>
     <script src="js/dark-rtl.js"></script>
     <script src="js/active.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/GoogleCloudService.js"></script>
+    <script src="js/virtual-assistant.js"></script>
     <!-- PWA -->
     <script src="js/pwa.js"></script>
   </body>
