@@ -34,7 +34,7 @@
     ![](./img/9.png?raw=true)
 - Copy địa chỉ IP:
     ![](./img/7.png?raw=true)
-- Mở úng dụng **`Putty`** và dán địa chỉ IP. Sau đó nhấn
+- Mở úng dụng **`Putty`** và dán địa chỉ IP. Sau đó nhấn **`open`** <br>
     ![](./img/8.png?raw=true)
 -   Sau khi đăng nhập thành công, để truy cập vào root ta dùng lệnh **`sudo su -`**, sau đó nhập mật khẩu mới cho root
     ![](./img/10.png?raw=true)
