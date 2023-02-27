@@ -13,6 +13,10 @@
 
 ## Đăng ký khởi tạo VM
 ### Bước 1: 
+-  Đăng nhập vào tài khoản Azure của bạn tại https://portal.azure.com/<br>
+    Sau khi đăng nhập xong, nhấn chọn **`"Virtual machines"`**<br>
+    ![Alt text](1-Docs\System\img\1.png?raw=true "Optional Title")
+    
 
 ### Bước 2: 
 
