@@ -13,20 +13,85 @@
 
 ## Đăng ký khởi tạo VM
 ### Bước 1: 
--  Đăng nhập vào tài khoản Azure của bạn tại https://portal.azure.com/<br>
-    Sau khi đăng nhập xong, nhấn chọn **`"Virtual machines"`**<br>
-    ![Alt text](1-Docs\System\img\1.png?raw=true "Optional Title")
-    
+-   Đăng nhập vào tài khoản Azure của bạn tại https://portal.azure.com/<br>
+    Sau khi đăng nhập xong, nhấn chọn **`"Virtual machines"`**<br><br>
+    ![](./img/1.png?raw=true)
+-   Chọn **`Create`**, sau đó chọn **`Azure virtual machine`** <br><br>
+    ![](./img/2.png?raw=true)
+-   Sau đó sẽ hiện lên phần setup máy ảo.<br> Đặt tên máy ảo và chọn khu vực (càng gần VN càng tốt - Đông Nam Á) như hình vẽ <br> Chọn máy ảo **`Centos 8`** <br>
+    ![](./img/3.png?raw=true)
+-   Kéo xuống phía dưới tích vào 3 ô như hình <br><br>
+    ![](./img/4.png?raw=true)
+-   Ấn "Next" liên tục, sau đó click vào **`Create`** như hình, sau đó đợi cho quá trình setup hoàn tất
+    ![](./img/5.png?raw=true)
 
-### Bước 2: 
+### Bước 2: **Tải và cài đặt ứng dụng `Putty` để ping tới sever**
+-   Link tải: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+    ![](./img/6.png?raw=true)
+
+### Bước 3: **Ping và đăng nhập với quyền root**
+- Vào ô reset Password rồi cài lại tên người dùng và mật khẩu để đăng nhập vào Putty
+    ![](./img/9.png?raw=true)
+- Copy địa chỉ IP:
+    ![](./img/7.png?raw=true)
+- Mở úng dụng **`Putty`** và dán địa chỉ IP. Sau đó nhấn
+    ![](./img/8.png?raw=true)
+-   Sau khi đăng nhập thành công, để truy cập vào root ta dùng lệnh **`sudo su -`**, sau đó nhập mật khẩu mới cho root
+    ![](./img/10.png?raw=true)
 
 ## Cài đặt docker, docker-compose
-### Bước 1: 
+- RUN **`cd /etc/yum.repos.d/`**
+- RUN **`sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*`**
+- RUN **`sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*`**
 
-### Bước 2: 
+- RUN **`yum -y install java`**
+### Bước 1: Cài Docker
+- **`sudo dnf update -y`**
+-  **` sudo dnf install -y dnf-utils device-mapper-persistent-data lvm2`**
+ -   **`sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo`**
+   - **`sudo dnf install -y docker-ce docker-ce-cli containerd.io`**
+   - **`sudo systemctl start docker`**
+    -**`sudo systemctl enable docker`**
+
+- **Kiểm tra Versin Docker: `docker version`**
+
+
+    
+### Bước 2: Cài Docker-Compose
+- **`sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+`**
+- **`sudo chmod +x /usr/local/bin/docker-compose`**
+- **Kiểm tra phiên bản Docker-compose: `docker-compose version`**
+
 
 ## Cài đặt Database Postgres
-### Bước 1: 
+### Bước 1: Cài đặt `vim`: 
+- Dùng lệnh sau:  **` sudo dnf install vim`**
 
 ### Bước 2: 
+- **`vim docker-compose.yaml`**, Màn hình sẽ hiển thị như thế này:
+    ![](./img/11.png?raw=true)
+- Sau đó ấn phím **`I`** để chỉnh sửa file. Copy và paste đoạn mã sau vào:
+    ```yaml
+    version: '3.8'
+    services:
+    db:
+        image: postgres
+        restart: always
+        environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: Thuctap2023@
+        POSTGRES_DB: mydatabase
+        ports:
+        - "5432:5432"
+        volumes:
+        - db_data:/var/lib/postgresql/data
+    volumes:
+    db_data:
+
+    ```
+- Ấn phím **`ESC`**, sau đó gõ **`:wq`** để lưu file rồi thoát
+- Sau đó gõ **`docker-compose up -d`** để chạy Postgresql
+
+
 
