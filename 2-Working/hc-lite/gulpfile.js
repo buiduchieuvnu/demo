@@ -84,7 +84,7 @@ function pugToHtml() {
 // SCSS - Pug Watching
 function watching() {
     watch('src/scss/*.scss', series(sassToCss));
-    watch(['src/pug/*.pug', 'src/pug/inc/*.pug'], series(pugToHtml));
+    watch(['src/pug/*.pug', 'src/pug/inc/*.pug', 'src/pug/benhnhan/*.pug'], series(pugToHtml));
     watch('static/img/*/*', series(staticImages));
     watch('static/js/*', series(staticJS));
     watch('static/*', series(staticFiles));
