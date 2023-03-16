@@ -12,3 +12,7 @@ create table ht_phongkham(
    
    -- Fks
 );
+
+-- add column foregin key bacsy_id for ht_phongkham
+alter table ht_phongkham add column bacsy_id int;
+alter table ht_phongkham add constraint fk_pk_vt_bs foreign key (bacsy_id)  references ht_bacsy(id);
