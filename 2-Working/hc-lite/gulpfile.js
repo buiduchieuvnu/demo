@@ -54,9 +54,12 @@ function staticImages() {
 
 // Move all Static JS to dist/js
 function staticJS() {
+    src('static/js/view/benhnhan/*').pipe(dest('dist/js/view/benhnhan'));
+    src('static/js/entities/*').pipe(dest('dist/js/entities'));
     return src('static/js/*')
         .pipe(dest('dist/js'));
 }
+
 
 // Move all Static files to dist/
 function staticFiles() {
