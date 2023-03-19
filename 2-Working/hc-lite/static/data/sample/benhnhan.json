@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "ma": "BN00000001",
+    "hoten": "Bùi Đức Hiếu",
+    "namsinh": "03/12/1988",
+    "Địa chỉ":"Hà Nội"
+  },
+  {
+    "id": 2,
+    "ma": "BN00000002",
+    "hoten": "Nguyễn Thị Nụ",
+    "namsinh": "03/12/1990",
+    "Địa chỉ":"Nam Định"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "Địa chỉ":"Nghệ An"
+  }
+]

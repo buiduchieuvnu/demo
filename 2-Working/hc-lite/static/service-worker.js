@@ -62,7 +62,8 @@ self.addEventListener('fetch', function (event) {
         caches.match(event.request).then(cacheRes => {
             return cacheRes || fetch(event.request).then(response => {
                 return caches.open(dynamicCacheName).then(function (cache) {
-                    cache.put(event.request, response.clone());
+                    // hieubd: Comment tạm thời
+                    //cache.put(event.request, response.clone()); 
                     return response;
                 })
             });

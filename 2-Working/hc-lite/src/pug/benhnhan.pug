@@ -1,9 +1,7 @@
 doctype html
-html(lang="en") 
+html(lang="en")
     head
         include inc/head.pug
-        script(src="js/model/benhnhan.js")
-        script(src="js/view/benhnhan/danhsach.js")
 
     body.pe-0
         include inc/loader.pug
@@ -337,4 +335,9 @@ html(lang="en")
 
         include inc/footer-nav.pug
 
-        include inc/footer.pug
+        include inc/footer.pug 
+
+        script. 
+            var oBenhNhanView = new BenhNhanView();   
+            
+            

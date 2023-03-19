@@ -67,6 +67,12 @@ function staticFiles() {
         .pipe(dest('dist/'));
 }
 
+// Move all Sample data
+function staticSampleData() {
+    return src('static/data/sample/*')
+        .pipe(dest('dist/data/sample'));
+}
+
 // SCSS to CSS Convert
 function sassToCss() {
     return src('src/scss/*.scss')
@@ -77,7 +83,6 @@ function sassToCss() {
 
 // Pug to HTML Convert
 function pugToHtml() {
-    
     return src('src/pug/*.pug')
         .pipe(pug({
             pretty: true
@@ -88,29 +93,28 @@ function pugToHtml() {
 // SCSS - Pug Watching
 function watching() {
     watch('src/scss/*.scss', series(sassToCss));
-    watch(['src/pug/*.pug', 'src/pug/inc/*.pug', 'src/pug/benhnhan/*.pug'], series(pugToHtml));
+    watch(['src/pug/*.pug', 'src/pug/inc/*.pug'], series(pugToHtml));
     watch('static/img/*/*', series(staticImages));
     watch('static/js/*', series(staticJS));
     watch('static/*', series(staticFiles));
+    watch('static/data/sample/*', series(staticSampleData));
     // Thực hiện bundle khi phát hiện sự thay đổi
-     watch(paths.scripts, scripts);
+    watch(paths.bundleFiles, createHcBundle);
 }
 
 const watching2 = parallel(watching);
 
-// Tạo bundle js
-
+// hiebd: Tạo bundle js
 // đường dẫn đến các file JS của bạn
 const paths = {
-  scripts: [
-    'src/js/entities/*.js'
-    , 'src/js/view/benhnhan/*.js'
-] 
+  bundleFiles: [
+    'src/js/**/*.js'
+    ] 
 };
 
 // Tạo file bundle
-function scripts() {
-  return gulp.src(paths.scripts)
+function createHcBundle() {
+  return gulp.src(paths.bundleFiles)
     .pipe(concat('hc.bundle.js')) // tên của file bundle JS
     //.pipe(uglify())
     .pipe(gulp.dest('dist/js')); // thư mục đích của file bundle JS
@@ -118,10 +122,6 @@ function scripts() {
 
 
 
-
-
-
-
 // exports
 exports.watch = watching2;
-exports.default = series(js, css, cssAutoprefixer, bootstrapIcons, staticImages, staticJS, staticFiles, sassToCss, pugToHtml, watching);
+exports.default = series(js, css, cssAutoprefixer, bootstrapIcons, staticImages, staticJS, staticFiles,staticSampleData, sassToCss, pugToHtml, watching);
