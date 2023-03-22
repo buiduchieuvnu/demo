@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "benhnhan",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/dist/benhnhan.html"
+        }
+    ]
+}
