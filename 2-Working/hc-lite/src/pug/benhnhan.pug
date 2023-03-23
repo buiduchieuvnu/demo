@@ -1,6 +1,6 @@
 doctype html
 html(lang="en")
-    head
+    head 
         include inc/head.pug
 
     body.pe-0
@@ -36,7 +36,7 @@ html(lang="en")
                 .modal-content
                     .modal-body.p-4
                         .d-flex.align-items-center.justify-content-between.mb-4
-                            h6.modal-title#addnewcontactlabel Bệnh nhân mới
+                            h6.modal-title#addnewcontactlabel Thêm bệnh nhân
                             button.btn.btn-close.p-1.ms-auto.me-0(type="button", data-bs-dismiss="modal", aria-label="Close")
 
                         form(action="#")
@@ -72,266 +72,14 @@ html(lang="en")
 
                 // User Status Slide 
                 .chat-user-status-slides-wrapper
-                    .chat-user-status-slides.mb-2#DsBenhNhanMoi
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user1.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Hồng Đăng
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user2.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Hồ Hoài Anh
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user3.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Đen Vâu
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide.offline
-                                a(href="#")
-                                    img(src="img/bg-img/user4.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Kim Oanh
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user1.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Trần Lập
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide.offline
-                                a(href="#")
-                                    img(src="img/bg-img/user2.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Đan Trường
-                        
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user1.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Lý Tử Thất
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user2.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Văn Đức
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user3.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Hồng Dương
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide.offline
-                                a(href="#")
-                                    img(src="img/bg-img/user4.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Đức Hiếu
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide
-                                a(href="#")
-                                    img(src="img/bg-img/user1.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Thùy Dung
-
-                        // Single Status Slide 
-                        div
-                            .user-status-slide.offline
-                                a(href="#")
-                                    img(src="img/bg-img/user2.png", alt="")
-                                    .active-status
-                                    p.mb-0.mt-2.text-truncate Thảo Nguyên
+                    .chat-user-status-slides.mb-2#SlideBenhNhan
 
                 // Element Heading 
                 .element-heading
                     h6.ps-1 Danh sách bệnh nhân
 
                 // Chat User List 
-                ul.ps-0.chat-user-list
-                    // Single Chat User 
-                    li.p-3.chat-unread
-                        a.d-flex(href="page-chat.html")
-                            // Thumbnail 
-                            .chat-user-thumbnail.me-3.shadow
-                                img.img-circle(src="img/bg-img/user1.png", alt="")
-                                span.active-status
-                            // Info 
-                            .chat-user-info
-                                h6.text-truncate.mb-0 Bùi Đức Hiếu
-                                .last-chat
-                                    p.mb-0.text-truncate 0944 591 392
-                                        span.badge.rounded-pill.bg-primary.ms-2 2
-
-                        // Options 
-                        .dropstart.chat-options-btn
-                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                i.bi.bi-three-dots-vertical
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")
-                                        i.bi.bi-mic-mute
-                                        | Sửa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-slash-circle
-                                        | Khóa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-trash
-                                        | Xóa
-
-                    // Single Chat User 
-                    li.p-3
-                        a.d-flex(href="page-chat.html")
-                            // Thumbnail 
-                            .chat-user-thumbnail.me-3.shadow
-                                img.img-circle(src="img/bg-img/user2.png", alt="")
-                                span.active-status
-                            // Info 
-                            .chat-user-info
-                                h6.text-truncate.mb-0 Hồ Hoài An
-                                .last-chat
-                                    p.text-truncate.mb-0 0987 654 321
-                                        span.badge.rounded-pill.bg-primary.ms-2 4
-
-                        // Options 
-                        .dropstart.chat-options-btn
-                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                i.bi.bi-three-dots-vertical
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")
-                                        i.bi.bi-mic-mute
-                                        | Sửa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-slash-circle
-                                        | Khóa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-trash
-                                        | Xóa
-                    // Single Chat User 
-                    li.p-3
-                        a.d-flex(href="page-chat.html")
-                            // Thumbnail 
-                            .chat-user-thumbnail.me-3.shadow
-                                img.img-circle(src="img/bg-img/user2.png", alt="")
-                                span.active-status
-                            // Info 
-                            .chat-user-info
-                                h6.text-truncate.mb-0 Hồng Đăng
-                                .last-chat
-                                    p.text-truncate.mb-0 0987 654 321
-                                        span.badge.rounded-pill.bg-primary.ms-2 4
-
-                        // Options 
-                        .dropstart.chat-options-btn
-                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                i.bi.bi-three-dots-vertical
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")
-                                        i.bi.bi-mic-mute
-                                        | Sửa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-slash-circle
-                                        | Khóa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-trash
-                                        | Xóa    
-                    // Single Chat User 
-                    li.p-3
-                        a.d-flex(href="page-chat.html")
-                            // Thumbnail 
-                            .chat-user-thumbnail.me-3.shadow
-                                img.img-circle(src="img/bg-img/user2.png", alt="")
-                                span.active-status
-                            // Info 
-                            .chat-user-info
-                                h6.text-truncate.mb-0 Lý Tử Thất
-                                .last-chat
-                                    p.text-truncate.mb-0 0987 654 321
-                                        span.badge.rounded-pill.bg-primary.ms-2 4
-
-                        // Options 
-                        .dropstart.chat-options-btn
-                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                i.bi.bi-three-dots-vertical
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")
-                                        i.bi.bi-mic-mute
-                                        | Sửa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-slash-circle
-                                        | Khóa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-trash
-                                        | Xóa
-                    // Single Chat User 
-                    li.p-3
-                        a.d-flex(href="page-chat.html")
-                            // Thumbnail 
-                            .chat-user-thumbnail.me-3.shadow
-                                img.img-circle(src="img/bg-img/user2.png", alt="")
-                                span.active-status
-                            // Info 
-                            .chat-user-info
-                                h6.text-truncate.mb-0 Giang Mi
-                                .last-chat
-                                    p.text-truncate.mb-0 0987 654 321
-                                        span.badge.rounded-pill.bg-primary.ms-2 4
-
-                        // Options 
-                        .dropstart.chat-options-btn
-                            button.btn.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
-                                i.bi.bi-three-dots-vertical
-                            ul.dropdown-menu
-                                li
-                                    a(href="#")
-                                        i.bi.bi-mic-mute
-                                        | Sửa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-slash-circle
-                                        | Khóa
-                                li
-                                    a(href="#")
-                                        i.bi.bi-trash
-                                        | Xóa
-                    
+                ul.ps-0.chat-user-list#ListBenhNhan
 
         include inc/footer-nav.pug
 

@@ -1,26 +1,101 @@
 [
   {
-    "id": 1
-    ,"ma": "BN00000001"
-    ,"hoten": "Bùi Đức Hiếu"
-    ,"namsinh": "03/12/1988"
-    ,"Địa chỉ":"Hà Nội"
-    ,"avatar":"img/bg-img/user1.png"
+    "id": 1,
+    "ma": "BN00000001",
+    "hoten": "Bùi Đức Hiếu",
+    "namsinh": "03/12/1988",
+    "phone": "0988 888 999",
+    "diachi": "Hà Nội",
+    "avatar": "img/bg-img/user1.png"
   },
   {
-    "id": 2
-    ,"ma": "BN00000002"
-    ,"hoten": "Nguyễn Thị Nụ"
-    ,"namsinh": "03/12/1990"
-    ,"Địa chỉ":"Nam Định"
-    ,"avatar":"img/bg-img/user2.png"
+    "id": 2,
+    "ma": "BN00000002",
+    "hoten": "Nguyễn Thị Nụ",
+    "namsinh": "03/12/1990",
+    "phone": "0988 888 999",
+    "diachi": "Nam Định",
+    "avatar": "img/bg-img/user2.png"
   },
   {
-    "id": 3
-    ,"ma": "BN00000003"
-    ,"hoten": "Nguyễn Văn Nam"
-    ,"namsinh": "12/04/1986"
-    ,"Địa chỉ":"Nghệ An"
-    ,"avatar":"img/bg-img/user4.png"
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
+  },
+  {
+    "id": 3,
+    "ma": "BN00000003",
+    "hoten": "Nguyễn Văn Nam",
+    "namsinh": "12/04/1986",
+    "phone": "0988 888 999",
+    "diachi": "Nghệ An",
+    "avatar": "img/bg-img/user4.png"
   }
 ]
