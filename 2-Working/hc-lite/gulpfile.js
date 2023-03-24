@@ -124,4 +124,4 @@ function createHcBundle() {
 
 // exports
 exports.watch = watching2;
-exports.default = series(js, css, cssAutoprefixer, bootstrapIcons, staticImages, staticJS, staticFiles,staticSampleData, sassToCss, pugToHtml, watching);
+exports.default = series(js, css, cssAutoprefixer, bootstrapIcons, staticImages, staticJS, staticFiles,staticSampleData, sassToCss, pugToHtml,createHcBundle, watching);
