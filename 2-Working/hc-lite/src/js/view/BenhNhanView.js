@@ -12,12 +12,12 @@ class BenhNhanView extends BaseView {
         super(1);
         this.log('BenhNhanView constructor..');
         this.addEvents();
+        
     }
 
     addEvents() {
 
         this.btnTest.addEventListener("click",()=>{
-            
             this.test();
         })
 
@@ -26,6 +26,7 @@ class BenhNhanView extends BaseView {
 
     test(){
         this.log('btnTest clicked!');
+        this.oBenhNhan.initSample();
     }
 
     bindSlideBenhNhan(data) {

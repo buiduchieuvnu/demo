@@ -1,8 +1,10 @@
 class BaseModel extends Base{
 
-    constructor(logMode) {
+    constructor(code, logMode) {
         super(logMode);
-        this.log('BaseModel constructor..');
+        this.CODE = code;
+        this.DB = new IndexDBUtil(CFG.DB_NAME,this.CODE,'id');
+        this.log(`BaseModel DB_NAME: ${CFG.DB_NAME}; ObjectName: ${this.CODE}`);
     }
 
 
