@@ -59,6 +59,9 @@ html(lang="en")
             .add-new-contact-wrap
                 a.shadow(href="#", data-bs-toggle="modal" data-bs-target="#addnewcontact")
                     i.bi.bi-plus-lg
+            .hc-btn-test
+                a.shadow#btnTest
+                    i.bi.bi-bug
 
             .container
                 .card.mb-2
@@ -86,6 +89,6 @@ html(lang="en")
         include inc/footer.pug 
 
         script. 
-            //var oBenhNhanView = new BenhNhanView(); 
+            var oBenhNhanView = new BenhNhanView(); 
             
             

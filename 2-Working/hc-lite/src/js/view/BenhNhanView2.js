@@ -1,18 +1,17 @@
-class BenhNhanView1 extends BaseView {
+var BenhNhanView2 = function () {
 
-    oBenhNhan = new BenhNhan();
-    arrBenhNhan = [];
-    slideBenhNhan = document.getElementById('SlideBenhNhan');
-    oListBenhNhan = document.getElementById('ListBenhNhan');
-    oFormBenhNhan = document.getElementById('FormBenhNhan');
+    var that = this;
+    this.oBenhNhan = new BenhNhan();
+    this.arrBenhNhan = [];
+    this.slideBenhNhan = document.getElementById('SlideBenhNhan');
+    this.oListBenhNhan = document.getElementById('ListBenhNhan');
+    this.oFormBenhNhan = document.getElementById('FormBenhNhan');
 
-    constructor() {
-        super();
-        console.log('BenhNhanView1 constructor..');
-        this.addEvents();
+    this.init = function () {
+        console.log('BenhNhanView init...');
     }
 
-    bindSlideBenhNhan(data) {
+    this.bindSlideBenhNhan = function (data) {
         var ds = '';
         data.forEach(bn => {
             ds += `<div>
@@ -25,7 +24,7 @@ class BenhNhanView1 extends BaseView {
         that.activeSlide();
     }
 
-    bindListBenhNhan(data) {
+    this.bindListBenhNhan = function (data) {
         var ds = '';
         data.forEach(bn => {
             ds += `<!-- Single Chat User -->
@@ -53,12 +52,12 @@ class BenhNhanView1 extends BaseView {
         that.oListBenhNhan.innerHTML = ds;
     }
 
-    async search(){
-        // return await this.oBenhNhan.syncData();
+    this.search = async function () {
+        return await that.oBenhNhan.getSampleData();
     }
 
     // Start slide
-    activeSlide() {
+    this.activeSlide = function () {
         // 2.2.11 => Chat Users Slides (This code is dependent on [tiny-slider.js] plugin).
 
         if (document.querySelectorAll(".chat-user-status-slides-wrapper").length > 0) {
@@ -96,14 +95,12 @@ class BenhNhanView1 extends BaseView {
 
     }
 
-    addEvents(){
-        document.addEventListener("DOMContentLoaded",
-        this.search().then(rs => {
-            // this.bindSlideBenhNhan(rs);
-            // this.bindListBenhNhan(rs);
-        })
-    );
-    }
 
-
+    document.addEventListener("DOMContentLoaded", function (event) {
+        that.init();
+        that.search().then(rs => {
+            that.bindSlideBenhNhan(rs);
+            that.bindListBenhNhan(rs);
+        });
+    });
 }

@@ -1,0 +1,20 @@
+/* :: HC style */
+
+// Test button
+.hc-btn-test a {
+	position: fixed;
+	width: 2.5rem;
+	height: 2.5rem;
+	z-index: 1000;
+	background-color: $primary;
+	text-align: center;
+	line-height: 2.25rem;
+	border-radius: 50%;
+	bottom: 150px;
+	right: 20px;
+	color: $white;
+
+	i {
+		line-height: 2.5rem;
+	}
+}

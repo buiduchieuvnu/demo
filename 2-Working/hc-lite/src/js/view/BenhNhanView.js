@@ -1,17 +1,34 @@
-var BenhNhanView = function () {
+class BenhNhanView extends BaseView {
 
-    var that = this;
-    this.oBenhNhan = new BenhNhan();
-    this.arrBenhNhan = [];
-    this.slideBenhNhan = document.getElementById('SlideBenhNhan');
-    this.oListBenhNhan = document.getElementById('ListBenhNhan');
-    this.oFormBenhNhan = document.getElementById('FormBenhNhan');
+    oBenhNhan = new BenhNhan();
+    arrBenhNhan = [];
+    slideBenhNhan = document.getElementById('SlideBenhNhan');
+    oListBenhNhan = document.getElementById('ListBenhNhan');
+    oFormBenhNhan = document.getElementById('FormBenhNhan');
+    btnTest = document.getElementById('btnTest');
+    that = this;
 
-    this.init = function () {
-        console.log('BenhNhanView init...');
+    constructor() {
+        super(1);
+        this.log('BenhNhanView constructor..');
+        this.addEvents();
     }
 
-    this.bindSlideBenhNhan = function (data) {
+    addEvents() {
+
+        this.btnTest.addEventListener("click",()=>{
+            
+            this.test();
+        })
+
+        document.addEventListener("DOMContentLoaded",()=>{});
+    }
+
+    test(){
+        this.log('btnTest clicked!');
+    }
+
+    bindSlideBenhNhan(data) {
         var ds = '';
         data.forEach(bn => {
             ds += `<div>
@@ -24,7 +41,7 @@ var BenhNhanView = function () {
         that.activeSlide();
     }
 
-    this.bindListBenhNhan = function (data) {
+    bindListBenhNhan(data) {
         var ds = '';
         data.forEach(bn => {
             ds += `<!-- Single Chat User -->
@@ -52,12 +69,12 @@ var BenhNhanView = function () {
         that.oListBenhNhan.innerHTML = ds;
     }
 
-    this.search = async function () {
-        return await that.oBenhNhan.getSampleData();
+    async search(){
+        // return await this.oBenhNhan.syncData();
     }
 
     // Start slide
-    this.activeSlide = function () {
+    activeSlide() {
         // 2.2.11 => Chat Users Slides (This code is dependent on [tiny-slider.js] plugin).
 
         if (document.querySelectorAll(".chat-user-status-slides-wrapper").length > 0) {
@@ -95,12 +112,4 @@ var BenhNhanView = function () {
 
     }
 
-
-    document.addEventListener("DOMContentLoaded", function (event) {
-        that.init();
-        that.search().then(rs => {
-            that.bindSlideBenhNhan(rs);
-            that.bindListBenhNhan(rs);
-        });
-    });
 }
