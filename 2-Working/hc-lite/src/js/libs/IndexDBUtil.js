@@ -45,7 +45,7 @@ class IndexDBUtil {
         };
 
         request.onsuccess = (event) => {
-            console.log("Record added successfully.");
+            //console.log("Record added successfully.");
         };
     }
 
@@ -60,7 +60,7 @@ class IndexDBUtil {
         };
 
         request.onsuccess = (event) => {
-            console.log("Record updated successfully.");
+            //console.log("Record updated successfully.");
         };
     }
 
@@ -117,4 +117,19 @@ class IndexDBUtil {
             }
         };
     }
+
+    // getAll(callback) {
+    //     const transaction = this.db.transaction([this.storeName], "readonly");
+    //     const objectStore = transaction.objectStore(this.storeName);
+
+    //     const request = objectStore.getAll();
+
+    //     request.onerror = (event) => {
+    //         console.log("Error get all records.");
+    //     };
+
+    //     request.onsuccess = (event) => {
+    //         callback(event.target.result);
+    //     };
+    // }
 }

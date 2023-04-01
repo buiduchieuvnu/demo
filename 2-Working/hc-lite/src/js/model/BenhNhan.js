@@ -1,17 +1,18 @@
 class BenhNhan extends BaseModel {
+    static CODE = 'BENHNHAN';
     static DATA_SOURCE_URL = 'data/sample/benhnhan.json';
 
 
 
     constructor() {
-        super('BENHNHAN',1);
-        //this.syncData('benhnhan','data/sample/benhnhan.json');
+        super(BenhNhan.CODE,BenhNhan.DATA_SOURCE_URL,1);
+        
     }
 
     initSample(){
-        const bn = { id: 1, name: 'John Doe', age: 30 };
-        this.DB.add(bn);
+        this.fetchData();
     }
+
 
 
 

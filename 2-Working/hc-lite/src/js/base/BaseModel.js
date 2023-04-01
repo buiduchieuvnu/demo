@@ -1,36 +1,61 @@
 class BaseModel extends Base{
 
-    constructor(code, logMode) {
+
+    constructor(code,dataUrl, logMode) {
         super(logMode);
         this.CODE = code;
-        this.DB = new IndexDBUtil(CFG.DB_NAME,this.CODE,'id');
+        this.DATA_URL = dataUrl;
+        this.DB = new IndexDBUtil(CFG.DB_NAME,this.CODE,'id',['id']);
         this.log(`BaseModel DB_NAME: ${CFG.DB_NAME}; ObjectName: ${this.CODE}`);
     }
 
+    /**
+     * Func fetch
+     */
+    async fetchData() {
+        let data = await this.getJsonData(this.DATA_URL);
+        this.log(`BaseModel.syncData data: `,data);
+        data.forEach(item => {
+            this.DB.add(item)
+        });
+        this.log(`BaseModel.fetchData ${this.CODE} done. (${data.length}) records`);
 
-    // async syncData(objectCode,url) {
-    //     let data = await this.getJsonData(url);
-    //     let db = new IndexDBUtil('HC-lite','1.0.0',objectCode);
-    //     this.log(`BaseModel.syncData data: `,data);
-    //     data.forEach(item => {
-    //         db.add(item)
-    //     });
-    //     this.log(`BaseModel.syncData ${objectCode} done!`);
+    }
 
-    // }
+    getAll() {
+        return new Promise((resolve, reject) => {
+            const transaction = this.DB.transaction(this.CODE, "readonly");
+            const objectStore = transaction.objectStore(this.CODE);
+            const results = [];
 
-    // async getJsonData(dataUrl) {
-    //     return fetch(dataUrl)
-    //         .then(function (response) {
-    //             if (!response.ok) {
-    //                 throw Error(response.statusText);
-    //             }
-    //             return response.json();
-    //         })
-    //         .catch(function (error) {
-    //             this.log('ERR getJsonData: \n', error);
-    //         });
-    // }
+            objectStore.openCursor().onsuccess = function (event) {
+                const cursor = event.target.result;
+                if (cursor) {
+                    results.push(cursor.value);
+                    cursor.continue();
+                } else {
+                    resolve(results);
+                }
+            };
+
+            transaction.onerror = function (event) {
+                reject(event.target.error);
+            };
+        });
+    }
+
+    async getJsonData(dataUrl) {
+        return fetch(dataUrl)
+            .then(function (response) {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .catch(function (error) {
+                this.log('ERR getJsonData: \n', error);
+            });
+    }
 
     addEvents(){
         //document.addEventListener("DOMContentLoaded", this.syncData());

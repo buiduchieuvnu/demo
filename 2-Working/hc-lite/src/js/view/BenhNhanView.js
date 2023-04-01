@@ -1,6 +1,6 @@
 class BenhNhanView extends BaseView {
 
-    oBenhNhan = new BenhNhan();
+    
     arrBenhNhan = [];
     slideBenhNhan = document.getElementById('SlideBenhNhan');
     oListBenhNhan = document.getElementById('ListBenhNhan');
@@ -11,6 +11,8 @@ class BenhNhanView extends BaseView {
     constructor() {
         super(1);
         this.log('BenhNhanView constructor..');
+        this.oBenhNhan = new BenhNhan();
+        this.oBenhNhan.initSample();
         this.addEvents();
         
     }
@@ -24,9 +26,9 @@ class BenhNhanView extends BaseView {
         document.addEventListener("DOMContentLoaded",()=>{});
     }
 
-    test(){
-        this.log('btnTest clicked!');
-        this.oBenhNhan.initSample();
+    async test(){
+        const rs = await this.oBenhNhan.getAll();
+        this.log('data',rs);
     }
 
     bindSlideBenhNhan(data) {
