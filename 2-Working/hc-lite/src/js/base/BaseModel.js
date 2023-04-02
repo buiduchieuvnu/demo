@@ -5,7 +5,7 @@ class BaseModel extends Base{
         super(logMode);
         this.CODE = code;
         this.DATA_URL = dataUrl;
-        this.DB = new IndexDBUtil(CFG.DB_NAME,this.CODE,'id',['id']);
+        Base.HCDB = new IndexDBUtil(CFG.DB_NAME,this.CODE,'id',['id']);
         this.log(`BaseModel DB_NAME: ${CFG.DB_NAME}; ObjectName: ${this.CODE}`);
     }
 
@@ -19,6 +19,7 @@ class BaseModel extends Base{
             this.DB.add(item)
         });
         this.log(`BaseModel.fetchData ${this.CODE} done. (${data.length}) records`);
+
 
     }
 

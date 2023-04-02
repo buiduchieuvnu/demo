@@ -1,7 +1,10 @@
 class Base{
 
+    static HCDB;
+
     constructor(log) {
         this.logMode = log === undefined?0:log;
+
     }
 
     /**
