@@ -81,7 +81,7 @@
 
   const handleVoice = (text) => {
       const handledText = text.toLowerCase();
-      console.log('text', text);
+      console.log('text: ', handledText);
 
       if (handledText.includes('mấy giờ')) {
           const textToSpeech = `Bây giờ là ${moment().hours()} giờ ${moment().minutes()} phút`;
