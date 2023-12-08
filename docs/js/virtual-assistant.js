@@ -10,6 +10,7 @@
   const MSG_VA_HELLO = "Trợ lý ảo HC xin hân hạnh phục vụ quý khách.";
   const MSG_VA_BYE = "Trợ lý ảo HC xin tạm biệt quý khách. Hẹn gặp lại";
   const MSG_VA_UNKNOWN = "Xin lỗi HC không hiểu mệnh lệnh trên.";
+  let datLichKham = false;
 
   if (currentVa) {
     document.documentElement.setAttribute("data-va", currentVa);
@@ -135,6 +136,17 @@
           return;
       }
 
+      if (handledText.includes('đặt lịch khám')){
+        datLichKham = true;
+        speak('Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?');
+        return;
+      }
+
+      if (handledText.includes('phòng khám') && datLichKham){
+        speak(`Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ${handledText.substring('phòng khám '.length)}, vui lòng điền thông tin đặt lịch mong muốn. Xin cảm ơn quý khách`);
+        window.location.href = 'https://homeclinic.vncare.vn/hen-kham';
+        return;
+      }
 
       GG.speech(MSG_VA_UNKNOWN, 1);
   }
