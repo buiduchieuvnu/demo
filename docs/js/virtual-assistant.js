@@ -138,12 +138,15 @@
 
       if (handledText.includes('đặt lịch khám')){
         datLichKham = true;
-        speak('Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?');
+        console.log('Dat lich kham');
+        const textToSpeech = `Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?`;
+        GG.speech(textToSpeech, 1);
         return;
       }
 
       if (handledText.includes('phòng khám') && datLichKham){
-        speak(`Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ${handledText.substring('phòng khám '.length)}, vui lòng điền thông tin đặt lịch mong muốn. Xin cảm ơn quý khách`);
+        const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ${handledText.substring('phòng khám '.length)}, vui lòng điền thông tin đặt lịch mong muốn. Xin cảm ơn quý khách`;
+        GG.speech(textToSpeech, 1);
         window.location.href = 'https://homeclinic.vncare.vn/hen-kham';
         return;
       }
