@@ -47,8 +47,8 @@
   }
 
   // Tro ly ao
-  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-
+  //var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   const synth = window.speechSynthesis;
   recognition.lang = 'vi-VI';
@@ -80,96 +80,96 @@
   });
 
   const handleVoice = (text) => {
-      const handledText = text.toLowerCase();
-      console.log('text: ', handledText);
+    const handledText = text.toLowerCase();
+    console.log('text: ', handledText);
 
-      if (handledText.includes('mấy giờ')) {
-          const textToSpeech = `Bây giờ là ${moment().hours()} giờ ${moment().minutes()} phút`;
-          GG.speech(textToSpeech, 1);
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('ở đấy không')) {
-          const textToSpeech = `Em vẫn đang đợi yêu cầu từ quý khách.`;
-          GG.speech(textToSpeech, 1);
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('trong ngày')) {
-          const textToSpeech = `Tổng số bệnh nhân trong ngày phòng khám tiếp nhận là: 175 bệnh nhân`;
-          GG.speech(textToSpeech, 1);
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('trong tuần')) {
-          const textToSpeech = `Tổng số bệnh nhân trong tuần phòng khám tiếp nhận là: 1870 bệnh nhân`;
-          GG.speech(textToSpeech, 1);
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('đang khám')) {
-          const textToSpeech = `Tổng số bệnh nhân đang khám là: 30 bệnh nhân`;
-          GG.speech(textToSpeech, 1);
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('đi đến') && handledText.includes('danh sách khám')) {
-          window.location.href = 'hc-ds-kham.html';;
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('đi đến') && handledText.includes('kho thuốc')) {
-          window.location.href = 'hc-page-medicine.html';;
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('đăng xuất')) {
-          window.location.href = 'hc-login.html';;
-          //speak(textToSpeech);
-          return;
-      }
-
-      if (handledText.includes('đặt lịch khám')){
-        datLichKham = true;
-        console.log('Dat lich kham');
-        const textToSpeech = `Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?`;
+    if (handledText.includes('mấy giờ')) {
+        const textToSpeech = `Bây giờ là ${moment().hours()} giờ ${moment().minutes()} phút`;
         GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
         return;
-      }
+    }
 
-      if (datLichKham){
-        let thanhPho = '';
-        let phongKham = '';
-        phongKham = handledText.substring(handledText.indexOf('phòng khám') + 'phòng khám'.length + 1,handledText.indexOf('ở'));
-        console.log(phongKham);
-        if(handledText.includes('thành phố')){
-          thanhPho = handledText.substring(handledText.indexOf('thành phố') + 'thành phố'.length + 1);
-          console.log(thanhPho);
-        } else if(handledText.includes('tỉnh')){
-          thanhPho = handledText.substring(handledText.indexOf('tỉnh') + 'tỉnh'.length + 1);
-          console.log(thanhPho)
-        }
-        else {
-          thanhPho = handledText.substring(handledText.indexOf('ở') + 'ở'.length + 1);
-          console.log(thanhPho)
-        }
-        const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám`;
+    if (handledText.includes('ở đấy không')) {
+        const textToSpeech = `Em vẫn đang đợi yêu cầu từ quý khách.`;
         GG.speech(textToSpeech, 1);
-        url = `https://homeclinic.vncare.vn/hen-kham?THANHPHO='${thanhPho}'&PHONGKHAM='${phongKham}'`;
-        console.log(url);
-        window.location.href = url;
-        datLichKham = false;
+        //speak(textToSpeech);
         return;
-      }
+    }
 
-      GG.speech(MSG_VA_UNKNOWN, 1);
+    if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('trong ngày')) {
+        const textToSpeech = `Tổng số bệnh nhân trong ngày phòng khám tiếp nhận là: 175 bệnh nhân`;
+        GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('trong tuần')) {
+        const textToSpeech = `Tổng số bệnh nhân trong tuần phòng khám tiếp nhận là: 1870 bệnh nhân`;
+        GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('đang khám')) {
+        const textToSpeech = `Tổng số bệnh nhân đang khám là: 30 bệnh nhân`;
+        GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('đi đến') && handledText.includes('danh sách khám')) {
+        window.location.href = 'hc-ds-kham.html';;
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('đi đến') && handledText.includes('kho thuốc')) {
+        window.location.href = 'hc-page-medicine.html';;
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('đăng xuất')) {
+        window.location.href = 'hc-login.html';;
+        //speak(textToSpeech);
+        return;
+    }
+
+    if (handledText.includes('đặt lịch khám')){
+      datLichKham = true;
+      console.log('Dat lich kham');
+      const textToSpeech = `Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?`;
+      GG.speech(textToSpeech, 1);
+      return;
+    }
+
+    if (datLichKham){
+      let thanhPho = '';
+      let phongKham = '';
+      phongKham = handledText.substring(handledText.indexOf('phòng khám') + 'phòng khám'.length + 1,handledText.indexOf('ở'));
+      console.log(phongKham);
+      if(handledText.includes('thành phố')){
+        thanhPho = handledText.substring(handledText.indexOf('thành phố') + 'thành phố'.length + 1);
+        console.log(thanhPho);
+      } else if(handledText.includes('tỉnh')){
+        thanhPho = handledText.substring(handledText.indexOf('tỉnh') + 'tỉnh'.length + 1);
+        console.log(thanhPho)
+      }
+      else {
+        thanhPho = handledText.substring(handledText.indexOf('ở') + 'ở'.length + 1);
+        console.log(thanhPho)
+      }
+      const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám`;
+      GG.speech(textToSpeech, 1);
+      url = `https://homeclinic.vncare.vn/hen-kham?THANHPHO='${thanhPho}'&PHONGKHAM='${phongKham}'`;
+      console.log(url);
+      window.location.href = url;
+      datLichKham = false;
+      return;
+    }
+
+    GG.speech(MSG_VA_UNKNOWN, 1);
   }
 
   recognition.onspeechend = () => {
