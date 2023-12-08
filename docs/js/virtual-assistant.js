@@ -144,10 +144,26 @@
         return;
       }
 
-      if (handledText.includes('phòng khám') && datLichKham){
-        const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ${handledText.substring('phòng khám '.length)}, vui lòng điền thông tin đặt lịch mong muốn. Xin cảm ơn quý khách`;
+      if (datLichKham){
+        let thanhPho = '';
+        let phongKham = '';
+        phongKham = handledText.substring(handledText.indexOf('phòng khám') + 'phòng khám'.length + 1,handledText.indexOf('ở'));
+        console.log(phongKham);
+        if(handledText.includes('thành phố')){
+          thanhPho = handledText.substring(handledText.indexOf('thành phố') + 'thành phố'.length + 1);
+          console.log(thanhPho);
+        } else if(handledText.includes('tỉnh')){
+          thanhPho = handledText.substring(handledText.indexOf('tỉnh') + 'tỉnh'.length + 1);
+          console.log(thanhPho)
+        }
+        else {
+          thanhPho = handledText.substring(handledText.indexOf('ở') + 'ở'.length + 1);
+          console.log(thanhPho)        
+        }
+        const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám`;
         GG.speech(textToSpeech, 1);
-        window.location.href = 'https://homeclinic.vncare.vn/hen-kham';
+        window.location.href = `https://homeclinic.vncare.vn/hen-kham?THANHPHO=${thanhPho}&PHONGKHAM=${phongKham}`;
+        datLichKham = false;
         return;
       }
 
