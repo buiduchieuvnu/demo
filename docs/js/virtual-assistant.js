@@ -164,7 +164,7 @@
       GG.speech(textToSpeech, 1);
       url = 'https://homeclinic.vncare.vn/hen-kham?THANHPHO='+thanhPho+'&PHONGKHAM='+phongKham;
       console.log(url);
-      window.location.href = url;
+      window.location.href = 'https://homeclinic.vncare.vn/hen-kham';
       datLichKham = false;
       return;
     }
