@@ -163,7 +163,7 @@
       if(thanhPho.length && phongKham.length){
         const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám`;
         GG.speech(textToSpeech, 1);
-        const url = "https://homeclinic.vncare.vn/hen-kham?$THANHPHO='"+thanhPho+"'&$PHONGKHAM='"+phongKham+"'";
+        const url = "https://homeclinic.vncare.vn/hen-kham?$thanhpho='"+thanhPho+"'&$phongkham='"+phongKham+"'";
         console.log(url);
         window.location.href = url;
         datLichKham = false; 
