@@ -166,7 +166,7 @@
         const url = "https://homeclinic.vncare.vn/hen-kham?$THANHPHO='"+thanhPho+"'&$PHONGKHAM='"+phongKham+"'";
         console.log(url);
         window.location.href = url;
-        datLichKham = false;
+        datLichKham = false; 
         return;
       }
       else{
