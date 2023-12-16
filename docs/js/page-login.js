@@ -18,7 +18,7 @@
     }
 
     if (user=='admin' && pass=='Admin@123') {
-      window.location.href = '/hc-page-home.html';
+      window.location.href = '/training-hc-thuctap/hc-page-home.html';
     }else{
       alert('Tài khoản hoặc mật khẩu không hợp lệ!');
       clearForm();
