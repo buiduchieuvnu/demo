@@ -137,7 +137,7 @@
         return;
     }
 
-    if (handledText.includes('đặt lịch khám')){
+    if (handledText.includes('đặt lịch khám') || handledText.includes('đặt lịch')){
       datLichKham = true;
       console.log('Đặt Lịch Khám');
       const textToSpeech = `Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?`;
@@ -233,14 +233,14 @@
                 const b = obj.data[i].tenPhongKham.toUpperCase();
                 if(b.includes(a)){
                   check = true;
-                  const textToSpeech = `Xin cảm ơn, Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ` + obj.data[i].tenPhongKham;
-                  GG.speech(textToSpeech, 1);
+                  const textToSpeech = `Trợ lý ảo xin phép chuyển quý khách tới địa chỉ đặt lịch khám.`
+                  GG.speech(textToSpeech, 0.9);
                   setTimeout(() => {openUrl(selectThanhPho, obj.data[i])}, 7000);
                   return;
                 }
               }
               if(!check){
-                const textToSpeech = `Xin lỗi, Trợ lý ảo không tìm thấy phòng khám `+ textPhongKham + ` tại ` + selectThanhPho.tenDiaPhuong + `. Vui lòng thử lại`;
+                const textToSpeech = `Xin lỗi, Trợ lý ảo không tìm thấy phòng khám tại ` + selectThanhPho.tenDiaPhuong + `. Vui lòng thử lại`;
                 console.log(textToSpeech);
                 GG.speech(textToSpeech, 1);
               }
