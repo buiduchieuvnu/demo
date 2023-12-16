@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <h1 id="lblTitle"></h1>
+</head>
+<body>
+    
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+function test(){
+    const axios = require('axios');
+    const lblTitle = document.getElementById('lblTitle');
+    const headers = {
+      'authority': 'qna-openai.netlify.app',
+      'accept': '*/*',
+      'accept-language': 'vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5',
+      'content-type': 'application/json',
+      'origin': 'https://qna-openai.netlify.app',
+      'referer': 'https://qna-openai.netlify.app/?fbclid=IwAR1jUgdl8HYQBcg_aC6nSVBBAGbAHh-8LTOao2_5TJjs8MbnCUD1KHs6sm0',
+      'sec-ch-ua': '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'sec-fetch-dest': 'empty',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-site': 'same-origin',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
+    };
+
+    const data = {
+      prompt: 'AI Y tế',
+      input: 'Giáng sinh là gì?'
+    };
+
+    axios.post('https://qna-openai.netlify.app/api/chat', data, { headers })
+      .then(response => {
+        console.log(lblTitle.innerHTML('AI trả lời: ' + response.data));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+}
+
+test();
+
+    
+</script>
+</html>
