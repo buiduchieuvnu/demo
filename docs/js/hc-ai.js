@@ -110,10 +110,10 @@
     console.log('AI question: ' + msg);
     try {
       const response = await  axios.post('https://qna-openai.netlify.app/api/chat', {
-        input: msg + " nếu câu bạn không đủ kiến thức hoặc không biết thì hãy trả về đúng 1 từ là 'TRA GOOGLE' không trả về cái gì hết ngoài từ đó",
+        input: msg + " nếu câu bạn không đủ kiến thức hoặc không biết thì hãy trả về đúng 1 từ là 'TRAGOOGLE' không trả về cái gì hết ngoài từ đó",
       });
 
-      if (!response.data.toString().includes('TRA GOOGLE')) {
+      if (!response.data.toString().includes('TRAGOOGLE')) {
         addBOTChat(response.data);
         await GG.speech(response.data, 1);
       } else {
@@ -183,7 +183,7 @@
     e.preventDefault();
     setTimeout(() => {
       recognition.start();
-    }, 2000);
+    }, 4000);
   });
 
   const handleVoice = (text) => {
@@ -213,6 +213,24 @@
         //speak(textToSpeech);
         return;
       }
+
+      if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('trong ngày')) {
+        const textToSpeech = `Tổng số bệnh nhân trong ngày phòng khám tiếp nhận là: 175 bệnh nhân`;
+        addBOTChat(textToSpeech);
+        GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
+        return;
+      }
+
+      if (handledText.includes('thống kê') && handledText.includes('tổng số') && handledText.includes('bệnh nhân') && handledText.includes('đang khám')) {
+        const textToSpeech = `Tổng số bệnh nhân đang khám là: 30 bệnh nhân`;
+        addBOTChat(textToSpeech);
+        GG.speech(textToSpeech, 1);
+        //speak(textToSpeech);
+        return;
+      }
+
+
       if (handledText.includes('đặt lịch khám') || handledText.includes('đặt lịch')){
         datLichKham = true;
         console.log('Đặt Lịch Khám');
