@@ -10,6 +10,7 @@
   const MSG_VA_HELLO = "Trợ lý ảo HC xin hân hạnh phục vụ quý khách.";
   const MSG_VA_BYE = "Trợ lý ảo HC xin tạm biệt quý khách. Hẹn gặp lại";
   const MSG_VA_UNKNOWN = "Xin lỗi HC không hiểu mệnh lệnh trên.";
+  var listThanhPho = [];
   let datLichKham = false;
 
   if (currentVa) {
@@ -138,7 +139,7 @@
 
     if (handledText.includes('đặt lịch khám')){
       datLichKham = true;
-      console.log('Dat lich kham');
+      console.log('Đặt Lịch Khám');
       const textToSpeech = `Chào bạn, bạn muốn đặt lịch khám tại phòng khám nào?`;
       GG.speech(textToSpeech, 1);
       return;
@@ -148,25 +149,18 @@
       let thanhPho = '';
       let phongKham = '';
       phongKham = handledText.substring(handledText.indexOf('phòng khám') + 'phòng khám'.length + 1,handledText.indexOf('ở')-1);
-      console.log(phongKham);
       if(handledText.includes('thành phố')){
         thanhPho = handledText.substring(handledText.indexOf('thành phố') + 'thành phố'.length + 1);
-        console.log(thanhPho);
       } else if(handledText.includes('tỉnh')){
         thanhPho = handledText.substring(handledText.indexOf('tỉnh') + 'tỉnh'.length + 1);
-        console.log(thanhPho)
       }
       else {
         thanhPho = handledText.substring(handledText.indexOf('ở') + 'ở'.length + 1);
-        console.log(thanhPho)
       }
+      console.log(phongKham);
+      console.log(thanhPho);
       if(thanhPho.length && phongKham.length){
-        const textToSpeech = `Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám`;
-        GG.speech(textToSpeech, 1);
-        const url = "https://homeclinic.vncare.vn/hen-kham?$thanhpho='"+thanhPho+"'&$phongkham='"+phongKham+"'";
-        console.log(url);
-        window.location.href = url;
-        datLichKham = false; 
+        findThanhPho(thanhPho, phongKham);
         return;
       }
       else{
@@ -175,6 +169,92 @@
     }
 
     GG.speech(MSG_VA_UNKNOWN, 1);
+  }
+
+  function getThanhPho(){
+    if(localStorage.getItem("listThanhPho")){
+      listThanhPho = JSON.parse(localStorage.getItem("listThanhPho"));
+    }else{
+      const request_ = new XMLHttpRequest();
+      request_.open('GET', 'https://homeclinic-gw.vncare.vn/api/common/tinhthanh/public/search?page=0&size=1000&filter=cap==1&sort=id&sort=desc', true);
+      // request_.setRequestHeader('Authorization', 'Bearer ' + token);
+      request_.send();
+      request_.onreadystatechange = function() {
+        if (request_.readyState === 4 && request_.status === 200) {
+          const response = request_.responseText;
+          const obj = JSON.parse(response);
+          if (obj) {
+            if (obj.code === '0') {
+              console.log(obj.data);
+              listThanhPho = obj.data.content;
+              localStorage.setItem("listThanhPho", JSON.stringify(listThanhPho));
+            }
+          } 
+        }
+      };
+    }
+  }
+  getThanhPho();
+
+  function findThanhPho(textThanhPho, textPhongKham){
+    var check = false;
+    for(let i = 0; i < listThanhPho.length; i++){
+      const a = textThanhPho.toUpperCase();
+      const b = listThanhPho[i].tenDiaPhuong.toUpperCase();
+      if(b.includes(a)){
+        console.log(listThanhPho[i]);
+        findPhongKham(textPhongKham, listThanhPho[i]);
+        check = true;
+        return;
+      }
+    }
+    if(!check){
+      const textToSpeech = `Xin lỗi, Trợ lý ảo không tìm thấy tỉnh thành phố của bạn. Vui lòng thử lại`;
+      console.log(textToSpeech);
+      GG.speech(textToSpeech, 1);
+    }
+  }
+
+  function findPhongKham(textPhongKham, selectThanhPho){
+    const request_ = new XMLHttpRequest();
+      request_.open('GET', 'https://homeclinic-gw.vncare.vn/api/common/benhvien/public/search?maTinh=' + selectThanhPho.maDiaPhuong, true);
+      // request_.setRequestHeader('Authorization', 'Bearer ' + token);
+      request_.send();
+      request_.onreadystatechange = function() {
+        if (request_.readyState === 4 && request_.status === 200) {
+          const response = request_.responseText;
+          const obj = JSON.parse(response);
+          if (obj) {
+            if (obj.code === '0') {
+              console.log(obj.data);
+              var check = false;
+              for(let i = 0; i < obj.data.length; i++){
+                const a = textPhongKham.toUpperCase();
+                const b = obj.data[i].tenPhongKham.toUpperCase();
+                if(b.includes(a)){
+                  check = true;
+                  const textToSpeech = `Xin cảm ơn, Trợ lý ảo sẽ chuyển quý khách tới địa chỉ đặt lịch phòng khám ` + obj.data[i].tenPhongKham;
+                  GG.speech(textToSpeech, 1);
+                  setTimeout(() => {openUrl(selectThanhPho, obj.data[i])}, 7000);
+                  return;
+                }
+              }
+              if(!check){
+                const textToSpeech = `Xin lỗi, Trợ lý ảo không tìm thấy phòng khám `+ textPhongKham + ` tại ` + selectThanhPho.tenDiaPhuong + `. Vui lòng thử lại`;
+                console.log(textToSpeech);
+                GG.speech(textToSpeech, 1);
+              }
+            }
+          } 
+        }
+      };
+  }
+
+  function openUrl(selectThanhPho, selectPhongKham){
+    const url = "https://homeclinic.vncare.vn/hen-kham?thanhpho="+selectThanhPho.maDiaPhuong+"&phongkham="+selectPhongKham.ma+"";
+    console.log(url);
+    window.location.href = url;
+    datLichKham = false; 
   }
 
   recognition.onspeechend = () => {
