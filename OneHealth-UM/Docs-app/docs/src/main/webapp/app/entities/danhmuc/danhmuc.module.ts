@@ -4,7 +4,6 @@ import { DreportSharedModule } from 'app/shared/shared.module';
 import { MonacoEditorModule, MONACO_PATH } from '@materia-ui/ngx-monaco-editor';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TruyvanModalComponent } from 'app/shared/popup-modal/truyvan-modal/truyvan-modal.component';
-import { NgxPrintModule } from 'ngx-print';
 import { PosprofileModalComponent } from 'app/shared/popup-modal/posprofile-modal/posprofile-modal.component';
 import { PosterminalModalComponent } from 'app/shared/popup-modal/posterminal-modal/posterminal-modal.component';
 import { CashierModalComponent } from 'app/shared/popup-modal/cashier-modal/cashier-modal.component';
@@ -31,7 +30,6 @@ import { ArticleAutocompleteComponent } from 'app/shared/multiselect/post-multis
     MatExpansionModule,
     NgbModule,
     EditorModule,
-    NgxPrintModule,
     RouterModule.forChild([
       {
         path: 'user',

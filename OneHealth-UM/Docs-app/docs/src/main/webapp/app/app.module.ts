@@ -21,7 +21,6 @@ import { ConfirmDialogComponent } from './layouts/common-modules/confirm-dialog/
 import { Overlay, OverlayContainer, ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { NgxPrintModule } from 'ngx-print';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     DreportEntityModule,
     DreportAppRoutingModule,
     BrowserAnimationsModule,
-    NgxPrintModule,
     NgSelectModule,
     ToastrModule.forRoot({
       positionClass: 'toast-center-center',

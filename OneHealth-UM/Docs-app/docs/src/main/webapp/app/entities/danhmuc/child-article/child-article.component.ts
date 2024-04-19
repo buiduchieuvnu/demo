@@ -123,7 +123,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       // eslint-disable-next-line
       codesample_global_prismjs: true,
       plugins: [
-        'advlist autolink lists link image charmap print preview anchor image',
+        'advlist autolink lists link image charmap print preview anchor image textcolor colorpicker',
         'searchreplace visualblocks code fullscreen',
         'insertdatetime media table paste code help wordcount table codesample'
       ],
@@ -142,8 +142,8 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
         | table tabledelete | tableprops tablerowprops tablecellprops \
         | tableinsertrowbefore tableinsertrowafter tabledeleterow \
         | tableinsertcolbefore tableinsertcolafter tabledeletecol \
-        |bold italic underline backcolor | image | \
-        alignleft aligncenter alignright alignjustify | \
+        | bold italic underline backcolor | image | forecolor backcolor \
+        | alignleft aligncenter alignright alignjustify | \
         bullist numlist outdent indent | removeformat | fullscreen | help'
     };
 
@@ -490,7 +490,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   goToPage(mainarticleid: number, childarticleid: number): void {
     this.searchElementList = [];
     this.router.navigate(['/danhmuc/child-article'], {
-      queryParams: { mainarticleid, childarticleid , searchphase: ""},
+      queryParams: { mainarticleid, childarticleid, searchphase: '' },
       queryParamsHandling: 'merge'
     });
   }

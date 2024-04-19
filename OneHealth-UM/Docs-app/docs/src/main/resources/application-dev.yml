@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:./dbscript/DOCS.db
+    url: jdbc:sqlite:./DOCS.db
   jpa:
     database-platform: com.vnptit.ehealth.docs.configurations.SQLiteDialect
     hibernate:
