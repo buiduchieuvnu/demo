@@ -27,6 +27,8 @@ public class UserService implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
+    
+
     // JWTAuthenticationFilter sẽ sử dụng hàm này
     @Transactional
     public UserDetails loadUserById(Long id) {

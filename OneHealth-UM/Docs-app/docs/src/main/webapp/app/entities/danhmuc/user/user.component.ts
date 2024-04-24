@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
 import { ERROR_LABEL, ERROR_MESSAGE, SUCCESS_LABEL } from 'app/app.constants';
 import { NotificationService } from 'app/core/notification/notification.service';
 import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-dialog/confirm-dialog.service';
@@ -101,8 +102,8 @@ export class UserComponent implements OnInit {
     const { filterCode, filterName } = this;
 
     if (filterName) comparesArray.push(`name==*${filterName}*`);
-    if (filterCode) comparesArray.push(`code==*${filterCode}*`);
-    return comparesArray.length > 0 ? comparesArray.join(';') : 'code=="*"';
+    if (filterCode) comparesArray.push(`role==*${filterCode}*`);
+    return comparesArray.length > 0 ? comparesArray.join(';') : 'role==1';
   }
 
   onDelete(id: number): void {

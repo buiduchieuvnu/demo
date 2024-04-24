@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ERROR_LABEL, ERROR_MESSAGE, SUCCESS_LABEL } from 'app/app.constants';
 import { NotificationService } from 'app/core/notification/notification.service';
 import { DanhMucService } from 'app/entities/danhmuc/danhmuc.service';
+import { ReloadService } from 'app/services/reload.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'jhi-user-modal',
@@ -21,7 +23,13 @@ export class UserModalComponent implements OnInit, OnChanges {
   listPosterminal: any[] = [];
   connectionStatus: number;
 
-  constructor(public activeModal: NgbActiveModal, private dmService: DanhMucService, private notificationService: NotificationService) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private dmService: DanhMucService,
+    private notificationService: NotificationService,
+    private localStorage: LocalStorageService,
+    private reloadService: ReloadService
+  ) {
     this.entity = {
       id: 0,
       username: '',
@@ -30,7 +38,8 @@ export class UserModalComponent implements OnInit, OnChanges {
       unit: '',
       phone: '',
       email: '',
-      note: ''
+      note: '',
+      role: ''
     };
     this.connectionStatus = -1;
   }
@@ -56,11 +65,13 @@ export class UserModalComponent implements OnInit, OnChanges {
   }
 
   updateEntity(): void {
-    this.dmService.postOption(this.entity, this.REQUEST_URL, '/save').subscribe(
+    this.dmService.postOption(this.entity, this.REQUEST_URL, '/update').subscribe(
       (res: HttpResponse<any>) => {
         if (res.body) {
           if (res.body.CODE === '00') {
+            this.getUserInfo();
             this.notificationService.showSuccess(res.body.MESSAGE, SUCCESS_LABEL);
+            this.reloadService.setReloadFlag(true);
           } else {
             this.notificationService.showError(res.body.MESSAGE, ERROR_LABEL);
           }
@@ -80,8 +91,15 @@ export class UserModalComponent implements OnInit, OnChanges {
     this.dmService.getOption({}, this.REQUEST_URL, '/details/' + this.inputId).subscribe((response: HttpResponse<any>) => {
       if (response.body) {
         if (response.body.CODE === '00') {
-          this.entity = response.body.RESULT.content;
+          this.entity = response.body.RESULT;
         }
+      }
+    });
+  }
+  getUserInfo(): void {
+    this.dmService.getOption({}, this.REQUEST_URL, '/info').subscribe((response: HttpResponse<any>) => {
+      if (response.body) {
+        this.localStorage.store('user', response.body.RESULT);
       }
     });
   }

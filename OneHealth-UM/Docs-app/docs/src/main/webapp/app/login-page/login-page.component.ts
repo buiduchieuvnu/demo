@@ -92,7 +92,7 @@ export class LoginPageComponent implements OnInit {
   getUserInfo(): void {
     this.dmService.getOption({}, this.URL_USER, '/info').subscribe((response: HttpResponse<any>) => {
       if (response.body) {
-        this.$localStorage.store('user', response.body.RESULT.content);
+        this.$localStorage.store('user', response.body.RESULT);
       }
     });
   }

@@ -17,8 +17,11 @@ public class UserEntity {
     private String email;
     private String note;
     private Double dateOfBirth;
+    // 0: admin, 1: user
+    private String role;
 
-    public UserEntity(){}
+    public UserEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,6 +42,15 @@ public class UserEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    @Basic
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Basic

@@ -34,7 +34,7 @@ public abstract class BaseApi<T> {
         return new BaseResponse("00", "Cập nhật dữ liệu thành công", this.getBaseService().create(t));
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public BaseResponse update(@RequestBody T t) {
         return new BaseResponse("00", "Cập nhật thành công", this.getBaseService().update(t));
     }

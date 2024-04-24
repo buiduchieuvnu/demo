@@ -32,5 +32,16 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity> implements User
         entity.setPassword(new BCryptPasswordEncoder().encode(entity.getPassword()));
         return userRepository.save(entity);
     }
-
+    @Override
+    public UserEntity update (UserEntity entity){
+//        UserEntity userEntity = userRepository.getById(entity.getId());
+//        if(userEntity != null) {
+//            UserEntity insertEntity = entity;
+//            insertEntity.setPassword(userEntity.getPassword());
+//            return userRepository.save(insertEntity);
+//        }
+//        return userRepository.save(entity);
+//        entity.setPassword(new BCryptPasswordEncoder().encode(entity.getPassword()));
+        return userRepository.save(entity);
+    }
 }

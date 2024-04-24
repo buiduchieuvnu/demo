@@ -41,7 +41,9 @@ export class DanhMucService {
   postOption(entity: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
     return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, { observe: 'response' });
   }
-
+  putOption(entity: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
+    return this.http.put<any>(this.resourceUrl + requestUrl + option, entity, { observe: 'response' });
+  }
   getOption(req: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
     const options = createRequestOption(req);
     return this.http.get<any>(this.resourceUrl + requestUrl + option, { params: options, observe: 'response' });

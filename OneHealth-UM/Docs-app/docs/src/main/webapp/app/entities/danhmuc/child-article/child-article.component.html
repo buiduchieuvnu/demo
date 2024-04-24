@@ -28,7 +28,7 @@
               >
                 <mat-expansion-panel-header>
                   <mat-panel-title style="display: flex; flex-direction: row; font-size: 18px; align-items: center;">
-                  <span id="main-post-title">{{ mainPost.name }} </span>
+                    <span id="main-post-title">{{ mainPost.name }} </span>
 
                     <i
                       class="fa fa-plus"
@@ -63,7 +63,9 @@
           </div>
           <div class="bg-white radius card" style="margin-top: 20px;" *ngIf="searchElementList.length > 0">
             <div class="card-header p-2">
-              <h3 class="card-title mb-2" style="font-size: 18px !important; font-weight: 700;">Tìm kiếm trùng khớp - <span style="text-transform: none;">{{this.params.searchphase}}</span></h3>
+              <h3 class="card-title mb-2" style="font-size: 18px !important; font-weight: 700;">
+                Tìm kiếm trùng khớp - <span style="text-transform: none;">{{ this.params.searchphase }}</span>
+              </h3>
             </div>
 
             <div *ngFor="let element of searchElementList" style="padding: 0 12px;">
@@ -99,8 +101,8 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-danger btn-sm" (click)="goDownToSearchPhase('adsadsad')">
+  <!-- <button type="button" class="btn btn-danger btn-sm" (click)="goDownToSearchPhase('adsadsad')">
     Test
-  </button>
+  </button> -->
   <input #imageInput type="file" accept="image/*" style="display: none;" (change)="onFileInputChange($event)" />
 </div>
