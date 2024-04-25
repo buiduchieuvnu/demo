@@ -103,7 +103,7 @@ export class UserComponent implements OnInit {
 
     if (filterName) comparesArray.push(`name==*${filterName}*`);
     if (filterCode) comparesArray.push(`role==*${filterCode}*`);
-    return comparesArray.length > 0 ? comparesArray.join(';') : 'role==1';
+    return comparesArray.length > 0 ? comparesArray.join(';') : 'role==*';
   }
 
   onDelete(id: number): void {

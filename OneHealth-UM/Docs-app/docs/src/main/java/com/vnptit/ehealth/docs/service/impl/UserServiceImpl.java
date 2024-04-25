@@ -9,11 +9,16 @@ import com.vnptit.ehealth.docs.repository.BaseRepository;
 import com.vnptit.ehealth.docs.repository.UserRepository;
 import com.vnptit.ehealth.docs.service.UserService;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 public class UserServiceImpl extends BaseServiceImpl<UserEntity> implements UserService {
     private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository userRepository){
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -28,12 +33,13 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity> implements User
     }
 
     @Override
-    public UserEntity create (UserEntity entity){
+    public UserEntity create(UserEntity entity) {
         entity.setPassword(new BCryptPasswordEncoder().encode(entity.getPassword()));
         return userRepository.save(entity);
     }
+
     @Override
-    public UserEntity update (UserEntity entity){
+    public UserEntity update(UserEntity entity) {
 //        UserEntity userEntity = userRepository.getById(entity.getId());
 //        if(userEntity != null) {
 //            UserEntity insertEntity = entity;

@@ -1,15 +1,17 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OPERATIONS, SERVER_API_URL, SERVER_PAYMENT_URL_API } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
+import { ACCESS_TOKEN } from '../../app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class DanhMucService {
   public resourceUrl = SERVER_API_URL;
   public resourcePaymentUrl = SERVER_PAYMENT_URL_API;
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, private localStorage: LocalStorageService) {}
 
   create(entity: any, requestUrl: any): Observable<HttpResponse<any>> {
     return this.http.post<any>(this.resourceUrl + requestUrl + OPERATIONS.CREATE, entity, { observe: 'response' });
@@ -37,7 +39,15 @@ export class DanhMucService {
   delete(id: number, requestUrl: any): Observable<HttpResponse<{}>> {
     return this.http.get<any>(`${this.resourceUrl + requestUrl + OPERATIONS.DELETE + '/'}${id}`, { observe: 'response' });
   }
+  createUser(entity: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
+    const accesstoken = this.localStorage.retrieve('authenticationtoken');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + accesstoken
+    });
 
+    // Thêm header vào yêu cầu POST
+    return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, { headers, observe: 'response' });
+  }
   postOption(entity: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
     return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, { observe: 'response' });
   }
