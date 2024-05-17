@@ -12,8 +12,44 @@
                 <span class="text">Dashboard</span></a
               >
             </li>
-
+            <li (click)="selected(1)" [ngClass]="{ selectMenuItem: selectedId === 1 }">
+              <a [routerLink]="'/danhmuc/topic'" class="nav-link no-arrow">
+                <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 24px;margin-left: 4px;"></i>
+                <span class="text">Thêm topic</span></a
+              >
+            </li>
             <li>
+              <a class="nav-link" data-toggle="collapse" [href]="'#dropdown-dm'" role="button" aria-expanded="false">
+                <span class="icon ic_navleft-4"></span>
+                <span class="text">Danh mục</span>
+              </a>
+
+              <!-- <ul class="collapse" [id]="'dropdown-dm'">
+                <li class="entity-menu" (click)="selected(1)" [ngClass]="{ selectMenuItem: selectedId === 2 }">
+                  <a routerLink="/danhmuc/main-article" role="button" aria-expanded="false">
+                    Danh mục bài viết cha
+                  </a>
+                </li>
+              </ul> -->
+
+              <!-- <ul class="collapse" [id]="'dropdown-dm'">
+                <li class="entity-menu" (click)="selected(2)" [ngClass]="{ selectMenuItem: selectedId === 2 }">
+                  <a routerLink="/danhmuc/child-article/1">Topic 2</a>
+                </li>
+              </ul> -->
+              <ul class="collapse" [id]="'dropdown-dm'">
+                <li
+                  class="entity-menu"
+                  (click)="selected(2)"
+                  [ngClass]="{ selectMenuItem: selectedId === 2 }"
+                  *ngFor="let entity of listEntity; index as i"
+                >
+                  <a [routerLink]="['/danhmuc/child-article', entity.id]">{{ entity.name }}</a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- <li>
               <a class="nav-link" data-toggle="collapse" [href]="'#dropdown-dm'" role="button" aria-expanded="false">
                 <span class="icon ic_navleft-4"></span>
                 <span class="text">Danh mục</span>
@@ -28,7 +64,6 @@
                     <li>
                       <a routerLink="/danhmuc/main-article">Danh mục bài viết cha</a>
                     </li>
-                    <!-- Add more dropdown items here if needed -->
                   </ul>
                 </li>
               </ul>
@@ -38,7 +73,17 @@
                   <a routerLink="/danhmuc/child-article">Topic 2</a>
                 </li>
               </ul>
-            </li>
+              <ul class="collapse" [id]="'dropdown-dm'">
+                <li
+                  class="entity-menu"
+                  (click)="selected(2)"
+                  [ngClass]="{ selectMenuItem: selectedId === 2 }"
+                  *ngFor="let entity of listEntity; index as i"
+                >
+                  <a>{{ entity.name }}</a>
+                </li>
+              </ul>
+            </li> -->
 
             <li>
               <a class="nav-link" data-toggle="collapse" [href]="'#dropdown-bc'" role="button" aria-expanded="false">

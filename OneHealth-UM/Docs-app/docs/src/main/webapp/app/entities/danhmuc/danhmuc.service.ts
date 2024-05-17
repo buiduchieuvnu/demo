@@ -4,7 +4,6 @@ import { OPERATIONS, SERVER_API_URL, SERVER_PAYMENT_URL_API } from 'app/app.cons
 import { createRequestOption } from 'app/shared/util/request-util';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
-import { ACCESS_TOKEN } from '../../app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class DanhMucService {
@@ -47,6 +46,15 @@ export class DanhMucService {
 
     // Thêm header vào yêu cầu POST
     return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, { headers, observe: 'response' });
+  }
+  getEntityHaveHeader(requestUrl: any): Observable<HttpResponse<any>> {
+    const accesstoken = this.localStorage.retrieve('authenticationtoken');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + accesstoken
+    });
+
+    // Thêm header vào yêu cầu GET
+    return this.http.get<any>(this.resourceUrl + requestUrl, { headers, observe: 'response' });
   }
   postOption(entity: any, requestUrl: any, option: any): Observable<HttpResponse<any>> {
     return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, { observe: 'response' });

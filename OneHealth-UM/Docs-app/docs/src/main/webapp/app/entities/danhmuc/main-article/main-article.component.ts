@@ -8,6 +8,7 @@ import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-di
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { MainArticleModalComponent } from 'app/shared/popup-modal/main-article-modal/main-article-modal.component';
 import { DanhMucService } from '../danhmuc.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'jhi-main-article',
@@ -21,7 +22,7 @@ export class MainArticleComponent implements OnInit {
 
   maIsEmpty = false;
   connectionIsEmpty = false;
-
+  topicId!: any;
   listEntity!: any[];
   itemsPerPage = ITEMS_PER_PAGE;
   page = 1;
@@ -52,7 +53,8 @@ export class MainArticleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private confirmDialogService: ConfirmationDialogService,
     private notificationService: NotificationService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private activeRouter: ActivatedRoute
   ) {
     this.order = 'asc';
 
@@ -70,6 +72,8 @@ export class MainArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.topicId = this.activeRouter.snapshot.paramMap.get('topcid');
+
     this.loadData();
   }
 
@@ -88,7 +92,7 @@ export class MainArticleComponent implements OnInit {
         if (response.body) {
           if (response.body.CODE === '00') {
             this.listEntity = response.body.RESULT.content;
-            this.totalItems = response.body.RESULT.totalElements;
+            this.listEntity = this.listEntity.filter(item => item.topic.id === parseInt(this.topicId, 10));
           }
         }
       });
@@ -150,6 +154,7 @@ export class MainArticleComponent implements OnInit {
       backdrop: 'static'
     });
     this.modalRef.componentInstance.inputId = entity ? entity.id : 0;
+    this.modalRef.componentInstance.topicId = this.topicId;
 
     this.modalRef.result.then(
       () => {

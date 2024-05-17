@@ -20,7 +20,7 @@ export class ChildArticleModalComponent implements OnInit, OnChanges {
 
   entity: any;
   outputSample: any;
-  listMainArticle: any;
+  listMainArticle!: any[];
 
   REQUEST_URL = '/api/child-article';
   MAINARTICLE_REQUEST_URL = '/api/main-article';
@@ -34,7 +34,7 @@ export class ChildArticleModalComponent implements OnInit, OnChanges {
       note: '',
       code: '',
       content: '',
-      mainarticleid: 0,
+      // mainarticleid: 0,
       mainarticle: { id: 0 },
       createDate: '',
       updateDate: ''
@@ -212,10 +212,11 @@ export class ChildArticleModalComponent implements OnInit, OnChanges {
   }
 
   loadDataMainArticle(): void {
-    this.dmService.getOption({}, this.MAINARTICLE_REQUEST_URL, '/all').subscribe((response: HttpResponse<any>) => {
+    this.dmService.getEntityHaveHeader(this.MAINARTICLE_REQUEST_URL + '/all').subscribe((response: HttpResponse<any>) => {
       if (response.body) {
         if (response.body.CODE === '00') {
           this.listMainArticle = response.body.RESULT;
+          this.listMainArticle = this.listMainArticle.filter(item => item.topic.id === parseInt(this.inputMainArticleId, 10));
         }
       }
     });

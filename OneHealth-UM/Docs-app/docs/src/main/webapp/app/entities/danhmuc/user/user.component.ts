@@ -8,6 +8,7 @@ import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-di
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { UserModalComponent } from 'app/shared/popup-modal/user-modal/user-modal.component';
 import { DanhMucService } from '../danhmuc.service';
+import { TopicModalComponent } from 'app/shared/popup-modal/topic-modal/topic-modal.component';
 
 @Component({
   selector: 'jhi-user',

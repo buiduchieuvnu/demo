@@ -12,6 +12,7 @@ import { DanhMucService } from 'app/entities/danhmuc/danhmuc.service';
 })
 export class MainArticleModalComponent implements OnInit, OnChanges {
   @Input() inputId!: any;
+  @Input() topicId!: any;
   editing = false;
 
   entity: any;
@@ -26,6 +27,7 @@ export class MainArticleModalComponent implements OnInit, OnChanges {
       id: 0,
       note: '',
       code: '',
+
       createDate: '',
       updateDate: ''
     };
@@ -56,7 +58,9 @@ export class MainArticleModalComponent implements OnInit, OnChanges {
       this.entity.createDate = new Date().toISOString();
     }
     this.entity.updateDate = new Date().toISOString();
-
+    this.entity.topic = {
+      id: parseInt(this.topicId, 10)
+    };
     this.dmService.postOption(this.entity, this.REQUEST_URL, '/save').subscribe(
       (res: HttpResponse<any>) => {
         if (res.body) {

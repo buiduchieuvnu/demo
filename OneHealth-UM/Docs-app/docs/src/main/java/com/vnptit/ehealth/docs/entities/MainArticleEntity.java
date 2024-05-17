@@ -1,10 +1,18 @@
 package com.vnptit.ehealth.docs.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "mainarticle", schema = "main", catalog = "")
 public class MainArticleEntity {
     private Long id;
@@ -13,6 +21,7 @@ public class MainArticleEntity {
     private String note;
     private LocalDateTime createdate;
     private LocalDateTime updatedate;
+    private TopicEntity topic;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,6 +78,16 @@ public class MainArticleEntity {
     @Column(name = "updatedate")
     public LocalDateTime getUpdateDate() {
         return updatedate;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "topicid", referencedColumnName = "id", nullable = true)
+    public TopicEntity getTopic() {
+        return topic;
+    }
+
+    public void setTopic(TopicEntity topicEntity) {
+        this.topic = topicEntity;
     }
 
     public void setUpdateDate(LocalDateTime updatedate) {

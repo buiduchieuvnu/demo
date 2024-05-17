@@ -5,7 +5,6 @@ import { ERROR_LABEL, ERROR_MESSAGE, SUCCESS_LABEL } from 'app/app.constants';
 import { NotificationService } from 'app/core/notification/notification.service';
 import { DanhMucService } from 'app/entities/danhmuc/danhmuc.service';
 import { ReloadService } from 'app/services/reload.service';
-import { log } from 'console';
 import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({

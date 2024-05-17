@@ -1,4 +1,7 @@
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { SERVER_API_URL } from 'app/app.constants';
+import { LocalStorageService } from 'ngx-webstorage';
 import Scrollbar from 'smooth-scrollbar';
 
 @Component({
@@ -7,12 +10,28 @@ import Scrollbar from 'smooth-scrollbar';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  resourceUrl = SERVER_API_URL;
   searchMenuItemValue = '';
   selectedId!: any;
+  entity: any;
+  requestUrl = '/api/topic/all';
+  listEntity!: any[];
+  // private reloadSubscription!: Subscription;
 
-  constructor() {}
+  constructor(protected http: HttpClient, private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
+    this.entity = {
+      id: 0,
+      name: ''
+    };
+    // this.reloadSubscription = this.reloadService.getReloadFlag().subscribe((flag: any) => {
+    //   if (flag) {
+    //     this.loadDetails(); // Thực hiện hành động cần thiết để reload component
+    //     this.reloadService.setReloadFlag(false); // Đặt lại cờ
+    //   }
+    // });
+    this.loadDetails();
     this.sideBarLoad();
   }
 
@@ -33,5 +52,29 @@ export class SidebarComponent implements OnInit {
     $('#barToggle').click(function(): void {
       $('#wrapper').toggleClass('extend');
     });
+  }
+
+  loadDetails(): void {
+    const accesstoken = this.localStorage.retrieve('authenticationtoken');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + accesstoken
+    });
+
+    // Thêm header vào yêu cầu POST
+    this.http
+      .get<any>(this.resourceUrl + this.requestUrl, { headers, observe: 'response' })
+      .subscribe(
+        (res: HttpResponse<any>) => {
+          if (res.body) {
+            if (res.body.CODE === '00') {
+              this.listEntity = res.body.RESULT;
+              console.log(this.listEntity);
+            } else {
+              console.log('That Bai');
+            }
+          }
+        },
+        () => {}
+      );
   }
 }

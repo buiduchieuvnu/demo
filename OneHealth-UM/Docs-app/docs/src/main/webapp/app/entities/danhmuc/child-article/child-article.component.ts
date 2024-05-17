@@ -1,20 +1,20 @@
+import { ViewportScroller } from '@angular/common';
 import { HttpResponse } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EditorComponent } from '@tinymce/tinymce-angular';
 import { ERROR_LABEL, ERROR_MESSAGE, SUCCESS_LABEL } from 'app/app.constants';
 import { NotificationService } from 'app/core/notification/notification.service';
 import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-dialog/confirm-dialog.service';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
-import { DanhMucService } from '../danhmuc.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SlideInOutAnimation } from './animation';
-import { EditorComponent } from '@tinymce/tinymce-angular';
 import { ChildArticleModalComponent } from 'app/shared/popup-modal/child-article-modal/child-article-modal.component';
-import { ViewportScroller } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ElementFinderService } from '../html-finder.service';
 import { Observable, Observer, Subscription } from 'rxjs';
+import { DanhMucService } from '../danhmuc.service';
+import { ElementFinderService } from '../html-finder.service';
+import { SlideInOutAnimation } from './animation';
 
 @Component({
   selector: 'jhi-child-article',
@@ -45,7 +45,6 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   sanitizedContent: any;
   hierarchicalList: any[] = [];
   searchElementList: any[] = [];
-
   maIsEmpty = false;
   connectionIsEmpty = false;
 
@@ -57,6 +56,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   totalItems = 0;
   order: 'asc' | 'desc';
   selectedID = -1;
+  mainarticleid!: any;
 
   filterCode: String;
   filterName: String;
@@ -116,6 +116,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
     this.tinyMceSetting = {
       height: 500,
       menubar: false,
@@ -148,13 +149,21 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     this.loadData();
-
-    this.activeRouter.queryParams.subscribe(params => {
-      this.params = params;
-      if (this.params.childarticleid) {
-        this.loadChildDetails(this.params.childarticleid);
-      }
+    this.activeRouter.paramMap.subscribe(params => {
+      this.mainarticleid = params.get('mainarticleid');
+      this.loadData();
+      this.loadChildDetails(this.mainarticleid);
     });
+    // this.activeRouter.queryParams.subscribe(params => {
+    //   this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
+    //   console.log('Thay doi lan ', this.mainarticleid);
+    //   // this.loadData();
+    //   // this.params = params;
+    //   // if (this.params.childarticleid) {
+    //   //   this.loadChildDetails(this.params.childarticleid);
+    //   // }
+    // });
+    // this.loadChildDetails(this.mainarticleid);
   }
 
   ngAfterViewInit(): void {
@@ -163,14 +172,16 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       this.setupMutationObserver();
     });
 
-    this.subscription = this.contentChanged$.subscribe(() => {
-      this.activeRouter.queryParams.subscribe(params => {
-        this.params = params;
-        if (this.params.searchphase) {
-          this.goDownToSearchPhase(this.params.searchphase);
-        }
-      });
-    });
+    // this.subscription = this.contentChanged$.subscribe(() => {
+    //   this.activeRouter.queryParams.subscribe(params => {
+    //     // this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
+    //     // this.loadData();
+    //     this.params = params;
+    //     if (this.params.searchphase) {
+    //       this.goDownToSearchPhase(this.params.searchphase);
+    //     }
+    //   });
+    // });
   }
 
   ngOnDestroy(): void {
@@ -201,41 +212,20 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadData(): void {
-    this.dmService
-      .query(
-        {
-          sort: this.sort(),
-          page: this.page - 1,
-          size: this.itemsPerPage,
-          filter: this.filter()
-        },
-        this.MAIN_ARTICLE_URL
-      )
-      .subscribe((response: HttpResponse<any>) => {
-        if (response.body) {
-          if (response.body.CODE === '00') {
-            this.listEntity = response.body.RESULT.content;
-            this.totalItems = response.body.RESULT.totalElements;
-
-            this.activeRouter.queryParams.subscribe(params => {
-              this.params = params;
-              if (this.params.mainarticleid) {
-                console.log('test');
-                const findMainPost = response.body.RESULT.content.findIndex(
-                  (item: any) => item.id === parseInt(this.params.mainarticleid, 10)
-                );
-                console.log(findMainPost);
-                if (findMainPost > -1) this.step = findMainPost;
-              }
-            });
-          }
+    this.dmService.getEntityHaveHeader(this.MAIN_ARTICLE_URL + '/all').subscribe((response: HttpResponse<any>) => {
+      if (response.body) {
+        if (response.body.CODE === '00') {
+          this.listEntity = response.body.RESULT;
+          this.listEntity = this.listEntity.filter(item => item.topic.id === parseInt(this.mainarticleid, 10));
+          const findMainPost = response.body.RESULT.findIndex((item: any) => item.id === parseInt(this.mainarticleid, 10));
+          if (findMainPost > -1) this.step = findMainPost;
         }
-      });
+      }
+    });
   }
 
   loadChildData(index: number): void {
     this.step = index;
-    // 'mainarticle.id=="' +mainarticleid + '"'
     const mainarticleid = this.listEntity[index].id;
 
     this.dmService
@@ -257,7 +247,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
               this.params = params;
               if (this.params.childarticleid === undefined || this.params.childarticleid === null) {
                 this.processHtmlString(response.body.RESULT.content[0].content);
-                this.showContent = response.body.RESULT.content[0].content;
+                this.showContent = response.body.RESULT.content;
               }
             });
           }
@@ -271,6 +261,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
         if (response.body.CODE === '00') {
           this.entity = response.body.RESULT;
           this.showContent = response.body.RESULT.content;
+          console.log('CONTENT_CHILD_SHOW', this.showContent);
           this.processHtmlString(response.body.RESULT.content);
         }
       }
@@ -306,7 +297,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       backdrop: 'static'
     });
     this.modalRef.componentInstance.inputId = entity ? entity.id : 0;
-    this.modalRef.componentInstance.inputMainArticleId = 0;
+    this.modalRef.componentInstance.inputMainArticleId = parseInt(this.mainarticleid, 10);
 
     this.modalRef.result.then(
       () => {
@@ -322,7 +313,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  openCreateChildArticleModal(inputMainArticleId: number): void {
+  openCreateChildArticleModal(): void {
     this.modalRef = this.modalService.open(ChildArticleModalComponent, {
       windowClass: 'hsbaModalClass',
       keyboard: true,
@@ -330,7 +321,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     this.modalRef.componentInstance.inputId = 0;
-    this.modalRef.componentInstance.inputMainArticleId = inputMainArticleId;
+    this.modalRef.componentInstance.inputMainArticleId = this.mainarticleid;
 
     this.modalRef.result.then(
       () => {
@@ -467,14 +458,12 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     const aTags = document.getElementsByTagName('h' + lever);
     const searchText = heading;
     let found;
-
     for (let i = 0; i < aTags.length; i++) {
       if ((aTags[i].textContent ?? '').includes(searchText)) {
         found = aTags[i];
         break;
       }
     }
-
     (found as HTMLElement).scrollIntoView({
       behavior: 'smooth',
       block: 'start',
@@ -499,7 +488,6 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('abcd: ', searchPhase);
     this.searchElementList = [];
     this.searchElementList = this.elementFinderService.findElementByContent(this.editorRootNode, searchPhase);
-
     // if (element) {
     //   element.scrollIntoView({
     //     behavior: 'smooth',

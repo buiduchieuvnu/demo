@@ -1,6 +1,8 @@
 <script src="../../../../content/js/tinymce.min.js"></script>
 <div id="pcontTop">
-  <h2>DANH MỤC BÀI VIẾT</h2>
+  <h2>
+    DANH MỤC BÀI VIẾT
+  </h2>
 </div>
 <div id="pcont-content">
   <div class="container-fluid">
@@ -9,7 +11,17 @@
         <div id="child-list">
           <div class="bg-white radius card">
             <div class="card-header p-2">
-              <h3 class="card-title mb-2" style="font-size: 18px !important;">DANH SÁCH BÀI VIẾT</h3>
+              <h3 class="card-title mb-2" style="font-size: 18px !important;">
+                DANH SÁCH BÀI VIẾT
+                <i
+                  class="fa fa-plus"
+                  aria-hidden="true"
+                  style="margin-left: 10px; font-size: 10px; color: #0056B3;"
+                  [routerLink]="['/danhmuc/main-article', this.mainarticleid]"
+                >
+                  Bài viết cha</i
+                >
+              </h3>
             </div>
 
             <jhi-article-autocomplete
@@ -33,7 +45,7 @@
                     <i
                       class="fa fa-plus"
                       aria-hidden="true"
-                      (click)="openCreateChildArticleModal(mainPost.id)"
+                      (click)="openCreateChildArticleModal()"
                       style="margin-left: 10px; font-size: 10px; color: #0056B3;"
                     >
                       Bài viết</i
@@ -81,7 +93,13 @@
           style="padding: 0 1.2rem 1.2rem;
         padding-top: 0.6rem;"
         >
-          <editor #filePickerEditor [ngModel]="showContent" [disabled]="true" [init]="this.tinyMceSetting"></editor>
+          <editor
+            *ngFor="let item of showContent; index as i"
+            #filePickerEditor
+            [ngModel]="item.content"
+            [disabled]="true"
+            [init]="this.tinyMceSetting"
+          ></editor>
         </div>
       </div>
 

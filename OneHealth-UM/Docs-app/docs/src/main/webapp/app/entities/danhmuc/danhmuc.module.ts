@@ -22,6 +22,8 @@ import { ChildArticleModalComponent } from 'app/shared/popup-modal/child-article
 import { TreeContentComponent } from 'app/shared/common/tree-content/tree-content.component';
 import { ChildArticleComponent } from './child-article/child-article.component';
 import { ArticleAutocompleteComponent } from 'app/shared/multiselect/post-multiselect-autocomplete/multiselect-autocomplete.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicModalComponent } from 'app/shared/popup-modal/topic-modal/topic-modal.component';
 
 @NgModule({
   imports: [
@@ -36,6 +38,10 @@ import { ArticleAutocompleteComponent } from 'app/shared/multiselect/post-multis
         component: UserComponent
       },
       {
+        path: 'topic',
+        component: TopicComponent
+      },
+      {
         path: 'cloudsetting',
         component: CloudSettingComponent
       },
@@ -44,11 +50,11 @@ import { ArticleAutocompleteComponent } from 'app/shared/multiselect/post-multis
         component: BackupLogComponent
       },
       {
-        path: 'main-article',
+        path: 'main-article/:topcid',
         component: MainArticleComponent
       },
       {
-        path: 'child-article',
+        path: 'child-article/:mainarticleid',
         component: ChildArticleComponent
       }
     ])
@@ -73,8 +79,10 @@ import { ArticleAutocompleteComponent } from 'app/shared/multiselect/post-multis
     CloudSettingComponent,
     CloudSettingModalComponent,
     UserComponent,
+    TopicComponent,
     ChildArticleComponent,
     UserModalComponent,
+    TopicModalComponent,
     TreeContentComponent,
     ArticleAutocompleteComponent
   ],
