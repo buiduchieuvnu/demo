@@ -35,10 +35,10 @@
                     <th style="width:150px">STT</th>
                     <th>Tên</th>
                     <th>Note</th>
-                    <th style="width:250px">Code</th>
-                    <th style="width:150px">Chi tiết</th>
+                    <th style="width:250px">Code</th>   
                     <th style="width:250px">Ngày tạo</th>
                     <th style="width:250px">Ngày cập nhật</th>
+                    <th style="width:150px">Chi tiết</th>
                   </tr>
 
                   <!-- <tr>
@@ -77,7 +77,7 @@
           <div class="card-footer d-flex justify-content-center">
             <div class="mr-auto">
               Hiển thị
-              <select name="" id="" (change)="loadData()" [(ngModel)]="itemsPerPage">
+              <select name="" id="" (change)="loadData()" >
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -90,7 +90,7 @@
             <nav aria-label="Page navigation">
               <ngb-pagination
                 [collectionSize]="totalItems"
-                [(page)]="page"
+
                 [pageSize]="itemsPerPage"
                 [maxSize]="5"
                 [rotate]="true"
