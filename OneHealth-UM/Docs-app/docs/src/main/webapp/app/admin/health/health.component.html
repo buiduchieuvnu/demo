@@ -22,7 +22,7 @@
                         {{ 'health.indicator.' + componentHealth.key }}
                     </td>
                     <td class="text-center">
-                        <span class="badge" [ngClass]="getBadgeClass(componentHealth.value.status)" jhitranslate="{{ 'health.status.' + componentHealth.value.status }}">
+                        <span class="badge" [ngClass]="getBadgeClass(componentHealth.value.status)" >
                             {{ componentHealth.value.status }}
                         </span>
                     </td>

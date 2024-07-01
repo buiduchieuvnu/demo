@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SERVER_API_URL } from 'app/app.constants';
 import { LocalStorageService } from 'ngx-webstorage';
 import Scrollbar from 'smooth-scrollbar';
-
+import { User } from 'app/core/user/user.model';
 @Component({
   selector: 'jhi-sidebar',
   templateUrl: './sidebar.component.html',
@@ -17,7 +17,10 @@ export class SidebarComponent implements OnInit {
   requestUrl = '/api/topic/all';
   listEntity!: any[];
   // private reloadSubscription!: Subscription;
-
+  user!: User;
+  userrole!: any;
+  CheckRole!: any;
+  i = 0;
   constructor(protected http: HttpClient, private localStorage: LocalStorageService) {}
 
   ngOnInit(): void {
@@ -33,6 +36,20 @@ export class SidebarComponent implements OnInit {
     // });
     this.loadDetails();
     this.sideBarLoad();
+    this.CheckUserRole();
+  }
+
+  CheckUserRole(): void {
+    setTimeout(() => {
+      const user = this.localStorage.retrieve('user');
+      this.userrole = user.role ?? '';
+
+      console.log(user);
+      console.log('Role: ' + this.userrole);
+
+      this.CheckRole = this.userrole === '0';
+      console.log('CheckUserRole sidebar: ' + this.CheckRole);
+    }, 500);
   }
 
   searchMenuItem(): void {}

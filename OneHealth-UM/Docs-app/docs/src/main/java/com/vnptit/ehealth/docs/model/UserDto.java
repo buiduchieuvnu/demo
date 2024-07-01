@@ -8,7 +8,7 @@ public class UserDto {
 
     private String username;
     private String name;
-
+    private String role;
     public UserDto(){}
 
     public Long getId() {
@@ -33,5 +33,12 @@ public class UserDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRole(){
+        return role;
+    }
+    public void setRole(String role){
+        this.role = role;
     }
 }

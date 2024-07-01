@@ -6,18 +6,19 @@
         <article class="scroll-content" style="transform: translate3d(0px, 0px, 0px); height: 219px;">
           <canvas class="overscroll-glow" style="display: none; pointer-events: none;"></canvas>
           <ul id="sidenav" class="nav flex-column">
-            <li (click)="selected(0)" [ngClass]="{ selectMenuItem: selectedId === 0 }">
+            <li (click)="selected(i)" [ngClass]="{ selectMenuItem: selectedId === 0 }">
               <a [routerLink]="'/home'" class="nav-link no-arrow">
                 <span class="icon ic_navleft-1"></span>
                 <span class="text">Dashboard</span></a
               >
             </li>
-            <li (click)="selected(1)" [ngClass]="{ selectMenuItem: selectedId === 1 }">
-              <a [routerLink]="'/danhmuc/topic'" class="nav-link no-arrow">
-                <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 24px;margin-left: 4px;"></i>
-                <span class="text">Thêm topic</span></a
-              >
+            <li (click)="selected(i+1)" [ngClass]="{ selectMenuItem: selectedId === 1 }">
+              <a *ngIf="CheckRole" [routerLink]="'/danhmuc/topic'" class="nav-link no-arrow">
+                <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 24px; margin-left: 4px;"></i>
+                <span class="text">Thêm topic</span>
+              </a>
             </li>
+            
             <li>
               <a class="nav-link" data-toggle="collapse" [href]="'#dropdown-dm'" role="button" aria-expanded="false">
                 <span class="icon ic_navleft-4"></span>
@@ -40,7 +41,7 @@
               <ul class="collapse" [id]="'dropdown-dm'">
                 <li
                   class="entity-menu"
-                  (click)="selected(2)"
+                  (click)="selected(i+1)"
                   [ngClass]="{ selectMenuItem: selectedId === 2 }"
                   *ngFor="let entity of listEntity; index as i"
                 >
@@ -91,11 +92,11 @@
                 <span class="text">Hệ thống</span>
               </a>
               <ul class="collapse" [id]="'dropdown-bc'">
-                <li class="entity-menu" (click)="selected(3)" [ngClass]="{ selectMenuItem: selectedId === 10 }">
+                <li class="entity-menu" (click)="selected(i+1)" [ngClass]="{ selectMenuItem: selectedId === 10 }">
                   <a routerLink="/danhmuc/backuplog">Log Backup</a>
                 </li>
-                <li class="entity-menu" (click)="selected(4)" [ngClass]="{ selectMenuItem: selectedId === 10 }">
-                  <a routerLink="/danhmuc/user">Add User</a>
+                <li class="entity-menu" (click)="selected(i+1)" [ngClass]="{ selectMenuItem: selectedId === 10 }">
+                  <a *ngIf="CheckRole" routerLink="/danhmuc/user">Quản lý User</a>
                 </li>
               </ul>
             </li>

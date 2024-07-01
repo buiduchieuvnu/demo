@@ -8,6 +8,7 @@ import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-di
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { BackupLogModalComponent } from 'app/shared/popup-modal/backuplog-modal/backuplog-modal.component';
 import { DanhMucService } from '../danhmuc.service';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'jhi-backuplog',
@@ -46,13 +47,16 @@ export class BackupLogComponent implements OnInit {
   connectionNameFilter = '';
 
   modalRef!: NgbModalRef;
+  userrole!: any;
+  CheckRole!: boolean;
 
   constructor(
     private dmService: DanhMucService,
     private formBuilder: FormBuilder,
     private confirmDialogService: ConfirmationDialogService,
     private notificationService: NotificationService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private localStorage: LocalStorageService
   ) {
     this.order = 'asc';
 
@@ -71,6 +75,20 @@ export class BackupLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    this.CheckUserRole();
+  }
+
+  CheckUserRole(): void {
+    setTimeout(() => {
+      const user = this.localStorage.retrieve('user');
+      this.userrole = user.role ?? '';
+
+      console.log(user);
+      console.log('Role: ' + this.userrole);
+
+      this.CheckRole = this.userrole === '0';
+      console.log('CheckRolebaiviet: ' + this.CheckRole);
+    }, 500);
   }
 
   loadData(): void {

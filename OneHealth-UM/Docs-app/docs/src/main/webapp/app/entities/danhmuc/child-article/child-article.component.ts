@@ -15,6 +15,8 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { DanhMucService } from '../danhmuc.service';
 import { ElementFinderService } from '../html-finder.service';
 import { SlideInOutAnimation } from './animation';
+import { User } from 'app/core/user/user.model';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'jhi-child-article',
@@ -27,7 +29,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   choosing = false;
   creating = false;
   step = 0;
-
+  user!: User;
   @ViewChild('editorRootNode') editorRootNode!: ElementRef;
   @ViewChild('filePickerEditor') filePickerEditor!: EditorComponent;
   @ViewChild('imageInput') imageInput!: HTMLInputElement;
@@ -39,8 +41,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   entity: any;
   params: any;
 
-  showContent =
-    '<p style="color: red; font-size: 18px;">This is an existing paragraph with custom formatting.</p> <p style="color: red; font-size: 18px;"><strong>adsa</strong></p> <p style="color: red; font-size: 18px;">&nbsp;</p> <p style="color: red; font-size: 18px;"><strong>blue soul</strong></p>';
+  showContent = '';
 
   sanitizedContent: any;
   hierarchicalList: any[] = [];
@@ -48,7 +49,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   maIsEmpty = false;
   connectionIsEmpty = false;
 
-  listEntity!: any[];
+  listEntity: any[] = [];
   itemsPerPage = ITEMS_PER_PAGE;
   page = 1;
   previousPage!: number;
@@ -80,6 +81,10 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   modalRef!: NgbModalRef;
   selectedFile!: File;
+  topicid = '';
+
+  userrole!: any;
+  CheckRole!: any;
 
   constructor(
     private dmService: DanhMucService,
@@ -91,7 +96,8 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private activeRouter: ActivatedRoute,
     private elementFinderService: ElementFinderService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private localStorage: LocalStorageService
   ) {
     // eslint-disable-next-line
 
@@ -116,7 +122,6 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
     this.tinyMceSetting = {
       height: 500,
       menubar: false,
@@ -148,22 +153,40 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
         bullist numlist outdent indent | removeformat | fullscreen | help'
     };
 
-    this.loadData();
     this.activeRouter.paramMap.subscribe(params => {
-      this.mainarticleid = params.get('mainarticleid');
+      this.topicid = params.get('topicid') ?? '';
       this.loadData();
-      this.loadChildDetails(this.mainarticleid);
+      //this.loadChildData(0);
+      // this.loadChildDetails(this.mainarticleid);
     });
-    // this.activeRouter.queryParams.subscribe(params => {
-    //   this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
-    //   console.log('Thay doi lan ', this.mainarticleid);
-    //   // this.loadData();
-    //   // this.params = params;
-    //   // if (this.params.childarticleid) {
-    //   //   this.loadChildDetails(this.params.childarticleid);
-    //   // }
-    // });
-    // this.loadChildDetails(this.mainarticleid);
+
+    this.activeRouter.queryParamMap.subscribe(params => {
+      const mainarticleidQuery = params.get('mainarticleid') ?? '';
+      if (mainarticleidQuery) {
+        this.mainarticleid = parseInt(mainarticleidQuery, 10);
+        this.step = this.listEntity.findIndex(entity => parseInt(entity.id, 10) === parseInt(this.mainarticleid, 10));
+      }
+
+      const childarticleidQuery = params.get('childarticleid') ?? '';
+      if (childarticleidQuery) this.loadChildDetails(parseInt(childarticleidQuery, 10));
+
+      //this.loadChildData(0);
+      // this.loadChildDetails(this.mainarticleid);
+    });
+    this.CheckUserRole();
+  }
+
+  CheckUserRole(): void {
+    setTimeout(() => {
+      const user = this.localStorage.retrieve('user');
+      this.userrole = user.role ?? '';
+
+      console.log(user);
+      console.log('Role: ' + this.userrole);
+
+      this.CheckRole = this.userrole === '0';
+      console.log('CheckRolebaiviet: ' + this.CheckRole);
+    }, 500);
   }
 
   ngAfterViewInit(): void {
@@ -171,17 +194,6 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       this.observerCallback = observer;
       this.setupMutationObserver();
     });
-
-    // this.subscription = this.contentChanged$.subscribe(() => {
-    //   this.activeRouter.queryParams.subscribe(params => {
-    //     // this.mainarticleid = this.activeRouter.snapshot.paramMap.get('mainarticleid');
-    //     // this.loadData();
-    //     this.params = params;
-    //     if (this.params.searchphase) {
-    //       this.goDownToSearchPhase(this.params.searchphase);
-    //     }
-    //   });
-    // });
   }
 
   ngOnDestroy(): void {
@@ -216,9 +228,19 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       if (response.body) {
         if (response.body.CODE === '00') {
           this.listEntity = response.body.RESULT;
-          this.listEntity = this.listEntity.filter(item => item.topic.id === parseInt(this.mainarticleid, 10));
-          const findMainPost = response.body.RESULT.findIndex((item: any) => item.id === parseInt(this.mainarticleid, 10));
-          if (findMainPost > -1) this.step = findMainPost;
+
+          console.log(this.listEntity);
+          console.log('topicId con: ' + this.topicid);
+
+          this.mainarticleid = parseInt(this.activeRouter.snapshot.queryParams['mainarticleid'], 10);
+
+          this.listEntity = this.listEntity.filter(item => parseInt(item.topic.id, 10) === parseInt(this.topicid, 10));
+          if (this.mainarticleid !== null) {
+            const findMainPost = response.body.RESULT.findIndex((item: any) => parseInt(item.id, 10) === this.mainarticleid) - 1;
+            if (findMainPost > -1) this.step = findMainPost;
+          } else {
+            this.step = 0;
+          }
         }
       }
     });
@@ -243,13 +265,14 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
           if (response.body.CODE === '00') {
             this.listEntity[index].childList = response.body.RESULT.content;
 
-            this.activeRouter.queryParams.subscribe(params => {
-              this.params = params;
-              if (this.params.childarticleid === undefined || this.params.childarticleid === null) {
-                this.processHtmlString(response.body.RESULT.content[0].content);
-                this.showContent = response.body.RESULT.content;
-              }
-            });
+            const childarticleidQuery = this.activeRouter.snapshot.queryParams['childarticleid'];
+
+            if (childarticleidQuery === undefined || childarticleidQuery === null) {
+              this.processHtmlString(response.body.RESULT.content[0].content);
+              this.showContent = response.body.RESULT.content[0].content;
+            } else {
+              this.loadChildDetails(childarticleidQuery);
+            }
           }
         }
       });
@@ -297,7 +320,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
       backdrop: 'static'
     });
     this.modalRef.componentInstance.inputId = entity ? entity.id : 0;
-    this.modalRef.componentInstance.inputMainArticleId = parseInt(this.mainarticleid, 10);
+    this.modalRef.componentInstance.inputMainArticleId = parseInt(entity.mainarticle.id, 10);
 
     this.modalRef.result.then(
       () => {
@@ -478,7 +501,7 @@ export class ChildArticleComponent implements OnInit, AfterViewInit, OnDestroy {
 
   goToPage(mainarticleid: number, childarticleid: number): void {
     this.searchElementList = [];
-    this.router.navigate(['/danhmuc/child-article'], {
+    this.router.navigate(['/danhmuc/child-article/' + this.topicid], {
       queryParams: { mainarticleid, childarticleid, searchphase: '' },
       queryParamsHandling: 'merge'
     });

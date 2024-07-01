@@ -72,8 +72,8 @@ export class MainArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.topicId = this.activeRouter.snapshot.paramMap.get('topcid');
-
+    this.topicId = this.activeRouter.snapshot.paramMap.get('topicid') ?? '';
+    console.log('TopicID: ' + this.topicId);
     this.loadData();
   }
 
@@ -92,7 +92,11 @@ export class MainArticleComponent implements OnInit {
         if (response.body) {
           if (response.body.CODE === '00') {
             this.listEntity = response.body.RESULT.content;
-            this.listEntity = this.listEntity.filter(item => item.topic.id === parseInt(this.topicId, 10));
+            console.log(this.listEntity);
+
+            this.listEntity = this.listEntity.filter(item => parseInt(item.topic.id, 10) === parseInt(this.topicId, 10));
+
+            console.log(this.listEntity);
           }
         }
       });

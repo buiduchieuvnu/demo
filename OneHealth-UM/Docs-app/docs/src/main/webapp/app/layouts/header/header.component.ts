@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   modalRef!: NgbModalRef;
   REQUEST_URL = '/api/user';
   private reloadSubscription!: Subscription;
+  userrole!: any;
+
+  CheckRole!: any;
 
   constructor(
     private localStorage: LocalStorageService,
@@ -40,9 +43,20 @@ export class HeaderComponent implements OnInit {
   updateUserData(): void {
     setTimeout(() => {
       const user = this.localStorage.retrieve('user');
-      this.username = user === undefined || user === null ? 'admin' : user.username;
-      this.fullName = user === undefined || user === null ? 'Quản trị hệ thống' : user.name;
+      if (user) {
+        this.username = user.username ?? '';
+        this.fullName = user.name ?? '';
+        this.userrole = user.role ?? '';
+      }
+
       this.userId = user.id;
+
+      console.log(user);
+      console.log('FullName: ' + this.fullName);
+      console.log('Role: ' + this.userrole);
+
+      this.CheckRole = this.userrole === '0';
+      console.log('CheckUserRole: ' + this.CheckRole);
     }, 500);
   }
   logout(): void {

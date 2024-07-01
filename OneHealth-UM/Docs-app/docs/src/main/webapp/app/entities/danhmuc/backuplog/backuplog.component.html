@@ -30,7 +30,7 @@
                                   <th>Note</th>
                                   <th style="width:250px">Ngày backup</th>
                                   <th style="width:250px">Code</th>
-                                  <th style="width:150px">Chi tiết</th>
+                                  <th *ngIf="CheckRole" style="width:150px">Chi tiết</th>
                                 </tr>
 
                                 <!-- <tr>
@@ -50,7 +50,7 @@
                                   <td>{{entity.note}}</td>
                                   <td>{{entity.code}}</td>
                                   <td>{{entity.backupDate}}</td>
-                                  <td style="cursor: pointer;" >
+                                  <td *ngIf="CheckRole" style="cursor: pointer;" >
                                     <button class="btn btn-sm btn-success" (click)="openModal(entity)"><i class="fa fa-arrows-alt"></i></button>
                                     <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)"><i class="fa fa-trash"></i></button>
                                   </td>

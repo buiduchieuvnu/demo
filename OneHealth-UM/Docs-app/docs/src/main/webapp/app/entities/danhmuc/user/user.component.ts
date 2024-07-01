@@ -8,7 +8,6 @@ import { ConfirmationDialogService } from 'app/layouts/common-modules/confirm-di
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { UserModalComponent } from 'app/shared/popup-modal/user-modal/user-modal.component';
 import { DanhMucService } from '../danhmuc.service';
-import { TopicModalComponent } from 'app/shared/popup-modal/topic-modal/topic-modal.component';
 
 @Component({
   selector: 'jhi-user',
@@ -16,12 +15,7 @@ import { TopicModalComponent } from 'app/shared/popup-modal/topic-modal/topic-mo
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  editing = false;
-  choosing = false;
-  creating = false;
-
-  maIsEmpty = false;
-  connectionIsEmpty = false;
+  roleQuery!: false;
 
   listEntity!: any[];
   itemsPerPage = ITEMS_PER_PAGE;

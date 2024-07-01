@@ -216,7 +216,7 @@ export class ChildArticleModalComponent implements OnInit, OnChanges {
       if (response.body) {
         if (response.body.CODE === '00') {
           this.listMainArticle = response.body.RESULT;
-          this.listMainArticle = this.listMainArticle.filter(item => item.topic.id === parseInt(this.inputMainArticleId, 10));
+          // this.listMainArticle = this.listMainArticle.filter(item => item.topic.id === parseInt(this.inputMainArticleId, 10));
         }
       }
     });

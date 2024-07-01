@@ -24,7 +24,7 @@ export class ArticleAutocompleteComponent implements OnInit, OnDestroy {
   @ViewChild('articleSearchInput')
   tourishPlanInput!: ElementRef<HTMLInputElement>;
 
-  @Output() setArticleEvent = new EventEmitter<{ article: any, searchPhase: string }>();
+  @Output() setArticleEvent = new EventEmitter<{ article: any; searchPhase: string }>();
 
   CHILD_ARTICLE_URL = '/api/child-article';
   showSearches = false;
@@ -122,7 +122,7 @@ export class ArticleAutocompleteComponent implements OnInit, OnDestroy {
       size: pageSize,
       filter: input
     };
-    
+
     //console.log('abc: ', searchReq);
 
     this.dmService.getOption(searchReq, this.CHILD_ARTICLE_URL, '/search-by-contain').subscribe((response: HttpResponse<any>) => {
@@ -167,6 +167,6 @@ export class ArticleAutocompleteComponent implements OnInit, OnDestroy {
   }
 
   output($event: any): void {
-    console.log("output: ",$event.target.value);
+    console.log('output: ', $event.target.value);
   }
 }

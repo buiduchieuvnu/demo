@@ -20,6 +20,9 @@
           <div class="card-header p-2">
             <h3 class="card-title mb-2">DANH SÁCH tài khoản</h3>
           </div>
+          <div *ngIf=""> 
+           <button> Hello</button>
+          </div>
           <div class="card-body p-2">
             <div id="qlhs_luutrubenhan" class="boxscroll">
               <table
@@ -38,6 +41,7 @@
                     <th style="width:250px">Đơn vị</th>
                     <th style="width:250px">Số điện thoại</th>
                     <th style="width:150px">Ghi chú</th>
+                    <th style="width:100px">Role</th>
                     <th style="width:100px">Chi tiết</th>
                   </tr>
                   <!--
@@ -65,6 +69,7 @@
                     <td>{{ entity.unit }}</td>
                     <td>{{ entity.phone }}</td>
                     <td>{{ entity.note }}</td>
+                    <td>{{ entity.role}}</td>
                     <td style="cursor: pointer;">
                       <button class="btn btn-sm btn-success" (click)="openModal(entity)"><i class="fa fa-arrows-alt"></i></button>
                       <button class="btn btn-sm btn-danger" (click)="onDelete(entity.id)"><i class="fa fa-trash"></i></button>

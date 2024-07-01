@@ -13,11 +13,11 @@
             <div class="card-header p-2">
               <h3 class="card-title mb-2" style="font-size: 18px !important;">
                 DANH SÁCH BÀI VIẾT
-                <i
+                <i *ngIf="CheckRole"
                   class="fa fa-plus"
                   aria-hidden="true"
                   style="margin-left: 10px; font-size: 10px; color: #0056B3;"
-                  [routerLink]="['/danhmuc/main-article', this.mainarticleid]"
+                  [routerLink]="['/danhmuc/main-article', this.topicid]"
                 >
                   Bài viết cha</i
                 >
@@ -32,7 +32,6 @@
             <mat-accordion>
               <mat-expansion-panel
                 style="margin-bottom: 15px;"
-                as
                 *ngFor="let mainPost of listEntity; index as i"
                 [expanded]="step === i"
                 (opened)="setStep(i)"
@@ -42,16 +41,18 @@
                   <mat-panel-title style="display: flex; flex-direction: row; font-size: 18px; align-items: center;">
                     <span id="main-post-title">{{ mainPost.name }} </span>
 
-                    <i
+                    <i *ngIf="CheckRole"
                       class="fa fa-plus"
                       aria-hidden="true"
                       (click)="openCreateChildArticleModal()"
                       style="margin-left: 10px; font-size: 10px; color: #0056B3;"
+                      
                     >
                       Bài viết</i
                     >
                   </mat-panel-title>
                 </mat-expansion-panel-header>
+
                 <ng-template matExpansionPanelContent>
                   <div
                     *ngFor="let childPost of mainPost.childList; let i = index"
@@ -59,7 +60,7 @@
                   >
                     <button type="button" class="btn btn-link" (click)="goToPage(mainPost.id, childPost.id)">{{ childPost.name }}</button>
 
-                    <span style="margin-left: auto;">
+                    <span style="margin-left: auto;"  *ngIf="CheckRole" >
                       <button type="button" class="btn btn-primary btn-sm" (click)="openChildArticleModal(childPost)">
                         Chỉnh sửa
                       </button>
@@ -91,12 +92,11 @@
         <div
           class="bg-white radius card"
           style="padding: 0 1.2rem 1.2rem;
-        padding-top: 0.6rem;"
+                  padding-top: 0.6rem;"
         >
-          <editor
-            *ngFor="let item of showContent; index as i"
+          <editor     
             #filePickerEditor
-            [ngModel]="item.content"
+            [ngModel]="this.showContent"
             [disabled]="true"
             [init]="this.tinyMceSetting"
           ></editor>
@@ -108,7 +108,7 @@
           <div class="card-header p-2">
             <h3 class="card-title mb-2" style="font-size: 18px !important; font-weight: 700;">Mục lục</h3>
           </div>
-          <div style="padding-left: 10px;">
+          <div style="text-align: left;padding-left: 10px;">
             <jhi-app-tree-content
               [hierarchicalList]="hierarchicalList"
               (goDownToElement)="childGoDownToElement($event)"

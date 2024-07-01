@@ -37,6 +37,7 @@ public class UserApi extends BaseApi<UserEntity> {
         dto.setId(entity.getId());
         dto.setUsername(entity.getUsername());
         dto.setName(entity.getName());
+        dto.setRole(entity.getRole());
         return new BaseResponse("00","Lấy thông tin người dùng thành công",dto);
     }
 }

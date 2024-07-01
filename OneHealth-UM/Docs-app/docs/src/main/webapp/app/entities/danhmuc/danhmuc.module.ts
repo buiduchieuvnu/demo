@@ -50,11 +50,11 @@ import { TopicModalComponent } from 'app/shared/popup-modal/topic-modal/topic-mo
         component: BackupLogComponent
       },
       {
-        path: 'main-article/:topcid',
+        path: 'main-article/:topicid',
         component: MainArticleComponent
       },
       {
-        path: 'child-article/:mainarticleid',
+        path: 'child-article/:topicid',
         component: ChildArticleComponent
       }
     ])

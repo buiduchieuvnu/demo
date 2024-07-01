@@ -27,7 +27,6 @@ export class MainArticleModalComponent implements OnInit, OnChanges {
       id: 0,
       note: '',
       code: '',
-
       createDate: '',
       updateDate: ''
     };
