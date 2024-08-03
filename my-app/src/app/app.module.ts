@@ -11,6 +11,7 @@ import { BannerComponent } from '../layouts/components/banner/banner.component';
 import { NavbarComponent } from '../layouts/components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ServiceComponent } from './pages/service/service.component';
+import { nameDoctorComponent} from './pages/nameDoctor/nameDoctor.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ServiceComponent } from './pages/service/service.component';
     AppComponent,
     HomeComponent,
     ServiceComponent,
+    nameDoctorComponent,
     HeaderComponent,
     FooterComponent,
     BannerComponent,
