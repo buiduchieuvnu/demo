@@ -85,7 +85,12 @@ html(lang="en")
 
                                 li.nav-item(role="presentation")
                                     button.btn#dark-tab(data-bs-toggle="tab" data-bs-target="#dark" type="button" role="tab" aria-controls="don" aria-selected="false") Đơn thuốc
-                                
+                                li.nav-item(role="presentation")
+                                    button.btn#dark-tab(data-bs-toggle="tab" data-bs-target="#mota" type="button" role="tab" aria-controls="mota" aria-selected="false") Mô tả lâm sàng
+                                li.nav-item(role="presentation")
+                                    button.btn#dark-tab(data-bs-toggle="tab" data-bs-target="#thongtin" type="button" role="tab" aria-controls="thongtin" aria-selected="false") Thông tin khác
+                                li.nav-item(role="presentation")
+                                    button.btn#dark-tab(data-bs-toggle="tab" data-bs-target="#chucnang" type="button" role="tab" aria-controls="chucnang" aria-selected="false") Chức năng
                                       
                               
 
@@ -238,7 +243,67 @@ html(lang="en")
                                                                 a.page-link(href="#",  aria-label="Next")
                                                                     svg.bi.bi-chevron-right(width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
                                                                         path(fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z")
+                                .tab-pane.fade#mota(role="tabpanel" aria-labelledby="mota-tab")
+                                    h6  Mô tả lâm sàng
+                                    .container
+                                        .card
+                                            .card-body
+                                                table.table.mb-0
+                                                    thead
+                                                        tr
+                                                            th(scope="col") #
+                                                            th(scope="col") Tên mô tả lâm sàng
+                                                            th(scope="col") Kết quả
+                                                            th(scope="col") Tác vụ
+                                                    tbody
+                                                        tr
+                                                            th(scope="row") 1
+                                                            td Mô tả 1
+                                                            td Kết quả 1
+                                                            td Tác vụ 1
+                                                        tr
+                                                            th(scope="row") 2
+                                                            td Mô tả 2
+                                                            td Kết quả 2
+                                                            td Tác vụ 2
+                                .tab-pane.fade#thongtin(role="tabpanel" aria-labelledby="thongtin-tab")
+                                    h6 Thông tin khác
+                                        .container
+                                            .card
+                                                .card-body
+                                                    form(action="#", method="GET")
+                                                        .form-group
+                                                            label.form-label(for="exampleInputText") Quá trình bệnh lý
+                                                            input.form-control#exampleInputText(type="text", placeholder="Quá trình bệnh lý")
+                                                        .form-group
+                                                            label.form-label(for="exampleInputText") Tóm tắt kết quả lâm sàng
+                                                            input.form-control#exampleInputText(type="text", placeholder="")
+                                                        .form-group
+                                                            label.form-label(for="exampleInputText") Hướng điều trị
+                                                            input.form-control#exampleInputText(type="text", placeholder="")
+                                                        .form-group
+                                                            label.form-label(for="exampleTextarea1") Tiểu sử bệnh
+                                                            textarea.form-control#exampleTextarea1(name="textarea", cols="3", rows="5", placeholder="")
+                                                        span.form-file-button.btn.btn-primary.shadow.w-100 Lưu
 
+                                .tab-pane.fade#chucnang(role="tabpanel" aria-labelledby="chucnang-tab")
+                                    h6 Tài liệu đính kèm:
+                                        .container
+                                            .card
+                                                .card-body
+                                                    .file-upload-card
+                                                        svg.bi.bi-file-earmark-arrow-up.text-primary(width="48" height="48" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg")
+                                                            path(d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z")
+                                                            path(d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z")
+                                                            path(fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 7.707V11.5a.5.5 0 0 0 .5.5z")
+
+                                                        form(action="#", method="GET")
+                                                            .form-file
+                                                                input.form-control.d-none#customFile(type="file")
+                                                                label.form-file-label.justify-content-center(for="customFile")
+                                                                    span.form-file-button.btn.btn-primary.shadow.w-100 Tải tài liệu
+
+                                                        small Chỉ nhận file jpg, png, doc, docx, xls, xlsx (tối đa 5 file)
           
 
         include inc/footer-nav.pug
