@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /identity
+
+spring:
+  datasource:
+    url: "jdbc:mysql://103.200.23.126:3306/hiepvhdb_identityDB"
+    username: hiepvhdb_hiep
+    password: Zmxncbv2002
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  security:
+    user:
+      name: admin
+      password: admin123
+      roles: USER
