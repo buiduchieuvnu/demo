@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${URL}    http://192.168.208.100:8080/identity/login#/
-${BROWSER}    firefox
+${BROWSER}    chrome
 
 *** Test Cases ***
 Valid Login
