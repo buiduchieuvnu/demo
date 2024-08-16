@@ -1,0 +1,103 @@
+pipeline {
+    agent {
+        label 'deployment'
+    }
+
+    environment {
+        TELEGRAM_TOKEN = '7412112427:AAGHiKy0jxpuCZyBhkyjLSLvUiFgvMTTQ1U'
+        CHAT_ID = '-4248349911'
+        REGISTRY_URL = "harbor.io.vn"
+        REGISTRY_PROJECT = "hiepvh8_hospital"
+        PROCESS_NAME = "backend-hospital"
+        DOCKER_IMAGE_BASE = "${REGISTRY_URL}/${REGISTRY_PROJECT}/${PROCESS_NAME}"
+        REGISTRY_USER = "hiepvh8"
+        REGISTRY_PASSWORD = "Zmxncbv2002"
+        DOCKER_FILE_BUILD = "Dockerfile-build"
+        PATH_PROJECT = "/var/lib/jenkins/workspace/Action_Hospital/hospital/backend-hospital"
+        REPORT_DIR = 'robot-test'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/thuctap/longmh']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/buiduchieuvnu/demo.git']])
+
+                    // Lấy commit hash hiện tại
+                script {
+                    // Lấy mã commit
+                    def commitHash = sh(script: 'git rev-parse HEAD | cut -c1-7', returnStdout: true).trim()
+                    env.COMMIT_HASH = commitHash
+                }
+            }
+        }
+        
+        stage('Scan Sonarqube') {
+            steps {
+                script {
+                    sh " docker build -f ${PROCESS_NAME}/${DOCKER_FILE_BUILD} -t ${PROCESS_NAME}-build ${PROCESS_NAME}/ "
+                    sh """ docker run --rm -v "${PATH_PROJECT}:/app" -w /app ${PROCESS_NAME}-build:latest mvn clean install """
+                    sh """ docker run --rm -v "${PATH_PROJECT}:/usr/src" -w /usr/src sonarsource/sonar-scanner-cli \
+                        sonar-scanner \
+                        -Dsonar.projectKey=backend-hospital \
+                        -Dsonar.sources=src \
+                        -Dsonar.java.binaries=target/classes \
+                        -Dsonar.host.url=http://192.168.208.100:9001 \
+                        -Dsonar.login=squ_45ab84d55889a81d6cf3e47ad4985c88c1591353 """
+                }
+            }
+        }
+        
+        stage('Build Image') {
+            steps {
+                script {
+                    sh " docker build -t '${DOCKER_IMAGE_BASE}:${COMMIT_HASH}' ${PROCESS_NAME}/."
+                }
+            }
+        }
+        
+        stage('Push Image') {
+            steps {
+                script {
+                    sh ''' echo "$REGISTRY_PASSWORD" | docker login $REGISTRY_URL -u $REGISTRY_USER --password-stdin '''
+                    sh "docker push ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}"
+                }
+            }
+        }
+        
+        stage('Pull and Deploy') {
+            steps {
+                script {
+                    sh "docker pull ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}"
+                    sh "docker rm -f ${PROCESS_NAME}"
+                    sh "docker run -dp 8080:8080 --name ${PROCESS_NAME} ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}" 
+                }
+            }
+        }
+        
+        stage('Robot Test') {
+            steps {
+                script {
+                    sh "robot --outputdir ${PROCESS_NAME}/${REPORT_DIR} ${PROCESS_NAME}/${REPORT_DIR}/login_test.robot"
+                }
+            }
+        }
+        
+        stage('Send Reports to Telegram') {
+            steps {
+                script {
+                    def reportFile = "${PATH_PROJECT}/${REPORT_DIR}/report.html"
+                    def logFile = "${PATH_PROJECT}/${REPORT_DIR}/log.html"
+                    def outputFile = "${PATH_PROJECT}/${REPORT_DIR}/output.xml"
+
+                    def sendFile = { file ->
+                        sh "curl -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument -F chat_id=${CHAT_ID} -F document=@${file}"
+                    }
+
+                    sendFile(reportFile)
+                    sendFile(logFile)
+                    sendFile(outputFile)
+                }
+            }
+        }
+    }
+}
