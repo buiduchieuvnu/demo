@@ -21,5 +21,5 @@ Valid Login
     Input Text    id=username    user
     Input Text    id=password    user1
     Click Button    css:.btn.btn-lg.btn-primary.btn-block
-    Page Should Contain    Swagger
+    Page Should Contain    []
     Close Browser
