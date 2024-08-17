@@ -69,7 +69,8 @@ pipeline {
                 script {
                     sh "docker pull ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}"
                     sh "docker rm -f ${PROCESS_NAME}"
-                    sh "docker run -dp 8080:8080 --name ${PROCESS_NAME} ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}" 
+                    sh "docker run -dp 8080:8080 --name ${PROCESS_NAME} ${DOCKER_IMAGE_BASE}:${COMMIT_HASH}"
+                    sleep 30
                 }
             }
         }
@@ -77,7 +78,8 @@ pipeline {
         stage('Robot Test') {
             steps {
                 script {
-                    sh "robot --outputdir ${PROCESS_NAME}/${REPORT_DIR} ${PROCESS_NAME}/${REPORT_DIR}/login_test.robot"
+                    sh "robot --outputdir ${PATH_PROJECT}/${REPORT_DIR}/ ${PATH_PROJECT}/${REPORT_DIR}/login_test.robot"
+                    sleep 30
                 }
             }
         }
@@ -89,9 +91,17 @@ pipeline {
                     def logFile = "${PATH_PROJECT}/${REPORT_DIR}/log.html"
                     def outputFile = "${PATH_PROJECT}/${REPORT_DIR}/output.xml"
 
-                    def sendFile = { file ->
-                        sh "curl -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument -F chat_id=${CHAT_ID} -F document=@${file}"
+                    def sendMessage = { message ->
+                        sh "curl -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage -F chat_id=${CHAT_ID} -F text='${message}'"
                     }
+
+                    def sendFile = { file ->
+                        echo "Sending file: ${file}"
+                        def response = sh(script: "curl -v -X POST https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendDocument -F chat_id=${CHAT_ID} -F document=@${file}", returnStdout: true).trim()
+                        echo "Response from Telegram API: ${response}"
+                    }
+                    
+                    sendMessage("Robot test completed. Here are the reports:")
 
                     sendFile(reportFile)
                     sendFile(logFile)
