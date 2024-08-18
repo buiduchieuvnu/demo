@@ -51,7 +51,9 @@ pipeline {
                         -Dsonar.sources=src \
                         -Dsonar.java.binaries=target/classes \
                         -Dsonar.host.url=http://${HOST_URL}:9001 \
-                        -Dsonar.login=squ_45ab84d55889a81d6cf3e47ad4985c88c1591353 """
+                        -Dsonar.login=squ_45ab84d55889a81d6cf3e47ad4985c88c1591353 
+                        """
+                    sh " docker rmi -f ${PROCESS_NAME_BACKEND}-build:latest"
                     
                     //sonar frontend
                     sh """ 
@@ -98,6 +100,9 @@ pipeline {
                     sh "docker run -dp 8080:8080 --name ${PROCESS_NAME_BACKEND} ${DOCKER_IMAGE_BASE_BACKEND}:${COMMIT_HASH}"
                     sh "docker run -dp 3000:80 --name ${PROCESS_NAME_FRONTEND} ${DOCKER_IMAGE_BASE_FRONTEND}:${COMMIT_HASH}"
                     sleep 30
+                    sh """
+                        docker images | grep -E '${DOCKER_IMAGE_BASE_BACKEND}|${DOCKER_IMAGE_BASE_FRONTEND}' | grep -v '${COMMIT_HASH}' | awk '{print \$1 ":" \$2}' | xargs -r docker rmi -f
+                    """
                 }
             }
         }
