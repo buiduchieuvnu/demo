@@ -6,15 +6,15 @@ pipeline {
     environment {
         TELEGRAM_TOKEN = '7412112427:AAGHiKy0jxpuCZyBhkyjLSLvUiFgvMTTQ1U'
         CHAT_ID = '-4248349911'
-        REGISTRY_URL = "harbor.io.vn"
+        REGISTRY_URL = "hiepvh8"
         HOST_URL = "192.168.208.100"
-        SONAR_LOGIN = "squ_45ab84d55889a81d6cf3e47ad4985c88c1591353"
+        SONAR_LOGIN = "squ_cd5655c0079ddf20cc9ef934779bceb06841621e"
         REGISTRY_PROJECT = "hiepvh8_hospital"
         PROCESS_NAME_BACKEND = "backend-hospital"
         PROCESS_NAME_FRONTEND = "frontend-hospital"
-        DOCKER_IMAGE_BASE_BACKEND = "${REGISTRY_URL}/${REGISTRY_PROJECT}/${PROCESS_NAME_BACKEND}"
-        DOCKER_IMAGE_BASE_FRONTEND = "${REGISTRY_URL}/${REGISTRY_PROJECT}/${PROCESS_NAME_FRONTEND}"
-        REGISTRY_USER = "hiepvh8"
+        DOCKER_IMAGE_BASE_BACKEND = "${REGISTRY_URL}/${PROCESS_NAME_BACKEND}"
+        DOCKER_IMAGE_BASE_FRONTEND = "${REGISTRY_URL}/${PROCESS_NAME_FRONTEND}"
+        REGISTRY_USER = "hiepvh8@gmail.com"
         REGISTRY_PASSWORD = "Zmxncbv2002"
         DOCKER_FILE_BUILD_BACKEND = "Dockerfile-build"
         PATH_PROJECT = "/var/lib/jenkins/workspace/Action_Hospital/hospital"
@@ -51,7 +51,7 @@ pipeline {
                         -Dsonar.sources=src \
                         -Dsonar.java.binaries=target/classes \
                         -Dsonar.host.url=http://${HOST_URL}:9001 \
-                        -Dsonar.login=squ_45ab84d55889a81d6cf3e47ad4985c88c1591353 
+                        -Dsonar.login=${SONAR_LOGIN} 
                         """
                     sh " docker rmi -f ${PROCESS_NAME_BACKEND}-build:latest"
                     
@@ -83,7 +83,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    sh ''' echo "$REGISTRY_PASSWORD" | docker login $REGISTRY_URL -u $REGISTRY_USER --password-stdin '''
+                    sh ''' echo "$REGISTRY_PASSWORD" | docker login -u $REGISTRY_USER --password-stdin '''
                     sh "docker push ${DOCKER_IMAGE_BASE_BACKEND}:${COMMIT_HASH}"
                     sh "docker push ${DOCKER_IMAGE_BASE_FRONTEND}:${COMMIT_HASH}"
                 }
