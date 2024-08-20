@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class AuthenticationResponse {
+    //trả về 1 token cho người dùng cho những lần request tiếp theo
+    String token;
     // authenticated true thi cung cap dung mat khau, password
     boolean authenticated;
 }

@@ -16,8 +16,5 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
-  security:
-    user:
-      name: admin
-      password: admin123
-      roles: USER
+  jwt:
+    signerKey: "L1wfHX6Xmk3/S0CACCsYXVg0UGRhNjvtnh8ntOgKPrFX3BBKvJ23pFMSTkjcAgm/"
