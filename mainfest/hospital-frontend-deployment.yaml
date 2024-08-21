@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-hospital-deployment
+  namespace: hospital
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-hospital
+  template:
+    metadata:
+      labels:
+        app: frontend-hospital
+    spec:
+      containers:
+        - name: fe_dynamic_image
+          image: hiepvh8/frontend-hospital:7fc2e86
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: hospital-secret
