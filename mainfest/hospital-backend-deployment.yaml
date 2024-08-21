@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend-hospital
-          image: dynamic_image
+          image: be_dynamic_image
           ports:
             - containerPort: 8080
       imagePullSecrets:
