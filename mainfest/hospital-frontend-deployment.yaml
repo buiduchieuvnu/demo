@@ -14,8 +14,8 @@ spec:
         app: frontend-hospital
     spec:
       containers:
-        - name: fe_dynamic_image
-          image: hiepvh8/frontend-hospital:7fc2e86
+        - name: frontend-hospital
+          image: fe_dynamic_image
           ports:
             - containerPort: 80
       imagePullSecrets:
