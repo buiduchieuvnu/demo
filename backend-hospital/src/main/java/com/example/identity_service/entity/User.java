@@ -8,6 +8,9 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.Set;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,10 +20,11 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)  // định nghĩa các chuỗi id được render ngẫu nhiên
-    private String id;
-    private String username;
-    private String password;
-    private String firstname;
-    private String lastname;
-    private LocalDate dob;
+    String id;
+    String username;
+    String password;
+    String firstname;
+    String lastname;
+    LocalDate dob;
+    Set<String> roles;
 }

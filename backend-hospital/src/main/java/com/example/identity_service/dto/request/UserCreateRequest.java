@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserCreateRequest {
     String username;
-
     @Size(min = 8, message = "Tối thiểu 8 ký tự")
     String password;
     String firstname;

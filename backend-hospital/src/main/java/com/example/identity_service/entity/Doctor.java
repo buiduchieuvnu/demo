@@ -4,19 +4,24 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)  // định nghĩa các chuỗi id được render ngẫu nhiên
-    private String id;
-    private String namedoctor;
-    private String specialize;
-    private String numberphone;
-    private String email;
-    private int clinic_id;
+    String id;
+    String namedoctor;
+    String specialize;
+    String numberphone;
+    String email;
+    int clinic_id;
 
 
 }

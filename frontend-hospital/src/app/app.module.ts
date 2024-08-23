@@ -12,6 +12,7 @@ import { NavbarComponent } from '../layouts/components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ServiceComponent } from './pages/service/service.component';
 import { nameDoctorComponent} from './pages/nameDoctor/nameDoctor.component';
+import { SetOrderComponent } from './pages/set-order/set-order.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { nameDoctorComponent} from './pages/nameDoctor/nameDoctor.component';
     HeaderComponent,
     FooterComponent,
     BannerComponent,
-    NavbarComponent
+    NavbarComponent,
+    SetOrderComponent
   ],
   imports: [
     BrowserModule,

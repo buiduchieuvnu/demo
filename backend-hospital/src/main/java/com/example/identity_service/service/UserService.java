@@ -4,6 +4,7 @@ import com.example.identity_service.dto.request.UserCreateRequest;
 import com.example.identity_service.dto.request.UserUpdateRequest;
 import com.example.identity_service.dto.response.UserResponse;
 import com.example.identity_service.entity.User;
+import com.example.identity_service.enums.Role;
 import com.example.identity_service.exception.AppException;
 import com.example.identity_service.exception.ErrorCode;
 import com.example.identity_service.mapper.UserMapper;
@@ -11,11 +12,12 @@ import com.example.identity_service.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -25,8 +27,8 @@ public class UserService {
     UserRepository userRepository;    // service tạo 1 user
 
     UserMapper userMapper;
-    public User createUser(UserCreateRequest request) {
 
+    public User createUser(UserCreateRequest request) {
         //
         if (userRepository.existsByUsername(request.getUsername()))
         // throw: ném ra thông báo lỗi
@@ -35,6 +37,12 @@ public class UserService {
         User user = userMapper.toUser(request);
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        // khi ta 1user mới ta set defaul role của user đó
+        HashSet<String> roles = new HashSet<>();
+        roles.add(Role.USER.name());
+
+        user.setRoles(roles);
 
         // Tạo 1 row mới trong table
         return userRepository.save(user);
