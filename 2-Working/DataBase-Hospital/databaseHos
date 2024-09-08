@@ -1,0 +1,153 @@
+
+create database hospital;
+
+
+use hospital;
+
+CREATE TABLE MAJOR (
+   major_id int primary key,
+   major_name varchar(50)
+);
+CREATE TABLE PATIENT
+(
+  address VARCHAR(50) NOT NULL,
+  dob DATE NOT NULL,
+  patient_id INT NOT NULL,
+  patient_name VARCHAR(50) NOT NULL,
+  username varchar(50) not null,
+  password VARCHAR(50) NOT NULL,
+  phone VARCHAR(50)NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  PRIMARY KEY (patient_id)
+);
+
+CREATE TABLE RECEPTIONIS
+(
+  recep_id INT primary key,
+  recep_name VARCHAR(50) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  username varchar(50),
+  password varchar(50)
+);
+
+
+
+CREATE TABLE DOCTOR
+(
+  numberOfReviews int ,
+  totalScore bigint ,
+  roles VARCHAR(50) NOT NULL,
+  doctor_id INT NOT NULL,
+  doctor_name VARCHAR(50) NOT NULL,
+  username varchar(50),
+  password VARCHAR(50) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  major_id int NOT NULL,
+  PRIMARY KEY (doctor_id),
+  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+);
+
+
+create table ARTICLE 
+(
+  id int primary key,
+  doctor_id int ,
+  title varchar(50),
+  content varchar (1000),
+  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+);
+
+CREATE TABLE RATING
+(
+  rate_id INT NOT NULL,
+  comments VARCHAR(50) NOT NULL,
+  doctor_id INT NOT NULL,
+  PRIMARY KEY (rate_id),
+  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+);
+
+create table SERVICE 
+(
+  id int primary key,
+  name varchar(50),
+  expense varchar (50),
+  content varchar (1000),
+  major_id int,
+  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+);
+
+CREATE TABLE LISTOFDISEASES
+(
+  ListOfDiseases_id INT NOT NULL,
+  name VARCHAR(50) NOT NULL,
+  major_id int NOT NULL,
+  contents varchar(1000),
+  PRIMARY KEY (ListOfDiseases_id),
+  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+);
+
+create table RECRUITMENTS 
+(
+  id int primary key,
+  job_vacancy varchar(50),
+  start_date date ,
+  end_date date,
+  salary varchar (50),
+  required varchar (1000),
+  describes varchar(1000)
+);
+
+create table admins (
+id int primary key,
+username varchar(50) not null,
+password varchar(50) not null,
+phone varchar(20) not null,
+email varchar(30) not null,
+fullname varchar(30) not null
+
+);
+
+CREATE TABLE MEDICAL_FILES
+(
+  medical_id INT NOT NULL,
+  note VARCHAR(50) NOT NULL,
+  ten_benh VARCHAR(50) NOT NULL,
+  patient_id INT NOT NULL,
+  dateOfExamination date,
+  PRIMARY KEY (medical_id),
+  FOREIGN KEY (patient_id) REFERENCES PATIENT(patient_id)
+);
+
+CREATE TABLE SCHEDULES
+(
+  sche_id INT NOT NULL,
+  workday DATE NOT NULL,
+  workinghours VARCHAR(50) NOT NULL,
+  doctor_id INT NOT NULL,
+  status int,
+  PRIMARY KEY (sche_id),
+  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+);
+
+CREATE TABLE APPOINTMENTS
+(
+  appoint_id int ,
+  dateOfAppointment DATE NOT NULL,
+  hourOfAppointment varchar(50) NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  note VARCHAR(50) NOT NULL,
+  options INT NOT NULL,
+  patient_id INT NOT NULL,
+  sche_id INT NOT NULL,
+  PRIMARY KEY (appoint_id),
+  FOREIGN KEY (patient_id) REFERENCES PATIENT(patient_id),
+  FOREIGN KEY (sche_id) REFERENCES SCHEDULES(sche_id)
+);
+
+CREATE TABLE CONTACT	
+(
+  contact_id INT primary key,
+  phone VARCHAR(50) NOT NULL,
+  email VARCHAR(50)NOT NULL
+);
