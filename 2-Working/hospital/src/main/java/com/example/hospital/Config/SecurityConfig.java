@@ -64,19 +64,9 @@ public class SecurityConfig {
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests -> {
                     requests
-                            .requestMatchers(
-                                    "hospital/users/register",
-                                    "hospital/users/login"
+                            .requestMatchers("/**"
                             )
                             .permitAll()
-                            .requestMatchers(GET,"hospital/users").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/users/admin").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/users/doctor").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/users/receptionist").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/users/receptionist/appointment").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/major").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/major/service").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/user/appointment").hasAnyRole("RECEPTIONIST")
                             .anyRequest().authenticated();
 
                 });
