@@ -9,6 +9,7 @@ import com.example.hospital.Exception.CustomException.DuplicatedUsername;
 import com.example.hospital.Model.dto.UserDTO;
 import com.example.hospital.Model.request.PatientRequest;
 import com.example.hospital.Model.response.PatientResponse;
+import com.example.hospital.Repository.PatientRepository;
 import com.example.hospital.Repository.UserRepository;
 import com.example.hospital.Service.UserService;
 import com.example.hospital.Utils.JwtTokenUtil;
@@ -44,6 +45,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private  AuthenticationManager authenticationManager;
 
+    @Autowired
+    private PatientRepository patientRepository;
+
 
     @Override
     public List<PatientResponse> findByRequest(PatientRequest request) {
@@ -69,6 +73,12 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(userDTO.getPassword());
         users.setPassword(encodedPassword);
         users.setRoles("PATIENT");
+        PatientEntity patient = PatientEntity.builder()
+                .address(userDTO.getAddress())
+                .status(userDTO.getStatus())
+                .users(users)
+                .build();
+        users.setListPatient(List.of(patient));
         userRepository.save(users);
     }
 

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface MajorService {
     List<MajorDTO> findAllMajors();
+    void addMajor(MajorDTO majorDTO);
 
 }

@@ -30,4 +30,11 @@ public class MajorServiceImpl implements MajorService {
         }
         return listDTO;
     }
+
+    @Override
+    public void addMajor(MajorDTO majorDTO) {
+        MajorEntity majorEntity = modelMapper.map(majorDTO, MajorEntity.class);
+        majorEntity.setStatus(1);
+        majorRepository.save(majorEntity);
+    }
 }

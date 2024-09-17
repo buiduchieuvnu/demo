@@ -20,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
@@ -68,8 +69,14 @@ public class SecurityConfig {
                                     "hospital/users/login"
                             )
                             .permitAll()
-                            .requestMatchers(POST,"hospital/users/addAdmin").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/users/addDoctor").hasAnyRole("ADMIN")
+                            .requestMatchers(GET,"hospital/users").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/users/admin").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/users/doctor").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/users/receptionist").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/users/receptionist/appointment").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/major").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/major/service").hasAnyRole("ADMIN")
+                            .requestMatchers(POST,"hospital/user/appointment").hasAnyRole("RECEPTIONIST")
                             .anyRequest().authenticated();
 
                 });

@@ -11,12 +11,14 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name ="receptionist")
-public class ReceptionistEntity {
+public class ReceptionistEntity extends BaseEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     String image;
+
+    Integer status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

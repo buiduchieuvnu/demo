@@ -1,6 +1,5 @@
 package com.example.hospital.Model.dto;
 
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -11,16 +10,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDTO {
-
+public class DoctorDTO {
     Long id;
     String username ;
     String password ;
-    Integer status ;
     String phone ;
     String email ;
     String fullname ;
     Date date_of_birth ;
     String roles ;
-    String address ;
+    String degree;
+    String image;
+    String position ;
+    Long majorId;
+
 }

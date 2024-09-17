@@ -14,7 +14,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name ="doctor")
-public class DoctorEntity {
+public class DoctorEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class DoctorEntity {
 
     @Column(name ="total_points")
     Long totalScore;
-    String images ;
+    String image ;
     String position;
     Integer status;
 

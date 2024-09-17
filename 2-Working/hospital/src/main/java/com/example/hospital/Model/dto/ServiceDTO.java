@@ -1,6 +1,5 @@
 package com.example.hospital.Model.dto;
 
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,8 +8,13 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MajorDTO {
+public class ServiceDTO {
     Long id;
-    String name;
+    String name ;
+    String expense ;
+    String content ;
     String image;
+    Integer status;
+    Long majorId;
+
 }

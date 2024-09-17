@@ -19,7 +19,7 @@ public class DoctorConverter {
         doctorResponse.setPosition(doctorEntity.getPosition());
         doctorResponse.setNumberOfReviews(doctorEntity.getNumberOfReviews());
         doctorResponse.setTotalScore(doctorEntity.getTotalScore());
-        doctorResponse.setImages(doctorEntity.getImages());
+        doctorResponse.setImages(doctorEntity.getImage());
         return doctorResponse;
     }
 }
