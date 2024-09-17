@@ -20,7 +20,11 @@ public class MedicalFilesEntity {
     private Long id;
 
     Integer status;
+
+    @Column(name ="patient_illness")
     String patientIllness;
+
+    @Column(name ="treatment_process")
     String treatmentProcess;
 
     @ManyToOne

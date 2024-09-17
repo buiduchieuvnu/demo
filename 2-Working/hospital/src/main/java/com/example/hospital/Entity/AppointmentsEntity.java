@@ -26,6 +26,8 @@ public class AppointmentsEntity {
     Date appoinmentDate;
 
 
+
+    @Column(name="date_of_week")
     String dateOfWeek;
 
 

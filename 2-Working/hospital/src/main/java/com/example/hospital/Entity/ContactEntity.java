@@ -16,6 +16,10 @@ public class ContactEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     Integer status;
+
+    @Column(name ="phone_hospital")
     String phone ;
+
+    @Column(name ="email_hospital")
     String email ;
 }
