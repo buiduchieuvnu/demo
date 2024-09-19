@@ -19,6 +19,8 @@ public class AdminEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    String potision;
+
     int status;
 
     @OneToMany(mappedBy ="admin" , fetch = FetchType.LAZY , cascade =  CascadeType.ALL , orphanRemoval =  true)

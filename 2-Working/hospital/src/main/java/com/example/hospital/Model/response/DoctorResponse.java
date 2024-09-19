@@ -11,6 +11,7 @@ import java.util.Date;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DoctorResponse {
+    Long id;
     String position;
     String phone ;
     String email ;

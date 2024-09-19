@@ -8,10 +8,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DiseasesDTO {
-    String name ;
-    String content;
-    Long id;
-    String image;
-    Long MajorId;
+public class PasswordDTO {
+    String password;
+    String newPassword;
+    String confirmPassword;
 }

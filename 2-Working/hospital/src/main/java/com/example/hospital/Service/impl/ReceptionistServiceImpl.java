@@ -56,6 +56,7 @@ public class ReceptionistServiceImpl implements ReceptionistService {
         ReceptionistEntity receptionistEntity = modelMapper.map(receptionistDTO,ReceptionistEntity.class);
         String pass = passwordEncoder.encode(receptionistDTO.getPassword());
         userEntity.setPassword(pass);
+        userEntity.setRoles("RECEPTIONIST PATIENT");
         userEntity.setListReceptionist(List.of(receptionistEntity));
         receptionistEntity.setUsers(userEntity);
         userRepository.save(userEntity);

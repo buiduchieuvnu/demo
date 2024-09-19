@@ -26,17 +26,16 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
             for(Field item : fields) {
                 item.setAccessible(true);
                 String key = item.getName();
-                if(!key.equals("patientIllness") && !key.equals("createdDateOfAppointments") ) {
+                if(!key.equals("patientIllness")  ) {
                     Object value = item.get(patientRequest);
                     if (value != null && !value.toString().equalsIgnoreCase("")) {
                         x.append( " and b." + key + " like '%" + value+"%' ");
                     }
                 }else if (key.equals("patientIllness")){
-                    x.append (" and MEDICAL_FILE.patient_illness like '%"+patientRequest.getPatientIllness()+"%' ");
-
-                }else {
-                    x.append(" and APPOINTMENT.created_date = " + patientRequest.getCreatedDateOfAppointments() +" ");
-
+                    Object value = item.get(patientRequest);
+                    if (value != null && !value.toString().equalsIgnoreCase("")) {
+                        x.append(" and MEDICAL_FILE.patient_illness like '%" + patientRequest.getPatientIllness() + "%' ");
+                    }
                 }
 
             }
@@ -49,17 +48,10 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     public static String CheckJoin(PatientRequest patientRequest){
         StringBuilder x = new StringBuilder("");
-        if(patientRequest.getPatientIllness() != null){
+        if(patientRequest.getPatientIllness() != null && !patientRequest.getPatientIllness().equals("")) {
             x.append(" JOIN PATIENT ON b.id = PATIENT.user_id ");
             x.append(" JOIN MEDICAL_FILE ON PATIENT.id = MEDICAL_FILE.patient_id ");
-            if (patientRequest.getCreatedDateOfAppointments() != null) {
-                x.append(" JOIN APPOINTMENR ON PATIENT.id = APPOINTMENR.patient_id ");
-            }
-        }else {
-            if (patientRequest.getCreatedDateOfAppointments() != null) {
-                x.append(" JOIN PATIENT ON b.id = PATIENT.user_id ");
-                x.append(" JOIN APPOINTMENR ON PATIENT.id = APPOINTMENR.patient_id ");
-            }
+
         }
 
         return x.toString();
@@ -78,12 +70,19 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                             x.append( " and b." + key + " like '%" + value+"%' ");
                     }
                 }else if (key.equals("position")){
-                    x.append(" and DOCTOR.position like '%"+doctorRequest.getPosition()+"%' ");
+                    Object value = item.get(doctorRequest);
+                    if (value != null && !value.toString().equalsIgnoreCase("")) {
+                        x.append(" and DOCTOR.position like '%" + doctorRequest.getPosition() + "%' ");
+                    }
 
                 }else if (key.equals("major")){
-                    x.append(" and MAJOR.id = "+doctorRequest.getMajor()+" ");
+                    Object value = item.get(doctorRequest);
+                    if (value != null && !value.toString().equalsIgnoreCase("")) {
+                    x.append(" and MAJOR.id = "+doctorRequest.getMajor()+" ");}
                 }else {
-                    x.append(" and SERVICE.name like '%"+doctorRequest.getService()+"%' ");
+                    Object value = item.get(doctorRequest);
+                    if (value != null && !value.toString().equalsIgnoreCase("")) {
+                    x.append(" and SERVICE.name like '%"+doctorRequest.getService()+"%' ");}
                 }
             }
         }catch(Exception ex) {
@@ -94,28 +93,28 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     }
     public static String CheckJoin(DoctorRequest doctorRequest){
         StringBuilder x = new StringBuilder("");
-        if(doctorRequest.getPosition() != null){
+        if(doctorRequest.getPosition() != null && !doctorRequest.getPosition().equals("")) {
             x.append(" JOIN DOCTOR ON b.id = DOCTOR.user_id ");
-            if(doctorRequest.getMajor() != null){
+            if(doctorRequest.getMajor() != null ) {
                 x.append(" JOIN MAJOR ON DOCTOR.major_id = MAJOR.id ");
-                if(doctorRequest.getService()!= null){
+                if(doctorRequest.getService()!= null && !doctorRequest.getService().equals("")) {
                     x.append(" JOIN SERVICE ON MAJOR.id = SERVICE.major_id ");
                 }
             }else {
-                if(doctorRequest.getService()!= null){
+                if(doctorRequest.getService()!= null && !doctorRequest.getService().equals("")) {
                     x.append(" JOIN MAJOR ON DOCTOR.major_id = MAJOR.id ");
                     x.append(" JOIN SERVICE ON MAJOR.id = SERVICE.major_id ");
                 }
             }
         } else {
-            if(doctorRequest.getMajor() != null){
+            if(doctorRequest.getMajor() != null && !doctorRequest.getMajor().equals("")) {
                 x.append(" JOIN DOCTOR ON b.id = DOCTOR.user_id ");
                 x.append(" JOIN MAJOR ON DOCTOR.major_id = MAJOR.id ");
-                if(doctorRequest.getService()!= null){
+                if(doctorRequest.getService()!= null && !doctorRequest.getService().equals("")) {
                     x.append(" JOIN SERVICE ON MAJOR.id = SERVICE.major_id ");
                 }
             }else {
-                if(doctorRequest.getService()!= null){
+                if(doctorRequest.getService()!= null && !doctorRequest.getService().equals("")) {
                     x.append(" JOIN DOCTOR ON b.id = DOCTOR.user_id ");
                     x.append(" JOIN MAJOR ON DOCTOR.major_id = MAJOR.id ");
                     x.append(" JOIN SERVICE ON MAJOR.id = SERVICE.major_id ");
@@ -130,7 +129,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     public List<UserEntity> findPatientByRequest(PatientRequest patientRequest) {
         StringBuilder sql = new StringBuilder("SELECT b.* FROM USERS b ");
         sql.append(CheckJoin(patientRequest));
-        sql.append(" WHERE b.roles = 'PATIENT' AND b.status = 1 ");
+        sql.append(" WHERE b.roles like '%PATIENT%' AND b.status = 1 ");
         sql.append(CheckQuery(patientRequest));
         sql.append(" group by  b.id ");
         Query quey = entityManager.createNativeQuery(sql.toString(),UserEntity.class);
@@ -142,7 +141,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     public List<UserEntity> findDoctorByRequest(DoctorRequest doctorRequest) {
         StringBuilder sql = new StringBuilder("SELECT b.* FROM USERS b ");
         sql.append(CheckJoin(doctorRequest));
-        sql.append(" WHERE b.roles = 'DOCTOR' AND b.status = 1 ");
+        sql.append(" WHERE b.roles like '%DOCTOR%' AND b.status = 1 ");
         sql.append(CheckQuery(doctorRequest));
         sql.append(" group by  b.id ");
         Query quey = entityManager.createNativeQuery(sql.toString(),UserEntity.class);

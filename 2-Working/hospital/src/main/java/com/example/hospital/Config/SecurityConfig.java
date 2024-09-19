@@ -62,24 +62,25 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
+
                 .authorizeHttpRequests(requests -> {
                     requests
                             .requestMatchers(
-                                    "hospital/users/register",
-                                    "hospital/users/login"
+                                    "/**"
                             )
                             .permitAll()
-                            .requestMatchers(GET,"hospital/users").hasAnyRole("ADMIN")
+                           /* .requestMatchers(GET,"hospital/users").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/users/admin").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/users/doctor").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/users/receptionist").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/users/receptionist/appointment").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/major").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/major/service").hasAnyRole("ADMIN")
-                            .requestMatchers(POST,"hospital/user/appointment").hasAnyRole("RECEPTIONIST")
+                            .requestMatchers(POST,"hospital/user/appointment").hasAnyRole("RECEPTIONIST")*/
                             .anyRequest().authenticated();
 
                 });
         return http.build();
     }
+
 }

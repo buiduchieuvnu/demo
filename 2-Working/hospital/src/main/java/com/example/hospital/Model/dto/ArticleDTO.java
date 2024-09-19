@@ -1,4 +1,4 @@
-package com.example.hospital.Model.response;
+package com.example.hospital.Model.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,11 +8,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ServiceResponse {
+public class ArticleDTO {
     Long id;
-    String name ;
-    String expense ;
-    String content ;
+    String title ;
+    String content;
     String image;
-    Integer status;
+    Long majorID;
 }

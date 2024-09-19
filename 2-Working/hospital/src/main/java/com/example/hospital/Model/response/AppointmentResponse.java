@@ -8,11 +8,12 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ServiceResponse {
+public class AppointmentResponse {
     Long id;
-    String name ;
-    String expense ;
-    String content ;
-    String image;
-    Integer status;
+    String note;
+    String username;
+    String phone;
+    String email;
+    String fullName;
+    String dateOfWeek;
 }

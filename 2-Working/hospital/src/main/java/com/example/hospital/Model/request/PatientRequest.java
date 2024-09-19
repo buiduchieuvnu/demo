@@ -16,5 +16,4 @@ public class PatientRequest {
     String email ;
     String fullname ;
     String patientIllness;
-    Date createdDateOfAppointments;
 }

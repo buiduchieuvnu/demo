@@ -69,11 +69,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 Pair.of("hospital/users/register", "POST"),
                 Pair.of("hospital/major", "GET"),
                 Pair.of("hospital/major/service", "GET"),
-                Pair.of("hospital/major/service/diseases", "GET")
+                Pair.of("hospital/major/service/diseases", "GET"),
+                Pair.of("/swagger-ui", "GET"),
+                Pair.of("/v3/api-docs", "GET")
         );
         for(Pair<String, String> bypassToken: bypassTokens) {
             if (request.getServletPath().contains(bypassToken.getFirst()) &&
-                    request.getMethod().equals(bypassToken.getSecond())) {
+                    request.getMethod().equals(bypassToken.getSecond())){
                 return true;
             }
         }

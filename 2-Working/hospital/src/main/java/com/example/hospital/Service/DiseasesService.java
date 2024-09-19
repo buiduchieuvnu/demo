@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface DiseasesService {
     List<DiseasesDTO> findDiseasesByChar(String s);
+    void AddDiseases (DiseasesDTO diseasesDTO);
 
 }
