@@ -11,7 +11,7 @@ FROM eclipse-temurin:21-alpine
 RUN adduser -D hospital
 
 WORKDIR /run
-COPY --from=build /app/target/hospital-service-0.0.1-SNAPSHOT.jar /run/hospital-service-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/hospital-0.0.1-SNAPSHOT.jar /run/hospital-0.0.1-SNAPSHOT.jar
 
 RUN chown -R hospital:hospital /run
 
@@ -19,4 +19,4 @@ USER hospital
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/run/hospital-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/run/hospital-0.0.1-SNAPSHOT.jar"]
