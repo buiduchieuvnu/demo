@@ -107,7 +107,7 @@ img {
 }
 
 .--item {
-    font-size: 16px;
+    font-size: 140%;
     display: flex;
     align-items: center;
     padding-right: 24px;
@@ -157,4 +157,8 @@ input {
     top: 50%;
     left: 50%;
     transform: translate(86%, -206%);
+}
+
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width : 100%;
 }
