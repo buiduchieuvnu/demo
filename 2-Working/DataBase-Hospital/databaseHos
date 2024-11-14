@@ -1,153 +1,231 @@
-
-create database hospital;
-
-
-use hospital;
-
-CREATE TABLE MAJOR (
-   major_id int primary key,
-   major_name varchar(50)
-);
-CREATE TABLE PATIENT
+CREATE TABLE USERS
 (
-  address VARCHAR(50) NOT NULL,
-  dob DATE NOT NULL,
-  patient_id INT NOT NULL,
-  patient_name VARCHAR(50) NOT NULL,
-  username varchar(50) not null,
-  password VARCHAR(50) NOT NULL,
-  phone VARCHAR(50)NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  PRIMARY KEY (patient_id)
+  id BIGSERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(100)  NOT NULL,
+  status INT NOT NULL,
+  created_by VARCHAR(50)  ,
+  created_date DATE ,
+  updated_by VARCHAR(50) ,
+  updated_date DATE ,
+  phone VARCHAR(20) NOT NULL,
+  email VARCHAR(35) ,
+  fullname VARCHAR(50)  NOT NULL,
+  date_of_birth DATE NOT NULL,
+  roles VARCHAR(10)  NOT NULL
 );
 
-CREATE TABLE RECEPTIONIS
+CREATE TABLE MAJOR
 (
-  recep_id INT primary key,
-  recep_name VARCHAR(50) NOT NULL,
-  phone VARCHAR(50) NOT NULL,
-  username varchar(50),
-  password varchar(50)
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(30)  NOT NULL,
+  contens varchar(1000),
+  image varchar(100),
+  status INT NOT NULL,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50)  ,
+  created_date DATE ,
+  updated_date DATE
 );
-
-
 
 CREATE TABLE DOCTOR
 (
-  numberOfReviews int ,
-  totalScore bigint ,
-  roles VARCHAR(50) NOT NULL,
-  doctor_id INT NOT NULL,
-  doctor_name VARCHAR(50) NOT NULL,
-  username varchar(50),
-  password VARCHAR(50) NOT NULL,
-  phone VARCHAR(50) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  major_id int NOT NULL,
-  PRIMARY KEY (doctor_id),
-  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+  id BIGSERIAL PRIMARY KEY,
+  degree VARCHAR(50) ,
+  number_of_review INT NOT NULL,
+  position varchar(20),
+  total_points INT NOT NULL,
+  image VARCHAR(300)  ,
+  status INT NOT NULL,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE  ,
+  user_id INT ,
+  major_id INT ,
+  FOREIGN KEY (user_id) REFERENCES USERS(id),
+  FOREIGN KEY (major_id) REFERENCES MAJOR(id)
 );
 
-
-create table ARTICLE 
+CREATE TABLE RECEPTIONIST
 (
-  id int primary key,
-  doctor_id int ,
-  title varchar(50),
-  content varchar (1000),
-  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+  id BIGSERIAL PRIMARY KEY,
+  image VARCHAR(300)  ,
+  status INT NOT NULL,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE  ,
+  user_id INT ,
+  FOREIGN KEY (user_id) REFERENCES USERS(id)
 );
 
-CREATE TABLE RATING
+CREATE TABLE DISEASES
 (
-  rate_id INT NOT NULL,
-  comments VARCHAR(50) NOT NULL,
-  doctor_id INT NOT NULL,
-  PRIMARY KEY (rate_id),
-  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(20)  NOT NULL,
+  content VARCHAR(1000)  NOT NULL,
+  image varchar(100),
+  status INT NOT NULL,
+  created_by VARCHAR(50)  ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE 
 );
 
-create table SERVICE 
+CREATE TABLE PATIENT
 (
-  id int primary key,
-  name varchar(50),
-  expense varchar (50),
-  content varchar (1000),
-  major_id int,
-  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+  id BIGSERIAL PRIMARY KEY,
+  address VARCHAR(50) ,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES USERS(id)
 );
 
-CREATE TABLE LISTOFDISEASES
+CREATE TABLE ADMIN
 (
-  ListOfDiseases_id INT NOT NULL,
-  name VARCHAR(50) NOT NULL,
-  major_id int NOT NULL,
-  contents varchar(1000),
-  PRIMARY KEY (ListOfDiseases_id),
-  FOREIGN KEY (major_id) REFERENCES MAJOR(major_id)
+  id BIGSERIAL PRIMARY KEY,
+  position varchar(30), 
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES USERS(id)
 );
 
-create table RECRUITMENTS 
+CREATE TABLE ARTICLE
 (
-  id int primary key,
-  job_vacancy varchar(50),
-  start_date date ,
-  end_date date,
-  salary varchar (50),
-  required varchar (1000),
-  describes varchar(1000)
+  id BIGSERIAL PRIMARY KEY,
+  title VARCHAR(30) NOT NULL,
+  image varchar(100),
+  content VARCHAR(1000) NOT NULL,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  admin_id INT ,
+  major_id INT,
+  FOREIGN KEY (admin_id) REFERENCES ADMIN(id),
+  FOREIGN KEY (major_id) REFERENCES MAJOR(id)
 );
 
-create table admins (
-id int primary key,
-username varchar(50) not null,
-password varchar(50) not null,
-phone varchar(20) not null,
-email varchar(30) not null,
-fullname varchar(30) not null
-
-);
-
-CREATE TABLE MEDICAL_FILES
+CREATE TABLE SCHEDULE
 (
-  medical_id INT NOT NULL,
-  note VARCHAR(50) NOT NULL,
-  ten_benh VARCHAR(50) NOT NULL,
-  patient_id INT NOT NULL,
-  dateOfExamination date,
-  PRIMARY KEY (medical_id),
-  FOREIGN KEY (patient_id) REFERENCES PATIENT(patient_id)
+  id BIGSERIAL PRIMARY KEY,
+  date_of_week VARCHAR(30) ,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT 
 );
 
-CREATE TABLE SCHEDULES
+CREATE TABLE DOCTOR_SCHEDULE
 (
-  sche_id INT NOT NULL,
-  workday DATE NOT NULL,
-  workinghours VARCHAR(50) NOT NULL,
-  doctor_id INT NOT NULL,
-  status int,
-  PRIMARY KEY (sche_id),
-  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(doctor_id)
+  id BIGSERIAL PRIMARY KEY,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  doctor_id INT ,
+  schedule_id INT ,
+  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(id),
+  FOREIGN KEY (schedule_id) REFERENCES SCHEDULE(id)
 );
 
-CREATE TABLE APPOINTMENTS
+CREATE TABLE SERVICE
 (
-  appoint_id int ,
-  dateOfAppointment DATE NOT NULL,
-  hourOfAppointment varchar(50) NOT NULL,
-  status VARCHAR(50) NOT NULL,
-  note VARCHAR(50) NOT NULL,
-  options INT NOT NULL,
-  patient_id INT NOT NULL,
-  sche_id INT NOT NULL,
-  PRIMARY KEY (appoint_id),
-  FOREIGN KEY (patient_id) REFERENCES PATIENT(patient_id),
-  FOREIGN KEY (sche_id) REFERENCES SCHEDULES(sche_id)
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(30) NOT NULL,
+  expensive INT NOT NULL,
+  image VARCHAR(100),
+  content VARCHAR(1000) NOT NULL,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  major_id INT ,
+  FOREIGN KEY (major_id) REFERENCES MAJOR(id)
 );
 
-CREATE TABLE CONTACT	
+CREATE TABLE APPOINTMENT
 (
-  contact_id INT primary key,
-  phone VARCHAR(50) NOT NULL,
-  email VARCHAR(50)NOT NULL
+  id BIGSERIAL PRIMARY KEY,
+  note varchar(500) ,
+ created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  patient_id INT ,
+  doctor_id INT ,
+  FOREIGN KEY (patient_id) REFERENCES PATIENT(id),
+  FOREIGN KEY (doctor_id) REFERENCES DOCTOR(id)
 );
+
+CREATE TABLE MEDICAL_FILE
+(
+  id BIGSERIAL PRIMARY KEY,
+  patient_illness VARCHAR(50) ,
+  treatment_process VARCHAR(500) ,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  patient_id INT ,
+  FOREIGN KEY (patient_id) REFERENCES PATIENT(id)
+);
+
+CREATE TABLE CONTACT
+(
+  id BIGSERIAL PRIMARY KEY,
+  phone_hospital VARCHAR(50) NOT NULL,
+  email_hospital VARCHAR(50) NOT NULL,
+ created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT 
+);
+
+CREATE TABLE RECRUITMENT
+(
+  id BIGSERIAL PRIMARY KEY,
+  job_vacancy VARCHAR(20) ,
+  start_date DATE ,
+  end_date DATE ,
+  salary VARCHAR(20) ,
+  required VARCHAR(300) ,
+  describes VARCHAR(300) ,
+  created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT 
+);
+
+CREATE TABLE DISEASES_MAJOR
+(
+  id BIGSERIAL PRIMARY KEY,
+ created_by VARCHAR(50) ,
+  updated_by VARCHAR(50) ,
+  created_date DATE ,
+  updated_date DATE ,
+  status INT ,
+  major_id INT ,
+  diseases_id INT ,
+  FOREIGN KEY (major_id) REFERENCES MAJOR(id),
+  FOREIGN KEY (diseases_id) REFERENCES DISEASES(id)
+);
+select d.* from doctor d 
+
