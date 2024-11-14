@@ -161,6 +161,8 @@ CREATE TABLE APPOINTMENT
 (
   id BIGSERIAL PRIMARY KEY,
   note varchar(500) ,
+date_of_week varchar(20),
+appointment_date DATE,
  created_by VARCHAR(50) ,
   updated_by VARCHAR(50) ,
   created_date DATE ,
