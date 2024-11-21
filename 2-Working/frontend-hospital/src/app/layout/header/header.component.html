@@ -112,7 +112,7 @@
                         <div class="d-flex align-items-center --button" style="font-size: 100%;">
                             <a  *ngIf="!authService.getLoginStatus()" class="--link --language"  role="button" routerLink ="/register" s> Đăng ký </a>
                             <a  *ngIf="!authService.getLoginStatus()" class="--link --language"  role="button" routerLink ="/login"> Đăng nhập </a>
-                            <a  *ngIf="authService.getLoginStatus()" class="--link --language"  role="button" routerLink ="/login"> Đăng xuất </a>
+                            <a  *ngIf="authService.getLoginStatus()"  (click)="authService.logout()" class="--link --language"  role="button" routerLink ="/login"> Đăng xuất </a>
                             <a  *ngIf="authService.getLoginStatus()" class="--link --language"  role="button" routerLink ="/login"> Hồ sơ của bạn </a>
                         </div>
                     </div>

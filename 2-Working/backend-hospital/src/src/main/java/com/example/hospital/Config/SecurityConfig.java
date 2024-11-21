@@ -63,20 +63,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)  throws Exception{
-        http
+        http.cors().and()
                 .csrf(AbstractHttpConfigurer::disable)
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests -> {
                     requests
                             .requestMatchers(
-                                    /*"/hospital/users/password", "hospital/users/patient/medicalfiles",
+                                    "/hospital/users/password", "hospital/users/patient/medicalfiles",
                                      "hospital/users/login","hospital/users/register",
-                                    "hospital/users/password" , "hospital/users/patient/medicalfiles"*/
-                                    "/**"
+                                    "hospital/users/password" , "hospital/users/patient/medicalfiles"
                             )
                             .permitAll()
-                           /*.requestMatchers(POST,"hospital/major/service/diseases").hasAnyRole("ADMIN")
-                            .requestMatchers(GET,"hospital/users/patient/appointment ").hasAnyRole("ADMIN RECEPTIONIST")
+                           .requestMatchers(POST,"hospital/major/service/diseases").hasAnyRole("ADMIN")
+                            .requestMatchers(GET,"hospital/users/patient/appointment ").hasAnyRole("ADMIN RECEPTIONIST PATIENT")
                             .requestMatchers(POST,"hospital/users/doctor").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/users/receptionist").hasAnyRole("ADMIN")
                             .requestMatchers(POST,"hospital/major").hasAnyRole("ADMIN")
@@ -85,13 +84,24 @@ public class SecurityConfig {
                             .requestMatchers(GET,"hospital/users/patientnt").hasAnyRole("RECEPTIONIST")
                             .requestMatchers(PUT,"hospital/users/appointment").hasAnyRole("RECEPTIONIST")
                             .requestMatchers(POST,"hospital/users/patient/appointment").hasAnyRole("PATIENT")
-                            .requestMatchers(POST,"hospital/major/service/appointment").hasAnyRole("PATIENT")*/
+                            .requestMatchers(POST,"hospital/major/service/appointment").hasAnyRole("PATIENT")
                             .anyRequest().authenticated();
 
                 });
         return http.build();
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:4200")); // Địa chỉ FE
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true); // Cho phép gửi cookie hoặc thông tin xác thực
 
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 }

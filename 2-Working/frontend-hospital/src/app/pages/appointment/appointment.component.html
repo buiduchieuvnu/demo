@@ -38,15 +38,15 @@
                                 <div class="card text-white" style="border-radius: 1rem; background-color: #135853d8;">
                                     <div class="card-body p-5">
                                         <div class="mb-md-5 mt-md-4 pb-5 text-center">
-                                            <form >
+                                            <form (ngSubmit)="onSubmit()">
                                             <div class="form-outline form-white mb-4">
                                                 <label class="form-label" for="date">Ngày khám </label>
-                                                <input type="date" class="form-control"  id="date" name="date" placeholder="Tên đăng nhập">
+                                                <input type="date" class="form-control" [(ngModel)]="Data.appointmentDate" id="date" name="date" placeholder="Tên đăng nhập">
                                             </div>
 
                                             <div class="form-outline form-white mb-4">
                                                 <label class="form-label" for="note">Yêu cầu của bạn</label>
-                                                <input type="text" class="form-control" id="note" name="note" placeholder="Triệu chứng và điều bạn mong muốn">
+                                                <input type="text" class="form-control" [(ngModel)]="Data.note" id="note" name="note" placeholder="Triệu chứng và điều bạn mong muốn">
                                             </div>
                                             <button type="submit" class="btn btn-outline-success">Đặt lịch</button>
                                             </form>

@@ -35,7 +35,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
-            if( /*isBypassToken(request) */ true) {
+            if( isBypassToken(request) ) {
                 filterChain.doFilter(request, response); //enable bypass
                 return;
             }
@@ -54,9 +54,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                                     userDetails.getAuthorities());
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                    filterChain.doFilter(request, response); //enable bypass
                 }
             }
-            filterChain.doFilter(request, response); //enable bypass
+        //    filterChain.doFilter(request, response); //enable bypass
         }catch (Exception e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
         }
@@ -71,6 +72,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 Pair.of("hospital/users/doctor", "OPTIONS"),
                 Pair.of("hospital/users/register", "POST"),
                 Pair.of("hospital/users/register", "OPTIONS"),
+                Pair.of("hospital/users/patient/appointment", "OPTIONS"),
                 Pair.of("hospital/major", "GET"),
                 Pair.of("hospital/major", "OPTIONS"),
                 Pair.of("hospital/major/service", "GET"),
